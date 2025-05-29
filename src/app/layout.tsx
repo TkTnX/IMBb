@@ -3,7 +3,7 @@ import "./globals.css";
 import { Roboto } from "next/font/google";
 import { Header } from "@/components/Header";
 export const metadata: Metadata = {
-  title: "IMBb",
+  title: "IMBb: Ratings, Reviews, and Where to Watch the Best Movie",
   description: "Ratings, Reviews, and Where to Watch the Best Movie",
 };
 
@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${roboto.className} antialiased`}>
         <Header />
-        {children}
+        <main className="container">{children}</main>
       </body>
     </html>
   );

@@ -22,7 +22,10 @@ export const HeaderMenu = () => {
           <span className="hidden md:block">Menu</span>
         </button>
       </SheetTrigger>
-      <SheetContent side="top" className="h-full container border-none">
+      <SheetContent
+        side="top"
+        className="h-full container border-none overflow-y-auto"
+      >
         <SheetHeader className="flex items-center flex-row justify-between w-full px-0">
           <Link href={"/"}>
             <Image
@@ -40,7 +43,7 @@ export const HeaderMenu = () => {
           </button>
         </SheetHeader>
         <SheetTitle />
-        <nav className="grid grid-cols-3 gap-10">
+        <nav className="grid grid-cols-2  sm:grid-cols-3 gap-10">
           {HEADER_NAV.map((item) => (
             <div className="flex-1" key={item.name}>
               <h6 className="text-white text-2xl font-semibold">{item.name}</h6>

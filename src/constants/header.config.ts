@@ -63,7 +63,7 @@ export const HEADER_NAV = [
       },
       {
         name: "Latest trailers",
-        href: "/watch/what-to-watch",
+        href: "/trailers",
       },
     ],
   },
