@@ -169,6 +169,8 @@
 	--color-card: var(--card);
 
 	--color-foreground: var(--foreground);
+
+	--breakpoint-vsm: 475px;
 }
 
 body {

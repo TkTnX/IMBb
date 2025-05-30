@@ -9,7 +9,7 @@ import { useHeroStore } from "@/stores/heroStore"
 export const HeroFeaturedItem = ({ index }: { index: string }) => {
 	const currentMovieIndex = useHeroStore(state => state.currentMovieIndex)
 	return (
-		<div className='relative rounded-2xl w-full h-[180px] bg-cover bg-center overflow-hidden px-3.5 py-5 flex items-stretch gap-3.5'>
+		<div className='relative rounded-2xl min-w-[300px] lg:min-w-auto lg:h-[180px] bg-cover bg-center  px-3.5 py-5 flex flex-col lg:flex-row items-stretch gap-3.5 overflow-hidden'>
 			<div
 				className={cn(
 					"absolute inset-0 bg-cover bg-center -z-[1] brightness-[30%]",
@@ -25,14 +25,14 @@ export const HeroFeaturedItem = ({ index }: { index: string }) => {
 				alt='poster'
 				width={93}
 				height={140}
-				className='rounded-md'
+				className='rounded-md md:w-full max-h-[140px] md:max-h-full lg:w-[93px] object-cover lg:h-[140px]'
 			/>
 			<div className='flex flex-col  items-end flex-1'>
 				<div>
-					<h5 className='text-lg text-text-primary'>
+					<h5 className='text-2xl lg:text-lg text-text-primary'>
 						‘Inside Out 2’ Make us Feel Every Emotion
 					</h5>
-					<p className='mt-1.5 text-text-primary text-sm'>
+					<p className='mt-1.5 text-text-primary text-xl lg:text-sm'>
 						Watch the new “Inside Out 2” Trailer
 					</p>
 				</div>
