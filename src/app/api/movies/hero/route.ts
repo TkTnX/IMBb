@@ -1,10 +1,11 @@
 import axios from "axios"
 import { NextResponse } from "next/server"
 
+
 export async function GET() {
 	try {
 		const res = await axios.get(
-			"https://api.trakt.tv/calendars/all/movies/2020-09-01/7",
+			"https://api.trakt.tv/movies/anticipated?extended=full,images&limit=3",
 			{
 				headers: {
 					"Content-Type": "application/json",
@@ -12,7 +13,7 @@ export async function GET() {
 				}
 			}
 		)
-		console.log(res)
+
 		return NextResponse.json(res.data)
 	} catch (error) {
 		console.log(error)

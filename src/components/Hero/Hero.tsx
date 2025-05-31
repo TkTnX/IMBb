@@ -10,12 +10,11 @@ import { axiosInstance } from "@/configs/axios.config"
 export const Hero = async () => {
 	const res = await axiosInstance.get("/movies/hero")
 
-	console.log(res.data[0].movie)
 
 	return (
 		<section className='flex flex-col lg:flex-row items-start gap-8 mt-12 relative'>
 			{/* LEFT */}
-			<HeroSwiper items={[]} />
+			<HeroSwiper items={res.data} />
 
 			{/* RIGHT */}
 			<div className='lg:w-[370px] lg:max-h-[640px] w-full overflow-hidden'>
@@ -35,8 +34,6 @@ export const Hero = async () => {
 
 				<HeroFeatured />
 			</div>
-
-			<div className='blur-[500px] bg-[#9e8bf84d] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[962px] -z-10' />
 		</section>
 	)
 }

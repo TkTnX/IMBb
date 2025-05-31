@@ -1,7 +1,6 @@
 "use client"
 
-import { ChevronLeft, ChevronRight, Play } from "lucide-react"
-import Image from "next/image"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 import { Swiper as SwiperType } from "swiper"
 import "swiper/css"
@@ -9,19 +8,19 @@ import "swiper/css/effect-fade"
 import { Autoplay, EffectFade, Navigation, Pagination } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
 
+import { HeroSwiperItem } from "./HeroSwiperItem"
 import { useHeroStore } from "@/stores/heroStore"
-import { IMovie } from "@/types/movie.interface"
+import { IMovieList } from "@/types/movie.interface"
 
 type Props = {
-	items: IMovie[]
+	items: IMovieList[]
 }
 
 export const HeroSwiper = ({ items }: Props) => {
+	const [bgColor, setBgColor] = useState<string>("")
 	const swiperRef = useRef<SwiperType>(null)
 	const paginationRef = useRef<HTMLDivElement>(null)
-	const setCurrentMovieIndex = useHeroStore(
-		state => state.setCurrentMovieIndex
-	)
+	const { setCurrentMovieIndex, currentMovieIndex } = useHeroStore()
 	useEffect(() => {
 		if (
 			swiperRef.current &&
@@ -37,6 +36,15 @@ export const HeroSwiper = ({ items }: Props) => {
 			}
 		}
 	}, [])
+
+	const onSlideChange = async () => {
+		const res = await fetch(
+			`/api/colors?image=https://${items[Number(currentMovieIndex) || 0].movie.images.poster[0]}`
+		)
+		const data = await res.json()
+		console.log(data)
+		setBgColor(data.color)
+	}
 
 	return (
 		<div className='flex-1 overflow-x-hidden  w-full'>
@@ -63,11 +71,16 @@ export const HeroSwiper = ({ items }: Props) => {
 						delay: 4000,
 						disableOnInteraction: false
 					}}
-					onSlideChange={e =>
+					onSlideChange={e => {
 						setCurrentMovieIndex(e.activeIndex.toString())
-					}
+						onSlideChange()
+					}}
 				>
-					
+					{items.map(({ movie }) => (
+						<SwiperSlide key={movie.ids.imdb}>
+							<HeroSwiperItem movie={movie} />
+						</SwiperSlide>
+					))}
 
 					{/* PAGINATION */}
 					<div className='flex items-center gap-7 absolute right-6 bottom-9 z-10'>
@@ -93,6 +106,10 @@ export const HeroSwiper = ({ items }: Props) => {
 					</div>
 				</Swiper>
 			</div>
+			<div
+				style={{ backgroundColor: bgColor }}
+				className={`blur-[500px]  absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[962px] -z-10 opacity-60`}
+			/>
 		</div>
 	)
 }
