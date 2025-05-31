@@ -1,10 +1,16 @@
 import axios from "axios"
 
 export const movieApi = axios.create({
-	baseURL: "https://api.themoviedb.org/3",
+	baseURL: "https://api.kinopoisk.dev/v1.4/movie",
 	headers: {
-		accept: "application/json",
-		Authorization:
-			"Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNjQwYjAzNjA0ZWQzOGNkZmI1ODQwNzhhNTk4ZGRlYyIsIm5iZiI6MTc0ODU3NjQwNS40NTIsInN1YiI6IjY4MzkyODk1ZDVhNzE2OGRmYTk2OGRjNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.c3EsMpDZmLUmGhYlgBgYbfV_GgieLWDKrGI4fPZXv1s"
+		"X-API-KEY": process.env.KINOPOISK_API_KEY,
+		Accept: "application/json"
+	}
+})
+
+export const axiosInstance = axios.create({
+	baseURL: "http://localhost:3000/api",
+	headers: {
+		"Content-Type": "application/json"
 	}
 })

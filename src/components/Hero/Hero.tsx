@@ -5,12 +5,17 @@ import { Title } from "../ui/Title"
 
 import { HeroFeatured } from "./HeroFeatured"
 import { HeroSwiper } from "./HeroSwiper"
+import { axiosInstance } from "@/configs/axios.config"
 
-export const Hero = () => {
+export const Hero = async () => {
+	const res = await axiosInstance.get("/movies/hero")
+
+	console.log(res.data[0].movie)
+
 	return (
 		<section className='flex flex-col lg:flex-row items-start gap-8 mt-12 relative'>
 			{/* LEFT */}
-			<HeroSwiper />
+			<HeroSwiper items={[]} />
 
 			{/* RIGHT */}
 			<div className='lg:w-[370px] lg:max-h-[640px] w-full overflow-hidden'>

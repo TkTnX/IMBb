@@ -10,11 +10,13 @@ import { Autoplay, EffectFade, Navigation, Pagination } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
 
 import { useHeroStore } from "@/stores/heroStore"
+import { IMovie } from "@/types/movie.interface"
 
-// TODO: Адаптив секции
-// TODO: Получать данные из БД
+type Props = {
+	items: IMovie[]
+}
 
-export const HeroSwiper = () => {
+export const HeroSwiper = ({ items }: Props) => {
 	const swiperRef = useRef<SwiperType>(null)
 	const paginationRef = useRef<HTMLDivElement>(null)
 	const setCurrentMovieIndex = useHeroStore(
@@ -65,59 +67,7 @@ export const HeroSwiper = () => {
 						setCurrentMovieIndex(e.activeIndex.toString())
 					}
 				>
-					{/* TODO: Выводить из БД */}
-					<SwiperSlide className=' overflow-visible'>
-						<div className='relative w-full h-[400px] sm:h-[500px] xl:h-[630px] '>
-							<Image
-								className='rounded-xl'
-								src={"/images/temp-images/hero1.jpg"}
-								fill
-								alt='hero temp image'
-								style={{
-									maskImage:
-										"linear-gradient(to bottom, black 60%, transparent 100%)",
-									WebkitMaskImage:
-										"linear-gradient(to bottom, black 60%, transparent 100%)"
-								}}
-							/>
-						</div>
-						{/* MOVIE INFO */}
-						<div className='flex flex-col sm:flex-row sm:items-end gap-4 lg:gap-8 absolute -bottom-[100px] left-5'>
-							<div className='relative max-w-[130px] sm:min-w-[130px] lg:min-w-[200px] h-[200px] lg:min-h-[300px] 2xl:min-w-[280px] 2xl:min-h-[400px]'>
-								<Image
-									src={"/images/temp-images/hero-poster1.jpg"}
-									alt='hero-poster'
-									fill
-									className='rounded-xl'
-								/>
-								<button className='absolute left-5 top-0 hover:scale-105'>
-									<Image
-										src={"/images/icons/bookmark-plus.svg"}
-										width={39}
-										height={50}
-										alt='add to favorites'
-									/>
-								</button>
-							</div>
-							<div className='flex flex-col vsm:flex-row items-start vsm:items-center gap-2 xl:gap-6 xl:max-w-[585px]'>
-								<button className='rounded-full bg-background-light-transparent-100 min-w-10 vsm:min-w-[80px] xl:min-w-[143px] min-h-10 vsm:min-h-[80px] xl:min-h-[143px] flex items-center justify-center hover:scale-90'>
-									<Play
-										size={90}
-										className='fill-text-primary w-5 vsm:w-10 xl:w-[90px] h-5 vsm:h-10 xl:h-[90px]'
-									/>
-								</button>
-								<div>
-									<h2 className='text-2xl xl:text-4xl text-white'>
-										‘Inside Out 2’ Make us Feel Every
-										Emotion
-									</h2>
-									<p className='mt-3 text-xl xl:text-2xl text-background-transparent-600'>
-										Watch the new “Inside out” Trailer
-									</p>
-								</div>
-							</div>
-						</div>
-					</SwiperSlide>
+					
 
 					{/* PAGINATION */}
 					<div className='flex items-center gap-7 absolute right-6 bottom-9 z-10'>

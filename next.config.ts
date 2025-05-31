@@ -1,10 +1,9 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from "next"
 
 const nextConfig: NextConfig = {
-  /* config options here */
-  experimental: {
-    optimizePackageImports: ["@mui/material", "@mui/icons-material"],
-  },
-};
+	images: {
+		remotePatterns: [new URL("https://image.openmoviedb.com/**")]
+	}
+}
 
-export default nextConfig;
+export default nextConfig
