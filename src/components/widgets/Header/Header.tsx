@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { HeaderSearch } from "./HeaderSearch";
 import { HeaderControls } from "./HeaderControls";
-import { HeaderMenu } from "../modals";
+import { HeaderMenu } from "@/components/modals";
 
 export const Header = () => {
   return (

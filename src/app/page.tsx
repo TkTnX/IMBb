@@ -1,9 +1,10 @@
-import { Hero } from "@/components/Hero";
+import { Featured, Hero } from "@/components/widgets"
 
 export default function Home() {
-  return (
-    <>
-      <Hero />
-    </>
-  );
+	return (
+		<>
+			<Hero />
+			<Featured />
+		</>
+	)
 }

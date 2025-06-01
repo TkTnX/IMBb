@@ -8,7 +8,10 @@ import "swiper/css/effect-fade"
 import { Autoplay, EffectFade, Navigation, Pagination } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
 
+import { useGetHeroColor } from "@/hooks/useGetHeroColor"
+
 import { HeroSwiperItem } from "./HeroSwiperItem"
+import { getAverageColor } from "@/helpers/getAverageColor"
 import { useHeroStore } from "@/stores/heroStore"
 import { IMovieList } from "@/types/movie.interface"
 
@@ -17,10 +20,12 @@ type Props = {
 }
 
 export const HeroSwiper = ({ items }: Props) => {
-	const [bgColor, setBgColor] = useState<string>("")
 	const swiperRef = useRef<SwiperType>(null)
 	const paginationRef = useRef<HTMLDivElement>(null)
-	const { setCurrentMovieIndex, currentMovieIndex } = useHeroStore()
+	const setCurrentMovieIndex = useHeroStore(
+		state => state.setCurrentMovieIndex
+	)
+	const { bgColor, onSlideChange } = useGetHeroColor(swiperRef)
 	useEffect(() => {
 		if (
 			swiperRef.current &&
@@ -36,15 +41,6 @@ export const HeroSwiper = ({ items }: Props) => {
 			}
 		}
 	}, [])
-
-	const onSlideChange = async () => {
-		const res = await fetch(
-			`/api/colors?image=https://${items[Number(currentMovieIndex) || 0].movie.images.poster[0]}`
-		)
-		const data = await res.json()
-		console.log(data)
-		setBgColor(data.color)
-	}
 
 	return (
 		<div className='flex-1 overflow-x-hidden  w-full'>
@@ -72,8 +68,8 @@ export const HeroSwiper = ({ items }: Props) => {
 						disableOnInteraction: false
 					}}
 					onSlideChange={e => {
-						setCurrentMovieIndex(e.activeIndex.toString())
-						onSlideChange()
+						setCurrentMovieIndex(e.realIndex.toString())
+						onSlideChange(e.activeIndex)
 					}}
 				>
 					{items.map(({ movie }) => (

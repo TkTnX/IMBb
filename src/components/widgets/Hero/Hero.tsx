@@ -1,15 +1,14 @@
 import { ChevronRight } from "lucide-react"
 import Link from "next/link"
 
-import { Title } from "../ui/Title"
 
 import { HeroFeatured } from "./HeroFeatured"
 import { HeroSwiper } from "./HeroSwiper"
 import { axiosInstance } from "@/configs/axios.config"
+import { Title } from "@/components/ui/Title"
 
 export const Hero = async () => {
 	const res = await axiosInstance.get("/movies/hero")
-
 
 	return (
 		<section className='flex flex-col lg:flex-row items-start gap-8 mt-12 relative'>
@@ -17,7 +16,7 @@ export const Hero = async () => {
 			<HeroSwiper items={res.data} />
 
 			{/* RIGHT */}
-			<div className='lg:w-[370px] lg:max-h-[640px] w-full overflow-hidden'>
+			<div className='lg:w-[370px] lg:max-h-[650px] w-full overflow-hidden'>
 				<div className='flex flex-col sm:flex-row items-start gap-4 lg:items-center justify-between '>
 					<Title
 						text='Featured Videos'
@@ -32,7 +31,7 @@ export const Hero = async () => {
 					</Link>
 				</div>
 
-				<HeroFeatured />
+				<HeroFeatured items={res.data} />
 			</div>
 		</section>
 	)

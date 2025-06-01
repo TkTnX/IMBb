@@ -20,6 +20,8 @@ export interface IMovie {
 	}
 	genres: string[]
 	images: {
+		clearart: string[]
+		thumb: string[]
 		banner: string[]
 		logo: string[]
 		poster: string[]

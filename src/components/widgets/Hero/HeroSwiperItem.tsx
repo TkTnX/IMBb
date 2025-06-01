@@ -1,9 +1,8 @@
 import { Info, Play } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { Vibrant } from "node-vibrant/browser"
-import { useEffect } from "react"
 
+import { getAvailableImages } from "@/helpers/getAvailableImages"
 import { IMovie } from "@/types/movie.interface"
 
 type Props = {
@@ -11,14 +10,12 @@ type Props = {
 }
 
 export const HeroSwiperItem = ({ movie }: Props) => {
-	
-
 	return (
 		<>
 			<div className='relative w-full h-[400px] sm:h-[500px] xl:h-[630px] '>
 				<Image
 					className='rounded-xl object-cover'
-					src={`https://${movie.images.poster[0]}`}
+					src={`https://${getAvailableImages(movie)[0]}`}
 					fill
 					alt={movie.title}
 					style={{
