@@ -1,4 +1,3 @@
-import axios from "axios"
 import { NextResponse } from "next/server"
 
 import { movieApi } from "@/configs/axios.config"
@@ -6,7 +5,7 @@ import { movieApi } from "@/configs/axios.config"
 export async function GET() {
 	try {
 		const res = await movieApi.get(
-			`/movies/anticipated?extended=full,images&limit=3`
+			"/lists/trending?extended=images&limit=6"
 		)
 
 		return NextResponse.json(res.data)

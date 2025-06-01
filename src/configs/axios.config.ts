@@ -1,10 +1,15 @@
-import axios from "axios"
+import axios from "axios";
+
+
+
+
 
 export const movieApi = axios.create({
-	baseURL: "https://api.kinopoisk.dev/v1.4/movie",
+	baseURL: process.env.TRAKT_BASE_URL,
 	headers: {
-		"X-API-KEY": process.env.KINOPOISK_API_KEY,
-		Accept: "application/json"
+		"Content-Type": "application/json",
+		"trakt-api-version": "2",
+		"trakt-api-key": process.env.TRAKT_CLIENT_ID
 	}
 })
 

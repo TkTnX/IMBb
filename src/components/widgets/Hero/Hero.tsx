@@ -1,11 +1,11 @@
 import { ChevronRight } from "lucide-react"
 import Link from "next/link"
 
+import { Title } from "@/components/ui/Title"
 
 import { HeroFeatured } from "./HeroFeatured"
 import { HeroSwiper } from "./HeroSwiper"
 import { axiosInstance } from "@/configs/axios.config"
-import { Title } from "@/components/ui/Title"
 
 export const Hero = async () => {
 	const res = await axiosInstance.get("/movies/hero")

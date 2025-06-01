@@ -1,7 +1,7 @@
 "use client"
 
 import { ChevronLeft, ChevronRight } from "lucide-react"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 import { Swiper as SwiperType } from "swiper"
 import "swiper/css"
 import "swiper/css/effect-fade"
@@ -11,7 +11,6 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import { useGetHeroColor } from "@/hooks/useGetHeroColor"
 
 import { HeroSwiperItem } from "./HeroSwiperItem"
-import { getAverageColor } from "@/helpers/getAverageColor"
 import { useHeroStore } from "@/stores/heroStore"
 import { IMovieList } from "@/types/movie.interface"
 

@@ -30,7 +30,7 @@ export const HeroFeaturedItem = ({ movie, index }: Props) => {
 				alt='poster'
 				width={93}
 				height={140}
-				className='rounded-md md:w-full max-h-[140px] md:max-h-full lg:w-[93px] object-cover lg:h-[140px]'
+				className='rounded-md md:w-unset max-h-[140px] h-full lg:w-[93px] object-cover lg:h-[140px]'
 			/>
 			<div className='flex flex-col  items-end flex-1'>
 				<div className=' w-full flex-1'>

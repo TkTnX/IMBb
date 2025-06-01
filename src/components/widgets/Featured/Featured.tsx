@@ -1,9 +1,13 @@
 import { Section } from "@/components/ui/Section"
 
-export const Featured = () => {
+import { FeaturedList } from "./FeaturedList"
+import { axiosInstance } from "@/configs/axios.config"
+
+export const Featured = async () => {
+	const { data } = await axiosInstance.get("/lists/trending")
 	return (
-		<Section slidesPerView={4} title='Featured Today' movies={[]}>
-			qwe
+		<Section title='Featured Today' >
+			<FeaturedList list={data} />
 		</Section>
 	)
 }
