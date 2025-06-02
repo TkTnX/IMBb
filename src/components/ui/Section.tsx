@@ -6,7 +6,6 @@ import { useState } from "react"
 
 import { BgTitle } from "./BgTitle"
 import { cn } from "@/lib/utils"
-import { useSwiperStore } from "@/stores/swiperStore"
 
 type Props = {
 	title: string
@@ -23,13 +22,12 @@ export const Section = ({
 	bgTitle,
 	children
 }: Props) => {
-	const { swiper, disabledButton } = useSwiperStore()
 	return (
 		<section
 			className={cn(
 				"container mt-5 sm:mt-8 lg:mt-16 xl:mt-32 relative ",
 				{
-					"pt-0 lg:pt-10 2xl:pt-20 overflow-x-hidden": bgTitle
+					"pt-0 lg:pt-10 2xl:pt-20 ": bgTitle
 				}
 			)}
 		>
@@ -60,21 +58,13 @@ export const Section = ({
 				</div>
 
 				<div className='flex items-center gap-1'>
-					<button
-						onClick={() => swiper?.slidePrev()}
-						disabled={disabledButton === "prev"}
-						className='w-10 h-10 flex items-center justify-center bg-background-light-transparent-100 rounded-full hover:bg-background-light-transparent-50 disabled:opacity-50 disabled:pointer-events-none'
-					>
+					<button className='w-10 h-10 flex items-center justify-center bg-background-light-transparent-100 rounded-full hover:bg-background-light-transparent-50 disabled:opacity-50 disabled:pointer-events-none'>
 						<ChevronLeft
 							color='var(--dark-text-primary)'
 							size={16}
 						/>
 					</button>
-					<button
-						onClick={() => swiper?.slideNext()}
-						disabled={disabledButton === "next"}
-						className='w-10 h-10 flex items-center justify-center bg-background-light-transparent-100 rounded-full hover:bg-background-light-transparent-50 disabled:opacity-50 disabled:pointer-events-none'
-					>
+					<button className='w-10 h-10 flex items-center justify-center bg-background-light-transparent-100 rounded-full hover:bg-background-light-transparent-50 disabled:opacity-50 disabled:pointer-events-none'>
 						<ChevronRight
 							color='var(--dark-text-primary)'
 							size={16}

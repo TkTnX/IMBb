@@ -11,7 +11,7 @@ type Props = {
 	list: IMovie[]
 }
 
-export const TopImdbList = ({ list }: Props) => {
+export const AnticipatedList = ({ list }: Props) => {
 	return (
 		<Swiper
 			className='mt-8'

@@ -5,7 +5,6 @@ import { Swiper, SwiperSlide } from "swiper/react"
 
 import { ListItem } from "@/components/ui/ListItem"
 
-import { useSwiperStore } from "@/stores/swiperStore"
 import { IListObj } from "@/types/list.interface"
 
 type Props = {
@@ -13,18 +12,11 @@ type Props = {
 }
 
 export const FeaturedList = ({ list }: Props) => {
-	const { setSwiper, setDisabledNumber } = useSwiperStore()
 	return (
 		<Swiper
-			onSwiper={swiper => setSwiper(swiper)}
 			className='mt-8'
 			slidesPerView={1}
 			spaceBetween={12}
-			onSlideChange={e => {
-				setDisabledNumber(
-					e.isEnd ? "next" : e.isBeginning ? "prev" : null
-				)
-			}}
 			breakpoints={{
 				1024: {
 					slidesPerView: 4

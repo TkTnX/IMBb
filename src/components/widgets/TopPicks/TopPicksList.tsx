@@ -5,7 +5,6 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import { MovieItem } from "@/components/ui/MovieItem"
 
 import { MOVIES_BREAKPOINTS } from "@/configs/swiper-breakpoints.config"
-import { useSwiperStore } from "@/stores/swiperStore"
 import { IMovie } from "@/types/movie.interface"
 
 type Props = {
@@ -13,18 +12,12 @@ type Props = {
 }
 
 export const TopPicksList = ({ list }: Props) => {
-	const { setSwiper, setDisabledNumber } = useSwiperStore()
 	return (
 		<Swiper
-			onSwiper={swiper => setSwiper(swiper)}
+			onSwiper={swiper => console.log(swiper)}
 			className='mt-8'
 			slidesPerView={1}
 			spaceBetween={12}
-			onSlideChange={e => {
-				setDisabledNumber(
-					e.isEnd ? "next" : e.isBeginning ? "prev" : null
-				)
-			}}
 			breakpoints={MOVIES_BREAKPOINTS}
 		>
 			{list.map(movie => (

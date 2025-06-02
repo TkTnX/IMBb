@@ -1,4 +1,11 @@
-import { Featured, Hero, TopImdb, TopPicks } from "@/components/widgets"
+import {
+	Actors,
+	Anticipated,
+	Featured,
+	Hero,
+	TopImdb,
+	TopPicks
+} from "@/components/widgets"
 
 export default function Home() {
 	return (
@@ -7,6 +14,8 @@ export default function Home() {
 			<Featured />
 			<TopPicks />
 			<TopImdb />
+			<Anticipated />
+			<Actors />
 		</>
 	)
 }
