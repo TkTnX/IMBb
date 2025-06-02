@@ -234,3 +234,17 @@ button {
 .swiper-pagination {
 	@apply !hidden;
 }
+
+.one-line {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -moz-box;
+	-moz-box-orient: vertical;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	line-clamp: 3;
+	box-orient: vertical;
+
+}
+
