@@ -1,17 +1,21 @@
+import { RefObject } from "react"
+import type { Swiper } from "swiper"
 import { create } from "zustand"
 
-interface SwiperStore {
-    prevRef: React.RefObject<HTMLButtonElement> | null
-    nextRef: React.RefObject<HTMLButtonElement> | null
+type SwiperRefType = {
+	section: string
+	swiper: Swiper 
+}
 
-    setPrevRef: (ref: React.RefObject<HTMLButtonElement>) => void
-    setNextRef: (ref: React.RefObject<HTMLButtonElement>) => void
+interface SwiperStore {
+	swiperRefs: SwiperRefType[]
+	setSwiperRefs: (section: string, swiper: Swiper) => void
 }
 
 export const useSwiperStore = create<SwiperStore>((set, get) => ({
-    prevRef: null,
-    nextRef: null,
-
-    setPrevRef: (ref: React.RefObject<HTMLButtonElement>) => set({ prevRef: ref }),
-    setNextRef: (ref: React.RefObject<HTMLButtonElement>) => set({ nextRef: ref }),
+	swiperRefs: [],
+	setSwiperRefs: (section, swiper) =>
+		set(state => ({
+			swiperRefs: [...state.swiperRefs, { section, swiper }]
+		}))
 }))

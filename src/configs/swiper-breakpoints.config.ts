@@ -12,3 +12,19 @@ export const MOVIES_BREAKPOINTS = {
 		slidesPerView: 2
 	}
 }
+
+export const ACTORS_BREAKPOINTS = {
+	1400: {
+		slidesPerView: 7
+	},
+	1200: {
+		slidesPerView: 6
+	},
+	960: {
+		slidesPerView: 5
+	},
+	580: {
+		slidesPerView: 3,
+		spaceBetween: 30
+	}
+}

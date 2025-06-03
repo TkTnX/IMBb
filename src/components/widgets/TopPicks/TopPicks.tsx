@@ -8,6 +8,7 @@ export const TopPicks = async () => {
     
 	return (
 		<Section
+			section="top-picks"
 			title='Top Picks'
 			subtitle='TV shows and movies just for you'
 			href='/movies/top'

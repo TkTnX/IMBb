@@ -13,6 +13,7 @@ type Props = {
 	bgTitle?: string
 	href?: string
 	children: React.ReactNode
+	section: string
 }
 
 export const Section = ({
@@ -20,7 +21,8 @@ export const Section = ({
 	subtitle,
 	href,
 	bgTitle,
-	children
+	children,
+	section
 }: Props) => {
 	return (
 		<section
@@ -57,7 +59,7 @@ export const Section = ({
 					)}
 				</div>
 
-				<SwiperButtons />
+				<SwiperButtons section={section} />
 			</div>
 
 			{/* LIST */}

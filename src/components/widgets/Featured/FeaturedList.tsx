@@ -1,24 +1,29 @@
 "use client"
 
+import { useEffect, useRef } from "react"
+import type { Swiper as swiperType } from "swiper"
 import "swiper/css"
 import { Swiper, SwiperSlide } from "swiper/react"
 
 import { ListItem } from "@/components/ui/ListItem"
 
-import { IListObj } from "@/types/list.interface"
 import { useSwiperStore } from "@/stores/swiperStore"
+import { IListObj } from "@/types/list.interface"
 
 type Props = {
 	list: IListObj[]
 }
 
 export const FeaturedList = ({ list }: Props) => {
-	const {prevRef, nextRef} = useSwiperStore()
+	const { setSwiperRefs } = useSwiperStore()
+
+
+
 	return (
 		<Swiper
+			onSwiper={swiper => setSwiperRefs("featured", swiper)}
 			className='mt-8'
 			slidesPerView={1}
-			
 			spaceBetween={12}
 			breakpoints={{
 				1024: {

@@ -8,7 +8,7 @@ export const Actors = async () => {
 	const { data } = await axiosInstance.get("/actors")
 	const actors = data.flatMap((item: { person: IActor }) => item.person)
 	return (
-		<Section title='Actors' href='/actors' bgTitle='Actors'>
+		<Section section="actors" title='Actors' href='/actors' bgTitle='Actors'>
 			<ActorsList list={actors} />
 		</Section>
 	)
