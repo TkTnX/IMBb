@@ -103,15 +103,3 @@ export const HEADER_NAV = [
 
 export const HEADER_SEARCH_BY = ["All", "Movies", "TV Shows", "Celebs"];
 
-export const HEADER_CONTROLS = [
-  {
-    name: "Watchlist",
-    img: "/images/icons/flag.svg",
-    href: "/watchlist",
-  },
-  {
-    name: "User",
-    img: "/images/icons/user.svg",
-    href: "/profile",
-  },
-];

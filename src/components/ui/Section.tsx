@@ -1,11 +1,11 @@
 "use client"
 
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 
 import { BgTitle } from "./BgTitle"
 import { cn } from "@/lib/utils"
-import { SwiperButtons } from "./SwiperButtons"
+import { SwiperButtons } from "../features"
 
 type Props = {
 	title: string

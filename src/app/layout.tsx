@@ -1,3 +1,5 @@
+import { ClerkProvider } from "@clerk/nextjs"
+import { dark } from "@clerk/themes"
 import type { Metadata } from "next"
 import { Roboto } from "next/font/google"
 
@@ -6,8 +8,8 @@ import { Footer, Header } from "@/components/widgets"
 import "./globals.css"
 
 export const metadata: Metadata = {
-	title: "IMBb: Ratings, Reviews, and Where to Watch the Best Movie",
-	description: "Ratings, Reviews, and Where to Watch the Best Movie"
+	title: { absolute: "IMBb: Ratings, Reviews, and Where to Watch the Best Movie", template: `%s | ${"IMBd: Ratings, Reviews, and Where to Watch the Best Movie"}` },
+	description:  "Ratings, Reviews, and Where to Watch the Best Movie"
 }
 
 const roboto = Roboto({
@@ -21,12 +23,18 @@ export default function RootLayout({
 	children: React.ReactNode
 }>) {
 	return (
-		<html lang='en' suppressHydrationWarning>
-			<body className={`${roboto.className} antialiased`}>
-				<Header />
-				<main className='container'>{children}</main>
-				<Footer />
-			</body>
-		</html>
+		<ClerkProvider
+			appearance={{
+				baseTheme: dark
+			}}
+		>
+			<html lang='en' suppressHydrationWarning>
+				<body className={`${roboto.className} antialiased`}>
+					<Header />
+					<main className='container'>{children}</main>
+					<Footer />
+				</body>
+			</html>
+		</ClerkProvider>
 	)
 }
