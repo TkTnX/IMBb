@@ -2,10 +2,10 @@
 
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
 import Link from "next/link"
-import { useState } from "react"
 
 import { BgTitle } from "./BgTitle"
 import { cn } from "@/lib/utils"
+import { SwiperButtons } from "./SwiperButtons"
 
 type Props = {
 	title: string
@@ -57,20 +57,7 @@ export const Section = ({
 					)}
 				</div>
 
-				<div className='flex items-center gap-1'>
-					<button className='w-10 h-10 flex items-center justify-center bg-background-light-transparent-100 rounded-full hover:bg-background-light-transparent-50 disabled:opacity-50 disabled:pointer-events-none'>
-						<ChevronLeft
-							color='var(--dark-text-primary)'
-							size={16}
-						/>
-					</button>
-					<button className='w-10 h-10 flex items-center justify-center bg-background-light-transparent-100 rounded-full hover:bg-background-light-transparent-50 disabled:opacity-50 disabled:pointer-events-none'>
-						<ChevronRight
-							color='var(--dark-text-primary)'
-							size={16}
-						/>
-					</button>
-				</div>
+				<SwiperButtons />
 			</div>
 
 			{/* LIST */}

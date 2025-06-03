@@ -14,6 +14,8 @@ export const MovieItem = ({ movie }: Props) => {
 		<div className='p-3 rounded-lg bg-background-light-transparent-50'>
 			<div className='relative w-full h-[250px] md:h-[300px]'>
 				<Image
+					loading="lazy"
+					
 					className='rounded-sm'
 					src={`https://${movie.images.poster[0]}`}
 					alt={movie.title}

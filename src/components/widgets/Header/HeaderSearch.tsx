@@ -11,7 +11,7 @@ import {
 	SelectValue
 } from "@/components/ui/select"
 
-import { HEADER_SEARCH_BY } from "@/constants/header.config"
+import { HEADER_SEARCH_BY } from "@/constants/header.constants"
 
 export const HeaderSearch = () => {
 	const [searchBy, setSearchBy] = useState("All")

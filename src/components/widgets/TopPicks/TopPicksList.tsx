@@ -14,7 +14,6 @@ type Props = {
 export const TopPicksList = ({ list }: Props) => {
 	return (
 		<Swiper
-			onSwiper={swiper => console.log(swiper)}
 			className='mt-8'
 			slidesPerView={1}
 			spaceBetween={12}

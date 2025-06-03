@@ -14,6 +14,7 @@ export const HeroSwiperItem = ({ movie }: Props) => {
 		<>
 			<div className='relative w-full h-[400px] sm:h-[500px] xl:h-[630px] '>
 				<Image
+					loading='lazy'
 					className='rounded-xl object-cover'
 					src={`https://${getAvailableImages(movie)[0]}`}
 					fill
@@ -30,6 +31,7 @@ export const HeroSwiperItem = ({ movie }: Props) => {
 			<div className='flex flex-col sm:flex-row sm:items-end gap-4 lg:gap-8 absolute -bottom-[100px] left-5'>
 				<div className='relative max-w-[130px] sm:min-w-[130px] lg:min-w-[200px] h-[200px] lg:min-h-[300px] 2xl:min-w-[280px] 2xl:min-h-[400px]'>
 					<Image
+						loading='lazy'
 						src={`https://${movie.images.poster[0]}`}
 						alt={movie.title}
 						fill

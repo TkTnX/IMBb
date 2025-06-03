@@ -14,6 +14,7 @@ export const ListItem = ({ listItem }: Props) => {
 		<div className='flex-1'>
 			<div className='relative w-full h-[200px]'>
 				<Image
+					loading="lazy"
 					className='object-cover rounded-sm brightness-50'
 					src={listItem.user.images.avatar.full}
 					fill

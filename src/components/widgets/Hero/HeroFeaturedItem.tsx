@@ -26,6 +26,7 @@ export const HeroFeaturedItem = ({ movie, index }: Props) => {
 				}}
 			/>
 			<Image
+				loading='lazy'
 				src={`https://${movie.images.poster[0]}`}
 				alt='poster'
 				width={93}

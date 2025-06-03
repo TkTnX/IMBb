@@ -6,16 +6,19 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import { ListItem } from "@/components/ui/ListItem"
 
 import { IListObj } from "@/types/list.interface"
+import { useSwiperStore } from "@/stores/swiperStore"
 
 type Props = {
 	list: IListObj[]
 }
 
 export const FeaturedList = ({ list }: Props) => {
+	const {prevRef, nextRef} = useSwiperStore()
 	return (
 		<Swiper
 			className='mt-8'
 			slidesPerView={1}
+			
 			spaceBetween={12}
 			breakpoints={{
 				1024: {

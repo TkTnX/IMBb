@@ -1,16 +1,10 @@
-import { RefObject, useState } from "react";
-import type { Swiper as SwiperType } from "swiper";
+import { RefObject, useState } from "react"
+import type { Swiper as SwiperType } from "swiper"
 
-
-
-import { getAverageColor } from "@/helpers/getAverageColor";
-
-
-
-
+import { getAverageColor } from "@/helpers/getAverageColor"
 
 export const useGetHeroColor = (swiperRef: RefObject<SwiperType | null>) => {
-	const [bgColor, setBgColor] = useState<string>("")
+	const [bgColor, setBgColor] = useState<string>("#000")
 
 	const onSlideChange = (activeIndex: number) => {
 		const activeSlide = swiperRef?.current?.slides[activeIndex]
@@ -23,24 +17,30 @@ export const useGetHeroColor = (swiperRef: RefObject<SwiperType | null>) => {
 		const ctx = canvas.getContext("2d")
 		if (!ctx) return
 
-		canvas.width = image.naturalWidth
-		canvas.height = image.naturalHeight
+		const drawColorFromImage = () => {
+			canvas.width = image.naturalWidth
+			canvas.height = image.naturalHeight
 
-		const handleLoad = () => {
 			ctx.drawImage(image, 0, 0)
 			const imageData = ctx.getImageData(
 				0,
 				0,
 				canvas.width,
 				canvas.height
-			).data
+			)?.data
 
 			getAverageColor(imageData).then(color => {
 				setBgColor(color)
 			})
 		}
 
-		handleLoad()
+		if (image.complete && image.naturalWidth !== 0) {
+			drawColorFromImage()
+		} else {
+			image.onload = () => {
+				drawColorFromImage()
+			}
+		}
 	}
 
 	return {

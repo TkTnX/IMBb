@@ -2,12 +2,14 @@ import { Section } from "@/components/ui/Section"
 
 import { ActorsList } from "./ActorsList"
 import { axiosInstance } from "@/configs/axios.config"
+import { IActor } from "@/types/actor.interface"
 
 export const Actors = async () => {
 	const { data } = await axiosInstance.get("/actors")
+	const actors = data.flatMap((item: { person: IActor }) => item.person)
 	return (
 		<Section title='Actors' href='/actors' bgTitle='Actors'>
-			<ActorsList list={data.flatMap(item => item.person)} />
+			<ActorsList list={actors} />
 		</Section>
 	)
 }
