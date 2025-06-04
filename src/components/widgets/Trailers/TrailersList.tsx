@@ -6,7 +6,6 @@ import { useTrailers } from "@/hooks/useTrailers"
 
 import { TrailersListSkeleton } from "./TrailersListSkeleton"
 
-// TODO: Фикс бага, когда переходишь с главной на эту страницу, делается 2 запроса
 export const TrailersList = () => {
 	const { loading, movies, handleLoadMore } = useTrailers()
 
