@@ -27,7 +27,7 @@ export const ActorItem = ({ actor }: Props) => {
 				/>
 			</div>
 			<h6 className='mt-3 text-text-primary'>{actor.name}</h6>
-			{actor.birthday && <p>{age}</p>}
+			{actor.birthday && <p>{age} years old</p>}
 		</Link>
 	)
 }

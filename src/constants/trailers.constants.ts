@@ -12,7 +12,7 @@ export const TRAILERS_TABS = [
 		value: "popular"
 	},
 	{
-		name: "Recently Added",
-		value: "recently"
+		name: "Most Favorited",
+		value: "favorited/month"
 	}
 ]

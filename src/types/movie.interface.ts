@@ -11,7 +11,7 @@ export interface IMovie {
 	released: string
 	status: string
 	title: string
-	trailer: string | null
+	trailer: string
 	year: string
 	homepage: string
 	ids: {

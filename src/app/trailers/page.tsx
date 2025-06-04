@@ -1,4 +1,5 @@
 import { TrailersTabs } from "@/components/features"
+import { TrailersList } from "@/components/widgets"
 
 const TrailersPage = () => {
 	return (
@@ -7,9 +8,9 @@ const TrailersPage = () => {
 				Watch New Movie & TV Trailers
 			</h2>
 			{/* TABS */}
-      <TrailersTabs />
-      
-      
+			<TrailersTabs />
+
+			<TrailersList />
 		</section>
 	)
 }

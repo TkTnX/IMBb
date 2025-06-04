@@ -8,7 +8,7 @@ import { HeroSwiper } from "./HeroSwiper"
 import { axiosInstance } from "@/configs/axios.config"
 
 export const Hero = async () => {
-	const res = await axiosInstance.get("/movies/hero")
+	const res = await axiosInstance.get("/movies?type=anticipated&limit=3")
 
 	return (
 		<section className='flex flex-col lg:flex-row items-start gap-8 mt-12 relative'>
