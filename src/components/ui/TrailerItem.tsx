@@ -21,6 +21,14 @@ export const TrailerItem = ({ movie }: Props) => {
 						fill
 						className='rounded-sm object-cover sm:object-fill lg:object-cover'
 					/>
+					<button className='absolute top-0 left-5 hover:opacity-80 z-20'>
+						<Image
+							width={39}
+							height={50}
+							src={"/images/icons/bookmark-plus.svg"}
+							alt='add to wishlist'
+						/>
+					</button>
 					<button className='flex items-center justify-center text-text-primary gap-2 absolute bottom-5 left-4 rounded-[45px] w-8 md:w-auto md:py-2 md:h-auto h-8 md:px-4 bg-background-secondary'>
 						<Play
 							className='w-5 h-5 '
