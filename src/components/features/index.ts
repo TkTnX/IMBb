@@ -1,3 +1,4 @@
 export * from "./SwiperButtons"
 export * from "./TrailersTabs"
 export * from "./UserButton"
+export * from "./MovieControls"

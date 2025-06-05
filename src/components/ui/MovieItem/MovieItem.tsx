@@ -4,6 +4,7 @@ import Image from "next/image"
 import { MovieButton } from "./MovieButton"
 import { MovieMoreInfo } from "./MovieMoreInfo"
 import { IMovie } from "@/types/movie.interface"
+import Link from "next/link"
 
 type Props = {
 	movie: IMovie
@@ -13,6 +14,7 @@ export const MovieItem = ({ movie }: Props) => {
 	return (
 		<div className='p-3 rounded-lg bg-background-light-transparent-50'>
 			<div className='relative w-full h-[250px] md:h-[300px]'>
+				<Link href={`/movies/${movie.ids.slug}`}>
 				<Image
 					loading="lazy"
 					
@@ -20,7 +22,7 @@ export const MovieItem = ({ movie }: Props) => {
 					src={`https://${movie.images.poster[0]}`}
 					alt={movie.title}
 					fill
-				/>
+				/></Link>
 				<button className='absolute top-0 left-5 hover:opacity-80'>
 					<Image
 						width={39}
