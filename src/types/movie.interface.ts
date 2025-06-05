@@ -1,4 +1,8 @@
-import { ICast, ICrew } from "./cast.interface"
+import { ICastPerson, ICrew } from "./cast.interface";
+
+
+
+
 
 export interface IMovieList {
 	list_count: number
@@ -6,7 +10,7 @@ export interface IMovieList {
 }
 
 export interface IMovie {
-	available_translation: string[]
+	available_translations: string[]
 	certification: string | null
 	country: string
 	language: string
@@ -38,6 +42,6 @@ export interface IMovie {
 
 
 export interface IMoviePeopleDetails {
-	cast: ICast[],
+	cast: ICastPerson[]
 	crew: ICrew
 }

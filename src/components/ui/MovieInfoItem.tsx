@@ -1,0 +1,45 @@
+import { Dot } from "lucide-react"
+import Link from "next/link"
+
+import { cn } from "@/lib/utils"
+import { ICastPerson } from "@/types/cast.interface"
+
+type Props = {
+	title: string
+	items: ICastPerson[] | string[]
+}
+
+export const MovieInfoItem = ({ title, items }: Props) => {
+	return (
+		<div className='flex items-start gap-2'>
+			<p className='font-bold text-lg text-text-secondary min-w-[100px]'>{title}</p>
+			<div className='flex items-center gap-1 flex-wrap'>
+				{items.map((item, index) => (
+					<div
+						key={typeof item !== "string" ? item.person.name : item}
+						className='flex items-center gap-1'
+					>
+						{typeof item !== "string" ? (
+							<Link
+								href={`/person/${item.person.ids.slug}`}
+								className='text-main-yellow-sec-dark hover:opacity-80 text-sm'
+							>
+								{item.person.name}
+							</Link>
+						) : (
+							<p
+								className={cn("", {
+									"uppercase text-main-yellow-sec-dark text-sm":
+										items.length !== 1
+								})}
+							>
+								{item}
+							</p>
+						)}
+						{index < items.length - 1 && <Dot />}
+					</div>
+				))}
+			</div>
+		</div>
+	)
+}

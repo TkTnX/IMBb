@@ -1,4 +1,8 @@
 import { Dot } from "lucide-react"
+import Link from "next/link"
+
+import { MovieInfoItem } from "@/components/ui/MovieInfoItem"
+import { MovieItem } from "@/components/ui/MovieItem"
 
 import { formatNumber } from "@/helpers/formatNumber"
 import { IMovie, IMoviePeopleDetails } from "@/types/movie.interface"
@@ -9,8 +13,13 @@ type Props = {
 }
 
 export const MovieInfo = ({ movie, cast }: Props) => {
+	const director = cast.crew.directing.find(
+		director => director.job === "Director"
+	)
+
+
 	return (
-		<div className='mt-5 flex items-start justify-between'>
+		<div className='mt-5 flex items-start justify-between pb-14 border-b border-b-background-light-transparent-100'>
 			<div className='flex flex-col gap-4'>
 				<div className='flex items-start gap-10'>
 					<p className='font-bold text-lg text-text-secondary'>
@@ -27,43 +36,21 @@ export const MovieInfo = ({ movie, cast }: Props) => {
 						))}
 					</div>
 				</div>
-				<div className='flex items-start gap-10'>
-					<p className='font-bold text-lg text-text-secondary'>
-						Plot
-					</p>
-					<p>{movie.overview}</p>
-				</div>
-				<div className='flex items-start gap-10'>
-					<p className='font-bold text-lg text-text-secondary'>
-						Director
-					</p>
-					{cast.crew.directing.map(director => (
-						<p
-							key={director.person.name}
-							className='text-main-yellow-sec-dark'
-						>
-							{director.person.name}
-						</p>
-					))}
-				</div>
-				<div className='flex items-start gap-10'>
-					<p className='font-bold text-lg text-text-secondary'>
-						Writers
-					</p>
-					{cast.crew.writing.map(writer => (
-						<p
-							key={writer.person.name}
-							className='text-main-yellow-sec-dark'
-						>
-							{writer.person.name}
-						</p>
-					))}
-				</div>
+				<MovieInfoItem title='Plot' items={[movie.overview]} />
+
+				<MovieInfoItem title='Director' items={[director!]} />
+
+				<MovieInfoItem title='Writers' items={cast.crew.writing} />
+				<MovieInfoItem title='Actors' items={cast.cast} />
+				<MovieInfoItem
+					title='Translations'
+					items={movie.available_translations}
+				/>
 			</div>
 			<button className='flex items-center gap-2.5 bg-main-yellow rounded-lg py-2 px-4 text-black hover:opacity-80'>
 				<span>{formatNumber(movie.votes)}</span>
 				<Dot />
-				<span>Add to Watchlist</span>
+				<span className='flex-1 text-nowrap'>Add to Watchlist</span>
 			</button>
 		</div>
 	)
