@@ -10,7 +10,6 @@ import { IMovie } from "@/types/movie.interface"
 export const MovieHero = ({ movie }: { movie: IMovie }) => {
 	const [bgColor, setBgColor] = useState<string>("#000")
 	const imageRef = useRef<HTMLImageElement>(null)
-
 	useEffect(() => {
 		async function getAsyncColor() {
 			await getColor({

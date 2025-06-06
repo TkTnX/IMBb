@@ -3,9 +3,10 @@
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 
+import { SwiperButtons } from "../features"
+
 import { BgTitle } from "./BgTitle"
 import { cn } from "@/lib/utils"
-import { SwiperButtons } from "../features"
 
 type Props = {
 	title: string
@@ -14,6 +15,7 @@ type Props = {
 	href?: string
 	children: React.ReactNode
 	section: string
+	className?: string
 }
 
 export const Section = ({
@@ -22,15 +24,17 @@ export const Section = ({
 	href,
 	bgTitle,
 	children,
-	section
+	section,
+	className
 }: Props) => {
 	return (
 		<section
 			className={cn(
-				"container mt-5 sm:mt-8 lg:mt-16 xl:mt-32 relative ",
+				" mt-5 sm:mt-8 lg:mt-16 xl:mt-32 relative ",
 				{
 					"pt-0 lg:pt-10 2xl:pt-20 ": bgTitle
-				}
+				},
+				className
 			)}
 		>
 			{/* TOP */}

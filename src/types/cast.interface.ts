@@ -8,6 +8,7 @@ export interface ICrew {
 export interface ICastPerson {
 	job: string
 	person: IActor
+	character: string
 	images: {
 		headshot: string
 	}

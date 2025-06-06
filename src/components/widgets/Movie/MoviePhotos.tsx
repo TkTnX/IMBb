@@ -10,27 +10,33 @@ import { useSwiperStore } from "@/stores/swiperStore"
 
 export const MoviePhotos = ({ photos }: { photos: string[] }) => {
 	const { setSwiperRefs } = useSwiperStore()
-// TODO: Доделать слайдер (щас проблемы с адаптивом)
 	return (
-        <Section title='Photos' section='photos'>
-            <div></div>
-			{/* <Swiper
-				onSwiper={swiper => setSwiperRefs("actors", swiper)}
-				className='mt-8 h-[300px]'
-				slidesPerView={3}
+		<Section
+			className='mt-14 sm:mt-14 lg:mt-14 xl:mt-14'
+			title='Photos'
+			section={`photos-${photos[0]}`}
+		>
+			<Swiper
+				onSwiper={swiper =>
+					setSwiperRefs(`photos-${photos[0]}`, swiper)
+				}
+				className='mt-8 '
+				slidesPerView={4.5}
 				spaceBetween={15}
 			>
-				{photos.map(photo => (
-					<SwiperSlide key={photo} className='relative w-full h-full'>
-						<Image
-							className='object-contain border border-background-light-transparent-100 rounded-2xl'
-							src={`https://${photo}`}
-							alt='photo'
-							fill
-						/>
+				{photos.map((photo, index) => (
+					<SwiperSlide key={index}>
+						<div className='relative w-full h-[300px] bg-background-light-transparent-50 rounded-2xl'>
+							<Image
+								className='object-contain'
+								src={`https://${photo}`}
+								alt={photo}
+								fill
+							/>
+						</div>
 					</SwiperSlide>
 				))}
-			</Swiper> */}
+			</Swiper>
 		</Section>
 	)
 }

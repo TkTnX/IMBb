@@ -25,7 +25,7 @@ type Props = {
 
 export const Movie = ({ movie, cast }: Props) => {
 	return (
-		<section className='flex-1'>
+		<section >
 			<h1 className='text-4xl'>{movie.title}</h1>
 			<div className='flex items-center justify-between mt-4'>
 				<div className='flex items-center gap-2.5 text-text-secondary'>

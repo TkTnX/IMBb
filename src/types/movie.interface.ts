@@ -36,6 +36,7 @@ export interface IMovie {
 		banner: string[]
 		logo: string[]
 		poster: string[]
+		fanart: string[]
 	}
 	rating: number
 }
