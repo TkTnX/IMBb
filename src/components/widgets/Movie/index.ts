@@ -1,1 +1,7 @@
 export * from "./Movie"
+export * from "./MovieCast"
+export * from "./MovieComments"
+export * from "./MovieDetails"
+export * from "./MovieHero"
+export * from "./MovieInfo"
+export * from "./MoviePhotos"

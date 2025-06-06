@@ -21,11 +21,8 @@ export const MovieHero = ({ movie }: { movie: IMovie }) => {
 	}, [])
 
 	return (
-		<div className='h-[490px] flex items-start gap-6 mt-5'>
-			<div
-				ref={imageRef}
-				className='relative w-full max-w-[340px] h-full rounded overflow-hidden'
-			>
+		<div className='w-full  h-[490px] vsm:h-[300px] sm:h-[490px] flex-col-reverse md:flex-row flex items-center vsm:items-start lg:items-start gap-6 mt-5'>
+			<div className='block vsm:hidden lg:block relative w-full max-w-[340px] h-full  rounded overflow-hidden'>
 				<Image
 					src={`https://${movie.images.poster[0]}`}
 					alt={movie.title}
@@ -33,12 +30,15 @@ export const MovieHero = ({ movie }: { movie: IMovie }) => {
 					className='object-cover'
 				/>
 			</div>
-			<div className='flex-1 h-full relative rounded overflow-hidden'>
+			<div
+				ref={imageRef}
+				className='hidden vsm:block lg:flex-1 w-full lg:w-auto h-full relative rounded overflow-hidden'
+			>
 				<Image
 					fill
 					src={`https://${getAvailableImages(movie)[0]}`}
 					alt={movie.title}
-					className='object-cover '
+					className='object-contain lg:object-cover '
 				/>
 			</div>
 			<div

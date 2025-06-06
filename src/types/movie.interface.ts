@@ -14,6 +14,7 @@ export interface IMovie {
 	certification: string | null
 	country: string
 	language: string
+	languages: string[]
 	original_title: string
 	overview: string
 	released: string

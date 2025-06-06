@@ -11,13 +11,15 @@ type Props = {
 
 export const MovieInfoItem = ({ title, items }: Props) => {
 	return (
-		<div className='flex items-start gap-2'>
-			<p className='font-bold text-lg text-text-secondary min-w-[100px]'>{title}</p>
-			<div className='flex items-center gap-1 flex-wrap'>
+		<div className='flex flex-col sm:flex-row items-start gap-2'>
+			<p className='font-bold text-lg text-text-secondary sm:min-w-[100px]'>
+				{title}
+			</p>
+			<div className='flex items-center sm:gap-1 flex-wrap'>
 				{items.map((item, index) => (
 					<div
 						key={typeof item !== "string" ? item.person.name : item}
-						className='flex items-center gap-1'
+						className='flex items-center sm:gap-1'
 					>
 						{typeof item !== "string" ? (
 							<Link

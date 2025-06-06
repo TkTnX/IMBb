@@ -1,7 +1,11 @@
-import { Movie, MovieSidebar } from "@/components/widgets"
-import { MovieCast } from "@/components/widgets/Movie/MovieCast"
-import { MovieReviews } from "@/components/widgets/Movie/MovieComments"
-import { MoviePhotos } from "@/components/widgets/Movie/MoviePhotos"
+import {
+	Movie,
+	MovieCast,
+	MovieDetails,
+	MoviePhotos,
+	MovieReviews,
+	MovieSidebar
+} from "@/components/widgets"
 
 import { axiosInstance } from "@/configs/axios.config"
 import { getAvailableImages } from "@/helpers/getAvailableImages"
@@ -13,15 +17,14 @@ const MoviePage = async ({ params }: { params: Promise<{ slug: string }> }) => {
 		`/movies/${slug}/full?extended=full,images`
 	)
 	const { movie, cast, comments } = data
-
 	return (
-		<div className='max-w-full mt-7 flex gap-8'>
-			<div className='flex flex-col gap-12 max-w-[calc(100%-182px)] '>
+		<div className='max-w-full mt-7 flex items-start gap-8'>
+			<div className='flex flex-col gap-12 flex-1 max-w-full md:max-w-[calc(100%-120px)] lg:max-w-[calc(100%-182px)] '>
 				<Movie cast={cast} movie={movie} />
 				<MoviePhotos photos={getAvailableImages(movie)} />
 				<MovieCast cast={cast} />
 				<MovieReviews slug={slug} comments={comments} />
-				{/* TODO: Секции Detailds и Box office */}
+				<MovieDetails movie={movie} />
 			</div>
 			<MovieSidebar />
 		</div>

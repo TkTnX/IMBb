@@ -28,3 +28,24 @@ export const ACTORS_BREAKPOINTS = {
 		spaceBetween: 30
 	}
 }
+
+export const PHOTOS_BREAKPOINTS = {
+	1024: {
+		slidesPerView: 4.5
+	},
+	660: {
+		slidesPerView: 3
+	},
+	475: {
+		slidesPerView: 2.5
+	}
+}
+
+export const CAST_BREAKPOINTS = {
+	1024: {
+		slidesPerView: 6
+	},
+	550: {
+		slidesPerView: 4
+	}
+}

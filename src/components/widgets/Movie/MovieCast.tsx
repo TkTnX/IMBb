@@ -9,12 +9,14 @@ import { Section } from "@/components/ui/Section"
 
 import { useSwiperStore } from "@/stores/swiperStore"
 import { IMoviePeopleDetails } from "@/types/movie.interface"
+import { CAST_BREAKPOINTS } from "@/configs/swiper-breakpoints.config"
 
 export const MovieCast = ({ cast }: { cast: IMoviePeopleDetails }) => {
 	const { setSwiperRefs } = useSwiperStore()
 	return (
 		<Section
-			className='mt-14 sm:mt-14 lg:mt-14 xl:mt-14'
+			id='Cast'
+			className='mt-2 sm:mt-4 lg:mt-7 xl:mt-14'
 			title='Cast'
 			section={`cast-${cast.cast[0].person.name}`}
 		>
@@ -23,8 +25,9 @@ export const MovieCast = ({ cast }: { cast: IMoviePeopleDetails }) => {
 					setSwiperRefs(`cast-${cast.cast[0].person.name}`, swiper)
 				}
 				className='mt-8 '
-				slidesPerView={6}
+				slidesPerView={2}
 				spaceBetween={15}
+				breakpoints={CAST_BREAKPOINTS}
 			>
 				{cast.cast.map(person => (
 					<SwiperSlide key={person.person.ids.slug}>
@@ -34,7 +37,7 @@ export const MovieCast = ({ cast }: { cast: IMoviePeopleDetails }) => {
 						>
 							<div className='relative max-w-[180px] h-[180px]'>
 								<Image
-									loading="lazy"
+									loading='lazy'
 									src={`https://${person.images.headshot[0]}`}
 									className='  object-cover rounded-2xl'
 									alt={person.person.name}

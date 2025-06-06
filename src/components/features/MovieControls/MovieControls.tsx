@@ -7,12 +7,12 @@ type Props = {
 export const MovieControls = ({ rating }: Props) => {
 	return (
 		<div className='flex items-center gap-2.5'>
-			<button className='flex items-center gap-2.5 rounded-lg py-2 px-4 bg-background-light-transparent-50 shadow-inset hover:opacity-80'>
+			<button className='flex items-center gap-2.5 rounded-lg py-2 px-4 bg-background-light-transparent-50 shadow-inset hover:opacity-80 flex-1 vsm:flex-auto justify-center'>
 				<Star size={18} />
 				<span>Rate</span>
 			</button>
 			{/* RATING */}
-			<div className='flex items-center gap-1 rounded-lg py-2 px-4 bg-background-light-transparent-50 shadow-inset'>
+			<div className='flex items-center gap-1 rounded-lg py-2 px-4 bg-background-light-transparent-50 shadow-inset flex-1 vsm:flex-auto justify-center'>
 				<Star
 					fill='var(--color-main-yellow)'
 					color='var(--color-main-yellow)'

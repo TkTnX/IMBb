@@ -11,11 +11,12 @@ import { cn } from "@/lib/utils"
 type Props = {
 	title: string
 	subtitle?: string
-	bgTitle?: string
 	href?: string
+	bgTitle?: string
 	children: React.ReactNode
 	section: string
 	className?: string
+	id?: string
 }
 
 export const Section = ({
@@ -25,10 +26,12 @@ export const Section = ({
 	bgTitle,
 	children,
 	section,
-	className
+	className,
+	id,
 }: Props) => {
 	return (
 		<section
+			id={id}
 			className={cn(
 				" mt-5 sm:mt-8 lg:mt-16 xl:mt-32 relative ",
 				{

@@ -8,7 +8,7 @@ type Props = {
 
 export const CommentItem = ({ comment }: Props) => {
 	return (
-		<div className='rounded-2xl p-5 bg-background-light-transparent-50 flex-1'>
+		<div className='rounded-2xl w-full p-5 bg-background-light-transparent-50 flex-1'>
 			<div className='flex items-center gap-2'>
 				<Star
 					fill='var(--main-yellow)'
@@ -24,7 +24,7 @@ export const CommentItem = ({ comment }: Props) => {
 			</div>
 			<div className='flex items-center gap-2.5 mt-3.5'>
 				<p className='text-[#f3dd83]'>{comment.user.username}</p>
-				<Dot size={4} color="var(--dark-text-secondary)" />
+				<Dot size={4} color='var(--dark-text-secondary)' />
 				<p>
 					{new Date(comment.created_at).toLocaleString("en", {
 						month: "long",
@@ -32,8 +32,8 @@ export const CommentItem = ({ comment }: Props) => {
 						year: "numeric"
 					})}
 				</p>
-            </div>
-            <p className="mt-3.5">{comment.comment}</p>
+			</div>
+			<p className='mt-3.5'>{comment.comment}</p>
 		</div>
 	)
 }

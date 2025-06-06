@@ -173,8 +173,12 @@
 	--breakpoint-vsm: 475px;
 }
 
+html {
+	@apply scroll-smooth;
+}
+
 body {
-	@apply bg-background text-text-primary;
+	@apply bg-background text-text-primary scroll-smooth;
 }
 
 .container {
@@ -245,6 +249,4 @@ button {
 	-webkit-box-orient: vertical;
 	line-clamp: 3;
 	box-orient: vertical;
-
 }
-

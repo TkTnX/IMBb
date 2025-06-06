@@ -9,16 +9,17 @@ export async function GET(
 	const slug = (await params).slug
 
 	try {
-		const [movieRes, castRes, commentsRes] = await Promise.all([
-			movieApi.get(`/movies/${slug}?extended=full,images`),
-			movieApi.get(`/movies/${slug}/people?extended=full,images`),
-			movieApi.get(`/movies/${slug}/comments/newest?limit=2`)
-		])
+		const [movieRes, castRes, commentsRes] =
+			await Promise.all([
+				movieApi.get(`/movies/${slug}?extended=full,images`),
+				movieApi.get(`/movies/${slug}/people?extended=full,images`),
+				movieApi.get(`/movies/${slug}/comments/newest?limit=2`),
+			])
 
 		return NextResponse.json({
 			movie: movieRes.data,
 			cast: castRes.data,
-			comments: commentsRes.data
+			comments: commentsRes.data,
 		})
 	} catch (error) {
 		console.log(error)
