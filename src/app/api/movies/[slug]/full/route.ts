@@ -13,7 +13,7 @@ export async function GET(
 			await Promise.all([
 				movieApi.get(`/movies/${slug}?extended=full,images`),
 				movieApi.get(`/movies/${slug}/people?extended=full,images`),
-				movieApi.get(`/movies/${slug}/comments/newest?limit=2`),
+				movieApi.get(`/movies/${slug}/comments?sortBy=newest&limit=2`),
 			])
 
 		return NextResponse.json({

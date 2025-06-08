@@ -9,5 +9,6 @@ export interface IComment {
         ids: {
             slug: string
         }
-    }
+    },
+    spoiler: boolean
 }

@@ -23,7 +23,11 @@ const MoviePage = async ({ params }: { params: Promise<{ slug: string }> }) => {
 				<Movie cast={cast} movie={movie} />
 				<MoviePhotos photos={getAvailableImages(movie)} />
 				<MovieCast cast={cast} />
-				<MovieReviews slug={slug} comments={comments} />
+				<MovieReviews
+					movieInfo={{ title: movie.title, year: movie.year }}
+					slug={slug}
+					comments={comments}
+				/>
 				<MovieDetails movie={movie} />
 			</div>
 			<MovieSidebar />

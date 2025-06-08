@@ -17,7 +17,7 @@ export const CommentItem = ({ comment }: Props) => {
 				/>
 				<p>
 					<span className='text-main-yellow'>
-						{comment.user_rating}
+						{comment.user_rating || 1}
 					</span>
 					/10
 				</p>

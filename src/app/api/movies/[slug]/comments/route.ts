@@ -14,7 +14,7 @@ export async function GET(
 ) {
     try {
         const slug = (await params).slug
-        const sortBy = (await params).sortBy
+        const sortBy = req.nextUrl.searchParams.get("sortBy")
         const limit = req.nextUrl.searchParams.get("limit")
         const { data } = await movieApi.get(
 			`/movies/${slug}/comments/${sortBy}?extended=full,images&limit=${limit}`
