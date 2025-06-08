@@ -1,5 +1,4 @@
 import { ArrowUpDown } from "lucide-react"
-import { useState } from "react"
 
 import {
 	Select,
@@ -10,8 +9,10 @@ import {
 
 import { COMMENTS_SORT_BY } from "@/constants/comments.constants"
 
+import { useCommentsStore } from "@/stores/commentsStore"
+
 export const ReviewsSelectSortBy = () => {
-	const [sortBy, setSortBy] = useState("newest")
+	const { sortBy, setSortBy } = useCommentsStore()
 	return (
 		<Select value={sortBy} onValueChange={setSortBy}>
 			<SelectTrigger

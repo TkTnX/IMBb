@@ -1,5 +1,4 @@
 import { ChevronRight, Plus } from "lucide-react"
-import Link from "next/link"
 
 import { ReviewsSheet } from "@/components/modals"
 import { CommentItem } from "@/components/ui/CommentItem"

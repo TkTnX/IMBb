@@ -3,6 +3,8 @@
 import { Plus, X } from "lucide-react"
 import { useEffect, useState } from "react"
 
+import { useComments } from "@/hooks/useComments"
+
 import { ReviewsControls } from "../features/ReviewsControls"
 import {
 	Sheet,
@@ -14,6 +16,7 @@ import {
 import { ReviewsList } from "../widgets"
 
 import { axiosInstance } from "@/configs/axios.config"
+import { useCommentsStore } from "@/stores/commentsStore"
 import { IComment } from "@/types/comment.interface"
 
 type Props = {
@@ -29,21 +32,7 @@ export const ReviewsSheet = ({
 	movieInfo,
 	className
 }: Props) => {
-	const [open, setOpen] = useState(false)
-	const [comments, setComments] = useState<IComment[]>([])
-
-	useEffect(() => {
-		if (open) {
-			const fetchComments = async () => {
-				const { data } = await axiosInstance.get(
-					`/movies/${slug}/comments?sortBy=newest`
-				)
-				setComments(data)
-			}
-
-			fetchComments()
-		}
-	}, [open])
+	const { comments, open, setOpen, loadMore, loading } = useComments(slug)
 
 	return (
 		<Sheet open={open} onOpenChange={setOpen}>
@@ -78,7 +67,7 @@ export const ReviewsSheet = ({
 								</p>
 							</div>
 						</SheetHeader>
-						<ReviewsList comments={comments} />
+						<ReviewsList loadMore={loadMore} loading={loading} comments={comments} />
 					</div>
 				</div>
 			</SheetContent>
