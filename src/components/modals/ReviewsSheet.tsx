@@ -1,7 +1,6 @@
 "use client"
 
 import { Plus, X } from "lucide-react"
-import { useEffect, useState } from "react"
 
 import { useComments } from "@/hooks/useComments"
 
@@ -14,10 +13,6 @@ import {
 	SheetTrigger
 } from "../ui/sheet"
 import { ReviewsList } from "../widgets"
-
-import { axiosInstance } from "@/configs/axios.config"
-import { useCommentsStore } from "@/stores/commentsStore"
-import { IComment } from "@/types/comment.interface"
 
 type Props = {
 	children: React.ReactNode
@@ -32,7 +27,8 @@ export const ReviewsSheet = ({
 	movieInfo,
 	className
 }: Props) => {
-	const { comments, open, setOpen, loadMore, loading } = useComments(slug)
+	const { comments, open, setOpen, loadMore, loading, hasMore } =
+		useComments(slug)
 
 	return (
 		<Sheet open={open} onOpenChange={setOpen}>
@@ -67,7 +63,12 @@ export const ReviewsSheet = ({
 								</p>
 							</div>
 						</SheetHeader>
-						<ReviewsList loadMore={loadMore} loading={loading} comments={comments} />
+						<ReviewsList
+							hasMore={hasMore}
+							loadMore={loadMore}
+							loading={loading}
+							comments={comments}
+						/>
 					</div>
 				</div>
 			</SheetContent>

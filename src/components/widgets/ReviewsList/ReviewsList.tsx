@@ -1,46 +1,44 @@
 "use client"
 
 import { useEffect, useRef } from "react"
+import useInfiniteScroll from "react-infinite-scroll-hook"
 
 import { CommentItem } from "@/components/ui/CommentItem"
 import { Skeleton } from "@/components/ui/skeleton"
+
+import { useScrollBottom } from "@/hooks/useScrollBottom"
 
 import { IComment } from "@/types/comment.interface"
 
 type Props = {
 	comments: IComment[]
-	loadMore?: () => void
+	loadMore: () => void
 	loading: boolean
+	hasMore: boolean
 }
 
-// * TODO: Сортировка
-// * TODO: Если trakt api позволяет, сортировка по рейтингу и спойлерам.
-// * TODO: Скелетоны
-// * TODO: Кастомный слайдер
-// * TODO: При прокрутке до конца - подгружать новые комментарии
+export const ReviewsList = ({
+	comments,
+	loadMore,
+	loading,
+	hasMore
+}: Props) => {
+	const { scrollRef, handleScroll } = useScrollBottom({
+		comments,
+		loading,
+		loadMore
+	})
 
-export const ReviewsList = ({ comments, loadMore, loading }: Props) => {
-	const scrollRef = useRef<HTMLDivElement>(null)
-	const scrollPositionRef = useRef<number>(0)
-	const handleScroll = (e: any) => {
-		const bottom =
-			e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight
-
-		if (bottom && !loading) {
-			scrollPositionRef.current = e.target.scrollTop
-			loadMore?.()
-		}
-	}
-
-	useEffect(() => {
-		if (scrollRef.current && scrollPositionRef.current) {
-			scrollRef.current.scrollTop = scrollPositionRef.current
-		}
-	}, [comments])
+	const [infiniteRef] = useInfiniteScroll({
+		loading,
+		hasNextPage: hasMore,
+		onLoadMore: loadMore!,
+		rootMargin: "0px 0px 400px 0px"
+	})
 
 	return (
-    <div
-      ref={scrollRef}
+		<div
+			ref={scrollRef}
 			onScroll={handleScroll}
 			className='flex flex-col gap-4 w-full mt-6 overflow-y-auto max-h-[calc(100vh-250px)] pr-2'
 		>
@@ -54,6 +52,7 @@ export const ReviewsList = ({ comments, loadMore, loading }: Props) => {
 							key={index}
 						/>
 					))}
+			<div ref={infiniteRef} />
 		</div>
 	)
 }
