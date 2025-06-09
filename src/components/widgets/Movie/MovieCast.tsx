@@ -1,25 +1,38 @@
 "use client"
 
+import { ChevronRight, Plus } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import "swiper/css"
 import { Swiper, SwiperSlide } from "swiper/react"
 
-import { Section } from "@/components/ui/Section"
+import { CastSheet } from "@/components/modals"
+import { SectionTitle } from "@/components/ui/SectionTitle"
 
+import { CAST_BREAKPOINTS } from "@/configs/swiper-breakpoints.config"
 import { useSwiperStore } from "@/stores/swiperStore"
 import { IMoviePeopleDetails } from "@/types/movie.interface"
-import { CAST_BREAKPOINTS } from "@/configs/swiper-breakpoints.config"
 
-export const MovieCast = ({ cast }: { cast: IMoviePeopleDetails }) => {
+type Props = {
+	cast: IMoviePeopleDetails
+	movieInfo: { title: string; year: number }
+}
+
+// TODO: Адаптив в movie cast
+// TODO: В reviews, если нет отзывов, выводить "нет комментариев"
+// TODO: Если у review рейтинг = Null, то не отображать рейтинг. Сейчас, если рейтинг null у отзыва, то не отображаются комменты (см. useComments hook)
+
+export const MovieCast = ({ cast, movieInfo }: Props) => {
 	const { setSwiperRefs } = useSwiperStore()
 	return (
-		<Section
-			id='Cast'
-			className='mt-2 sm:mt-4 lg:mt-7 xl:mt-14'
-			title='Cast'
-			section={`cast-${cast.cast[0].person.name}`}
-		>
+		<section id='Cast' className='mt-2 sm:mt-4 lg:mt-7 xl:mt-14'>
+			<div className='flex flex-col vsm:flex-row gap-2 vsm:items-center justify-between'>
+				<SectionTitle title='Cast'>
+					<CastSheet cast={cast} movieInfo={movieInfo}>
+						See all <ChevronRight size={12} />
+					</CastSheet>
+				</SectionTitle>
+			</div>
 			<Swiper
 				onSwiper={swiper =>
 					setSwiperRefs(`cast-${cast.cast[0].person.name}`, swiper)
@@ -52,6 +65,6 @@ export const MovieCast = ({ cast }: { cast: IMoviePeopleDetails }) => {
 					</SwiperSlide>
 				))}
 			</Swiper>
-		</Section>
+		</section>
 	)
 }

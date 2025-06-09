@@ -30,6 +30,7 @@ export const useComments = (slug: string) => {
 				.filter(
 					(comment: IComment) => !hideSpoilers || !comment.spoiler
 				)
+			console.log(data)
 			filteredComments.length === 0 ? setHasMore(false) : setHasMore(true)
 
 			const newComments = isNew

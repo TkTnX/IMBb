@@ -1,6 +1,5 @@
 "use client"
 
-import { useEffect, useRef } from "react"
 import useInfiniteScroll from "react-infinite-scroll-hook"
 
 import { CommentItem } from "@/components/ui/CommentItem"

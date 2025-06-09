@@ -22,7 +22,7 @@ const MoviePage = async ({ params }: { params: Promise<{ slug: string }> }) => {
 			<div className='flex flex-col gap-12 flex-1 max-w-full md:max-w-[calc(100%-120px)] lg:max-w-[calc(100%-182px)] '>
 				<Movie cast={cast} movie={movie} />
 				<MoviePhotos photos={getAvailableImages(movie)} />
-				<MovieCast cast={cast} />
+				<MovieCast movieInfo={{ title: movie.title, year: movie.year }} cast={cast} />
 				<MovieReviews
 					movieInfo={{ title: movie.title, year: movie.year }}
 					slug={slug}
