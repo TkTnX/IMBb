@@ -13,7 +13,7 @@ export const Footer = () => {
 						href='/sign-up'
 						className='text-background-nav rounded-lg py-2.5 px-4 bg-main-yellow shadow-2xl hover:opacity-80 text-center'
 					>
-						Unlock the full IMDb experience — Sign up now
+						Unlock the full IMBb experience — Sign up now
 					</Link>
 				</div>
 				<div className='flex flex-col lg:flex-row items-center lg:items-start  justify-center mt-16  gap-4'>

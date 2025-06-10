@@ -18,9 +18,16 @@ export const useComments = (slug: string) => {
 			const { data } = await axiosInstance.get(
 				`/movies/${slug}/comments?sortBy=${sortBy}&page=${pageToLoad}`
 			)
-			const filteredComments = data.filter(
-				(comment: IComment) => !hideSpoilers || !comment.spoiler
-			)
+
+			const filteredComments = data
+				.filter(
+					(comment: IComment) => !hideSpoilers || !comment.spoiler
+				)
+				.sort((a: IComment, b: IComment) => {
+					if (rating === "Asc") return a.user_rating - b.user_rating
+					if (rating === "Desc") return b.user_rating - a.user_rating
+					return 0
+				})
 
 			filteredComments.length === 0 ? setHasMore(false) : setHasMore(true)
 
@@ -36,8 +43,6 @@ export const useComments = (slug: string) => {
 			setLoading(false)
 		}
 	}
-
-
 
 	useEffect(() => {
 		if (!open) return

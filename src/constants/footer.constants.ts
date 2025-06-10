@@ -6,11 +6,11 @@ export const FOOTER_LINKS = [
 				href: "#"
 			},
 			{
-				text: "IMDbPro",
+				text: "IMBbPro",
 				href: "#"
 			},
 			{
-				text: "IMDb Developer",
+				text: "IMBb Developer",
 				href: "#"
 			},
 			{

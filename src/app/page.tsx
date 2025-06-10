@@ -1,6 +1,7 @@
 import {
 	Actors,
 	Anticipated,
+	BoxOffice,
 	Featured,
 	Hero,
 	TopImdb,
@@ -15,6 +16,8 @@ export default function Home() {
 			<TopPicks />
 			<TopImdb />
 			<Anticipated />
+			<BoxOffice />
+			
 			<Actors />
 		</>
 	)

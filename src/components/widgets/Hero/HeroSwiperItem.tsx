@@ -4,6 +4,7 @@ import Link from "next/link"
 
 import { getAvailableImages } from "@/helpers/getAvailableImages"
 import { IMovie } from "@/types/movie.interface"
+import { AddToWishlistButton } from "@/components/features"
 
 type Props = {
 	movie: IMovie
@@ -37,14 +38,8 @@ export const HeroSwiperItem = ({ movie }: Props) => {
 						fill
 						className='rounded-xl'
 					/>
-					<button className='absolute left-5 top-0 hover:scale-105'>
-						<Image
-							src={"/images/icons/bookmark-plus.svg"}
-							width={39}
-							height={50}
-							alt='add to favorites'
-						/>
-					</button>
+					
+					<AddToWishlistButton className="left-5" />
 				</div>
 				{movie.trailer ? (
 					<a

@@ -22,7 +22,7 @@ export const TopPicksList = ({ list }: Props) => {
 			spaceBetween={12}
 			breakpoints={MOVIES_BREAKPOINTS}
 		>
-			{list.map(movie => (
+			{list?.map(movie => (
 				<SwiperSlide key={movie.ids.imdb}>
 					<MovieItem movie={movie} />
 				</SwiperSlide>

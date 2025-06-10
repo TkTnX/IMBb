@@ -14,7 +14,7 @@ type Props = {
 	href?: string
 	bgTitle?: string
 	children: React.ReactNode
-	section: string
+	section?: string
 	className?: string
 	id?: string
 }
@@ -66,7 +66,7 @@ export const Section = ({
 					)}
 				</div>
 
-				<SwiperButtons section={section} />
+				{section && <SwiperButtons section={section} />}
 			</div>
 
 			{/* LIST */}

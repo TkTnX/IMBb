@@ -22,7 +22,7 @@ export const AnticipatedList = ({ list }: Props) => {
 			breakpoints={MOVIES_BREAKPOINTS}
 			onSwiper={swiper => setSwiperRefs("anticipated", swiper)}
 		>
-			{list.map(movie => (
+			{list?.map(movie => (
 				<SwiperSlide key={movie.ids.imdb}>
 					<MovieItem movie={movie} />
 				</SwiperSlide>

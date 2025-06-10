@@ -47,3 +47,8 @@ export interface IMoviePeopleDetails {
 	cast: ICastPerson[]
 	crew: ICrew
 }
+
+export interface IBoxOfficeItem {
+	revenue: number,
+	movie: IMovie
+}

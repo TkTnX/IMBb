@@ -18,9 +18,6 @@ type Props = {
 	movieInfo: { title: string; year: number }
 }
 
-// * TODO: Адаптив в movie cast
-// * TODO: Адаптив reviews
-// * TODO: В reviews, если нет отзывов, выводить "нет комментариев"
 
 export const MovieCast = ({ cast, movieInfo }: Props) => {
 	const { setSwiperRefs } = useSwiperStore()
