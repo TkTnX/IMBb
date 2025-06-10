@@ -13,7 +13,7 @@ export const ReviewsSelectRating = () => {
 	const { rating, setRating } = useCommentsStore()
 	return (
 		<Select value={String(rating)} onValueChange={setRating}>
-			<SelectTrigger className='rounded-lg !py-2.5 !px-4 bg-background-light-transparent-50 shadow-inset flex items-center justify-between gap-2'>
+			<SelectTrigger className='rounded-lg !py-2.5 !px-4 bg-background-light-transparent-50 shadow-inset flex items-center justify-between gap-2 flex-1'>
 				<span className='text-text-secondary'>Rating:</span>
 				<div className='flex items-center gap-1'>
 					{rating !== "0" && rating

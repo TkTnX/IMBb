@@ -27,12 +27,15 @@ export const CastSheet = ({ children, movieInfo, cast }: Props) => {
 			<SheetTrigger className='rounded-lg py-2 px-4 bg-background-light-transparent-100 shadow-lg flex items-center gap-2.5 hover:opacity-80'>
 				{children}
 			</SheetTrigger>
-			<SheetContent side='bottom' className='h-full border-t-0 pt-6'>
-				<div className='container flex items-start gap-6'>
+			<SheetContent
+				side='bottom'
+				className='h-full overflow-x-hidden overflow-y-auto border-t-0 pt-6'
+			>
+				<div className='container flex flex-col vsm:flex-row items-start gap-2 sm:gap-6 '>
 					<button onClick={() => setOpen(false)}>
 						<X size={18} />
 					</button>
-					<div className='flex-1'>
+					<div className='flex-1 w-full'>
 						<SheetHeader className=' p-0 '>
 							<SheetTitle className='text-2xl text-text-primary font-normal'>
 								{movieInfo.title}{" "}

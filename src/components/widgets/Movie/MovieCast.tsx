@@ -1,6 +1,6 @@
 "use client"
 
-import { ChevronRight, Plus } from "lucide-react"
+import { ChevronRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import "swiper/css"
@@ -18,9 +18,9 @@ type Props = {
 	movieInfo: { title: string; year: number }
 }
 
-// TODO: Адаптив в movie cast
-// TODO: В reviews, если нет отзывов, выводить "нет комментариев"
-// TODO: Если у review рейтинг = Null, то не отображать рейтинг. Сейчас, если рейтинг null у отзыва, то не отображаются комменты (см. useComments hook)
+// * TODO: Адаптив в movie cast
+// * TODO: Адаптив reviews
+// * TODO: В reviews, если нет отзывов, выводить "нет комментариев"
 
 export const MovieCast = ({ cast, movieInfo }: Props) => {
 	const { setSwiperRefs } = useSwiperStore()

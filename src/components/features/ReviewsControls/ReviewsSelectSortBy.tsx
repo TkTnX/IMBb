@@ -17,7 +17,7 @@ export const ReviewsSelectSortBy = () => {
 		<Select value={sortBy} onValueChange={setSortBy}>
 			<SelectTrigger
 				childrenIcon
-				className='rounded-lg !py-2.5 !px-4 bg-background-light-transparent-50 shadow-inset flex items-center justify-between gap-2'
+				className='rounded-lg !py-2.5 !px-4 bg-background-light-transparent-50 shadow-inset flex items-center justify-between gap-2 flex-1'
 			>
 				<span className='text-text-secondary'>Sort By:</span>
 				<span>

@@ -4,7 +4,7 @@ import { ReviewsSelectSortBy } from "./ReviewsSelectSortBy"
 
 export const ReviewsControls = () => {
 	return (
-		<div className=' flex items-center gap-6'>
+		<div className=' flex flex-wrap items-center gap-6'>
 			<ReviewsSelectSortBy />
 			<ReviewsSelectRating />
 			<ReviewsCheckboxSpoiler />

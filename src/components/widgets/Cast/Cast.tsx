@@ -18,13 +18,13 @@ export const Cast = ({ cast }: Props) => {
 	const tabs = ["cast", ...Object.keys(cast.crew)]
 
 	return (
-		<div className='flex items-start gap-12 mt-8 h-[calc(100vh-250px)]'>
-			<div className='w-[350px] border-r-2 border-r-background-light-transparent-100 h-full flex flex-col gap-2.5'>
+		<div className='flex flex-col sm:flex-row  items-start gap-4 md:gap-12 mt-8  overflow-y-auto sm:overflow-hidden sm:h-[calc(100vh-250px)] '>
+			<div className='w-full sm:w-auto md:w-[350px] md:pr-0 md:border-r-2 border-r-background-light-transparent-100  flex gap-2.5 flex-row sm:flex-col  overflow-x-auto md:overflow-x-visible pb-2 justify-between'>
 				{tabs.map(tab => (
 					<button
 						key={tab}
 						className={cn(
-							"flex items-center gap-2.5 hover:text-main-yellow",
+							"flex items-center gap-2.5 hover:text-main-yellow text-nowrap min-w-max",
 							activeTab === tab && "text-main-yellow font-bold"
 						)}
 						onClick={() => setActiveTab(tab)}
@@ -35,13 +35,13 @@ export const Cast = ({ cast }: Props) => {
 				))}
 			</div>
 			<div className='overflow-y-auto max-h-full pr-2 flex-1 '>
-				<h6 className='text-xl font-normal mb-11'>
+				<h6 className='text-xl font-normal mb-4 md:mb-11'>
 					{activeTab[0].toUpperCase() + activeTab.slice(1)}{" "}
 					<span className='text-text-secondary'>
 						(in credits order)
 					</span>
 				</h6>
-				<div className="flex flex-col gap-5 w-full">
+				<div className='flex flex-col gap-5 w-full'>
 					{activeTab === "cast"
 						? cast.cast.map(person => (
 								<CastItem

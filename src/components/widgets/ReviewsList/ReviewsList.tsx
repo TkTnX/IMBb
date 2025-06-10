@@ -39,18 +39,26 @@ export const ReviewsList = ({
 		<div
 			ref={scrollRef}
 			onScroll={handleScroll}
-			className='flex flex-col gap-4 w-full mt-6 overflow-y-auto max-h-[calc(100vh-250px)] pr-2'
+			className='flex flex-col gap-4 w-full mt-6 sm:overflow-y-auto sm:max-h-[calc(100vh-250px)] pr-2'
 		>
-			{comments && !loading
-				? comments.map(comment => (
+			{comments && !loading ? (
+				comments.length ? (
+					comments.map(comment => (
 						<CommentItem key={comment.id} comment={comment} />
 					))
-				: [...new Array(5)].map((_, index) => (
-						<Skeleton
-							className='w-full min-h-[140px] bg-background-secondary'
-							key={index}
-						/>
-					))}
+				) : (
+					<span className='text-center font-semibold text-xl text-text-secondary'>
+						No comments yet
+					</span>
+				)
+			) : (
+				[...new Array(5)].map((_, index) => (
+					<Skeleton
+						className='w-full min-h-[140px] bg-background-secondary'
+						key={index}
+					/>
+				))
+			)}
 			<div ref={infiniteRef} />
 		</div>
 	)
