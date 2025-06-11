@@ -9,6 +9,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 
 import { axiosInstance } from "@/configs/axios.config"
 import { IGenre } from "@/types/genre.interface"
+import { Skeleton } from "@/components/ui/skeleton"
 
 export const MoviesGenres = () => {
 	const [genres, setGenres] = useState<IGenre[]>([])
@@ -26,7 +27,7 @@ export const MoviesGenres = () => {
 		<AccordionItem value='genres' className='w-full border-none'>
 			<AccordionTrigger className='font-bold'>Genres</AccordionTrigger>
 			<AccordionContent className='max-h-32 overflow-y-scroll flex flex-col gap-2'>
-				{genres.map(genre => (
+				{!genres ? [...new Array(5)].map((_, index) => <Skeleton className="w-full h-5" key={index} />) :genres.map(genre => (
 					<label
 						key={genre.slug}
 						className='flex items-center gap-1 cursor-pointer'

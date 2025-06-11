@@ -9,10 +9,9 @@ import { MoviesGenres } from "./MoviesGenres"
 import { MoviesLanguages } from "./MoviesLanguages"
 import { MoviesYear } from "./MoviesYear"
 
-// TODO: При получении genres, languages и тд отображать skeleton
 export const MoviesFilters = () => {
 	return (
-		<div className='rounded-xl p-5 bg-background-light-transparent-50 h-full max-w-72 flex-1 w-full'>
+		<div className='rounded-xl p-5 bg-background-light-transparent-50 h-full lg:max-w-72 lg:flex-1 w-full sm:w-auto lg:w-full'>
 			<p className='flex items-center gap-2.5 text-text-secondary'>
 				Filters <ListFilter />
 			</p>

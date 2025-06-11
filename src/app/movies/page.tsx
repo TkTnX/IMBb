@@ -7,8 +7,8 @@ export const metadata: Metadata = {
 
 const MoviesPage = () => {
 	return (
-		<section>
-            <h1>List of the movies</h1>
+		<section className="mt-12">
+            <h1 className="text-2xl">List of the movies</h1>
             <MoviesList />
 		</section>
 	)

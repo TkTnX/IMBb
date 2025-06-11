@@ -12,12 +12,16 @@ export const useComments = (slug: string) => {
 	const [hasMore, setHasMore] = useState(true)
 	const [page, setPage] = useState(1)
 
-	const fetchComments = async (pageToLoad: number, isNew = false) => {
+	const fetchComments = async (pageToLoad: number) => {
 		setLoading(true)
 		try {
 			const { data } = await axiosInstance.get(
 				`/movies/${slug}/comments?sortBy=${sortBy}&page=${pageToLoad}`
 			)
+
+			if (data.length === 0) {
+				setHasMore(false)
+			}
 
 			const filteredComments = data
 				.filter(
@@ -31,9 +35,10 @@ export const useComments = (slug: string) => {
 
 			filteredComments.length === 0 ? setHasMore(false) : setHasMore(true)
 
-			const newComments = isNew
-				? filteredComments
-				: [...comments, ...filteredComments]
+			const newComments =
+				page === 1
+					? filteredComments
+					: [...comments, ...filteredComments]
 
 			setLocalComments(newComments)
 			setComments(newComments)
@@ -46,26 +51,21 @@ export const useComments = (slug: string) => {
 
 	useEffect(() => {
 		if (!open) return
-		fetchComments(1, true)
+		setPage(1)
+		fetchComments(1)
 	}, [open])
 
 	useEffect(() => {
 		if (!open) return
-		setLocalComments([])
 		setPage(1)
+		fetchComments(1)
 	}, [sortBy, rating, hideSpoilers])
 
-	useEffect(() => {
-		if (!open || loading) return
-		fetchComments(page, page === 1)
-	}, [page])
-
 	const loadMore = () => {
-		if (!loading && hasMore) {
-			const nextPage = page + 1
-			setPage(nextPage)
-			fetchComments(nextPage)
-		}
+		console.log("message")
+		const nextPage = page + 1
+		setPage(nextPage)
+		fetchComments(nextPage)
 	}
 
 	return { comments, open, setOpen, loadMore, loading, hasMore }

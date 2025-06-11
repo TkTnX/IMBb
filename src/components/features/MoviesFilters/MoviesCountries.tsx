@@ -9,6 +9,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 
 import { axiosInstance } from "@/configs/axios.config"
 import { ICountry } from "@/types/country.interface"
+import { Skeleton } from "@/components/ui/skeleton"
 
 export const MoviesCountries = () => {
 	const [countries, setCountries] = useState<ICountry[]>([])
@@ -26,15 +27,19 @@ export const MoviesCountries = () => {
 		<AccordionItem value='countries' className='w-full border-none'>
 			<AccordionTrigger className='font-bold'>Countries</AccordionTrigger>
 			<AccordionContent className='max-h-32 overflow-y-scroll flex flex-col gap-2'>
-				{countries.map(country => (
-					<label
-						key={country.code}
-						className='flex items-center gap-1 cursor-pointer'
-					>
-						<Checkbox value={country.code} />
-						{country.name}
-					</label>
-				))}
+				{!countries
+					? [...new Array(5)].map((_, index) => (
+							<Skeleton className='w-full h-5' key={index} />
+						))
+					: countries.map(country => (
+							<label
+								key={country.code}
+								className='flex items-center gap-1 cursor-pointer'
+							>
+								<Checkbox value={country.code} />
+								{country.name}
+							</label>
+						))}
 			</AccordionContent>
 		</AccordionItem>
 	)

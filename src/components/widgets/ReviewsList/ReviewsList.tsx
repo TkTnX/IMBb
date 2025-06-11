@@ -32,7 +32,8 @@ export const ReviewsList = ({
 		loading,
 		hasNextPage: hasMore,
 		onLoadMore: loadMore!,
-		rootMargin: "0px 0px 400px 0px"
+		rootMargin: "0px 0px 700px 0px",
+		
 	})
 
 	return (
