@@ -5,15 +5,15 @@ export const HEADER_NAV = [
     items: [
       {
         name: "Now Playing",
-        href: "/movies/now-playing",
+        href: "/movies",
       },
       {
         name: "Release calendar",
-        href: "/movies/calendar",
+        href: "/movies",
       },
       {
         name: "Top Rated",
-        href: "/movies/top-rated",
+        href: "/movies",
       },
     ],
   },

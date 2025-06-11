@@ -56,6 +56,7 @@ export const HeaderMenu = () => {
 								{item.items.map((link, index) => (
 									<li key={index}>
 										<Link
+											onClick={() => setOpen(false)}
 											href={link.href}
 											className='hover:underline'
 										>

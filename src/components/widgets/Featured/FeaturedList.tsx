@@ -1,23 +1,19 @@
 "use client"
 
-import { useEffect, useRef } from "react"
-import type { Swiper as swiperType } from "swiper"
 import "swiper/css"
 import { Swiper, SwiperSlide } from "swiper/react"
 
 import { ListItem } from "@/components/ui/ListItem"
 
 import { useSwiperStore } from "@/stores/swiperStore"
-import { IListObj } from "@/types/list.interface"
+import { IMovie } from "@/types/movie.interface"
 
 type Props = {
-	list: IListObj[]
+	list: IMovie[]
 }
 
 export const FeaturedList = ({ list }: Props) => {
 	const { setSwiperRefs } = useSwiperStore()
-
-
 
 	return (
 		<Swiper
@@ -38,9 +34,9 @@ export const FeaturedList = ({ list }: Props) => {
 				}
 			}}
 		>
-			{list.map(({ list }) => (
-				<SwiperSlide key={list.ids.trakt}>
-					<ListItem listItem={list} />
+			{list.map(movie => (
+				<SwiperSlide key={movie.ids.slug}>
+					<ListItem movie={movie} />
 				</SwiperSlide>
 			))}
 		</Swiper>
