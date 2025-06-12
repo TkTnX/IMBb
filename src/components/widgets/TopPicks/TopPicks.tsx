@@ -12,7 +12,7 @@ export const TopPicks = cache(async () => {
 			section='top-picks'
 			title='Top Picks'
 			subtitle='TV shows and movies just for you'
-			href='/movies/top'
+			href='/movies'
 			bgTitle='What to Watch'
 		>
 			<TopPicksList list={data} />

@@ -17,7 +17,7 @@ export const HeaderControls = () => {
 				/>
 				<span className='self-end'>Watchlist</span>
 			</Link>
-			<UserButton />
+			{/* <UserButton /> */}
 		</div>
 	)
 }

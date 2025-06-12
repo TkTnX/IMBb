@@ -1,4 +1,5 @@
 import { Search } from "lucide-react"
+import { FormEvent } from "react"
 
 import {
 	AccordionContent,
@@ -6,15 +7,29 @@ import {
 	AccordionTrigger
 } from "@/components/ui/accordion"
 
+import { useFilters } from "@/hooks/useFilters"
+
 export const MoviesYear = () => {
+	const { createQueryString } = useFilters()
+	const onSubmit = (e: FormEvent) => {
+		e.preventDefault()
+
+		const formData = new FormData(e.target as HTMLFormElement)
+		createQueryString("years", formData.get("year") as string)
+	}
+
 	return (
-		<AccordionItem value='year' className='w-full border-none'>
+		<AccordionItem value='years' className='w-full border-none'>
 			<AccordionTrigger className='font-bold'>
 				Released Year
 			</AccordionTrigger>
 			<AccordionContent className='max-h-32 overflow-y-scroll flex flex-col gap-2'>
-				<form className='flex items-center border border-background-light-transparent-100 rounded-full'>
+				<form
+					onSubmit={onSubmit}
+					className='flex items-center border border-background-light-transparent-100 rounded-full'
+				>
 					<input
+						name='year'
 						placeholder='Released Year'
 						className='flex-1 outline-none p-2 '
 					/>

@@ -8,7 +8,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 
 import { useMoviesList } from "@/hooks/useMoviesList"
 
-export const MoviesList = () => {
+export const MoviesWrapper = () => {
 	const { movies, error, loadMore, hasMore } = useMoviesList()
 
 	return (

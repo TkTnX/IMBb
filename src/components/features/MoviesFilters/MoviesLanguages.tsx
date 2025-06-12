@@ -6,13 +6,16 @@ import {
 	AccordionTrigger
 } from "@/components/ui/accordion"
 import { Checkbox } from "@/components/ui/checkbox"
+import { Skeleton } from "@/components/ui/skeleton"
+
+import { useFilters } from "@/hooks/useFilters"
 
 import { axiosInstance } from "@/configs/axios.config"
 import { ILanguage } from "@/types/language.interface"
-import { Skeleton } from "@/components/ui/skeleton"
 
 export const MoviesLanguages = () => {
 	const [languages, setLanguages] = useState<ILanguage[]>([])
+	const { setSelectedLanguages } = useFilters()
 	useEffect(() => {
 		const fetchLanguages = async () => {
 			const { data } = await axiosInstance.get("/languages")
@@ -22,6 +25,16 @@ export const MoviesLanguages = () => {
 
 		fetchLanguages()
 	}, [])
+
+	const onCheck = (code: string) => {
+		setSelectedLanguages(prev => {
+			if (prev.includes(code)) {
+				return prev.filter((language: string) => language !== code)
+			} else {
+				return [...prev, code]
+			}
+		})
+	}
 
 	return (
 		<AccordionItem value='languages' className='w-full border-none'>
@@ -36,7 +49,12 @@ export const MoviesLanguages = () => {
 								key={languages.code}
 								className='flex items-center gap-1 cursor-pointer'
 							>
-								<Checkbox value={languages.code} />
+								<Checkbox
+									onCheckedChange={() =>
+										onCheck(languages.code)
+									}
+									value={languages.code}
+								/>
 								{languages.name}
 							</label>
 						))}

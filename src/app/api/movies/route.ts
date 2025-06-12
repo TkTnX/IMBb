@@ -8,19 +8,9 @@ export async function GET(req: NextRequest) {
 		const limit = req.nextUrl.searchParams.get("limit") || "10"
 		const type = req.nextUrl.searchParams.get("type")
 
-		const params = Object.fromEntries(
-			Object.entries({
-				genres: req.nextUrl.searchParams.get("genres"),
-				years: req.nextUrl.searchParams.get("years"),
-				languages: req.nextUrl.searchParams.get("languages"),
-				countries: req.nextUrl.searchParams.get("countries")
-			}).filter(([_, value]) => value !== null)
-		) as Record<string, string>
 
 		const res = await movieApi.get(
-			`/movies/${type}?extended=full,images&limit=${limit}&page=${page}&${new URLSearchParams(
-				params
-			)}`
+			`/movies/${type}?extended=full,images&limit=${limit}&page=${page}`
 		)
 		return NextResponse.json(res.data)
 	} catch (error) {

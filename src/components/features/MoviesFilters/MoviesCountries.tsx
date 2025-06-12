@@ -6,13 +6,16 @@ import {
 	AccordionTrigger
 } from "@/components/ui/accordion"
 import { Checkbox } from "@/components/ui/checkbox"
+import { Skeleton } from "@/components/ui/skeleton"
+
+import { useFilters } from "@/hooks/useFilters"
 
 import { axiosInstance } from "@/configs/axios.config"
 import { ICountry } from "@/types/country.interface"
-import { Skeleton } from "@/components/ui/skeleton"
 
 export const MoviesCountries = () => {
 	const [countries, setCountries] = useState<ICountry[]>([])
+	const { setSelectedCountries } = useFilters()
 	useEffect(() => {
 		const fetchCountries = async () => {
 			const { data } = await axiosInstance.get("/countries")
@@ -22,6 +25,16 @@ export const MoviesCountries = () => {
 
 		fetchCountries()
 	}, [])
+
+	const onCheck = (code: string) => {
+		setSelectedCountries(prev => {
+			if (prev.includes(code)) {
+				return prev.filter((country: string) => country !== code)
+			} else {
+				return [...prev, code]
+			}
+		})
+	}
 
 	return (
 		<AccordionItem value='countries' className='w-full border-none'>
@@ -36,7 +49,12 @@ export const MoviesCountries = () => {
 								key={country.code}
 								className='flex items-center gap-1 cursor-pointer'
 							>
-								<Checkbox value={country.code} />
+								<Checkbox
+									onCheckedChange={() =>
+										onCheck(country.code)
+									}
+									value={country.code}
+								/>
 								{country.name}
 							</label>
 						))}
