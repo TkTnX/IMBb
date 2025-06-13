@@ -25,10 +25,10 @@ export const MovieInfo = ({ movie, cast }: Props) => {
 					<div className='flex items-center gap-2 flex-wrap vsm:flex-nowrap'>
 						{movie.genres.map(genre => (
 							<p
-								className='rounded-[45px] py-2 px-4 bg-background-light-transparent-50'
+								className='rounded-[45px] py-2 px-4 bg-background-light-transparent-50 capitalize'
 								key={genre}
 							>
-								{genre[0].toUpperCase() + genre.slice(1)}
+								{genre}
 							</p>
 						))}
 					</div>

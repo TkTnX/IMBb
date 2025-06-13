@@ -24,19 +24,19 @@ export const Cast = ({ cast }: Props) => {
 					<button
 						key={tab}
 						className={cn(
-							"flex items-center gap-2.5 hover:text-main-yellow text-nowrap min-w-max",
+							"flex items-center gap-2.5 hover:text-main-yellow text-nowrap min-w-max capitalize",
 							activeTab === tab && "text-main-yellow font-bold"
 						)}
 						onClick={() => setActiveTab(tab)}
 					>
-						{tab[0].toUpperCase() + tab.slice(1)}
+						{tab}
 						{activeTab === tab && <ChevronRight />}
 					</button>
 				))}
 			</div>
 			<div className='overflow-y-auto max-h-full pr-2 flex-1 '>
-				<h6 className='text-xl font-normal mb-4 md:mb-11'>
-					{activeTab[0].toUpperCase() + activeTab.slice(1)}{" "}
+				<h6 className='text-xl font-normal mb-4 md:mb-11 capitalize'>
+					{activeTab}{" "}
 					<span className='text-text-secondary'>
 						(in credits order)
 					</span>

@@ -34,9 +34,9 @@ export const BigMovieItem = ({ movie }: Props) => {
 					{movie.genres.map(genre => (
 						<div
 							key={genre}
-							className='rounded-[45px] py-2 px-5 bg-background-light-transparent-100'
+							className='rounded-[45px] py-2 px-5 bg-background-light-transparent-100 capitalize'
 						>
-							{genre[0].toUpperCase() + genre.slice(1)}
+							{genre}
 						</div>
 					))}
 				</div>
