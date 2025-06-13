@@ -1,5 +1,6 @@
 import { AxiosError } from "axios"
-import { useEffect, useState } from "react"
+import { useSearchParams } from "next/navigation"
+import { useEffect, useMemo, useState } from "react"
 
 import { axiosInstance } from "@/configs/axios.config"
 import { IMovie, IMovieList } from "@/types/movie.interface"
@@ -9,12 +10,31 @@ export const useMoviesList = () => {
 	const [error, setError] = useState<string | null>(null)
 	const [_, setPage] = useState(1)
 	const [hasMore, setHasMore] = useState(true)
+	const searchParams = useSearchParams()
 
+	const params = useMemo(() => {
+		const genres = searchParams.get("genres")
+		const years = searchParams.get("years")
+		const languages = searchParams.get("languages")
+		const countries = searchParams.get("countries")
+		const query = searchParams.get("query")
+
+		return Object.fromEntries(
+			Object.entries({ genres, years, languages, countries, query }).filter(
+				([_, value]) => value !== null && value !== ""
+			)
+		) as Record<string, string>
+	}, [searchParams])
 	const fetchMovies = async (page = 1) => {
 		setError(null)
 		try {
+			const query = new URLSearchParams({
+				page: page.toString(),
+				type: "trending",
+				...params
+			})
 			const { data } = await axiosInstance.get(
-				`/movies?type=trending&page=${page}`
+				`/movies?${query.toString()}`
 			)
 
 			const movies = data.flatMap((item: IMovieList) => item.movie)
@@ -37,8 +57,10 @@ export const useMoviesList = () => {
 	}
 
 	useEffect(() => {
-		fetchMovies()
-	}, [])
+		setPage(1)
+		setHasMore(true)
+		fetchMovies(1)
+	}, [params])
 
 	const loadMore = () => {
 		setPage(prev => {

@@ -19,10 +19,14 @@ export const BigMovieItem = ({ movie }: Props) => {
 					src={`https://${movie.images.poster[0]}`}
 					alt={movie.title}
 					fill
+					onError={e =>
+						(e.currentTarget.src = "/images/no-poster.jpg")
+					}
 					className='rounded-md'
 				/>
 				<AddToWishlistButton className='left-3' />
 			</div>
+
 			<div className='flex flex-col gap-3.5'>
 				<h3 className='font-bold text-lg'>{movie.title}</h3>
 				<MovieMeta movie={movie} />

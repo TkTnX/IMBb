@@ -3,6 +3,7 @@
 import InfiniteScroll from "react-infinite-scroll-component"
 
 import { MoviesFilters } from "@/components/features"
+import { MoviesSearch } from "@/components/features/MoviesFilters/MoviesSearch"
 import { BigMovieItem } from "@/components/ui/BigMovieItem"
 import { Skeleton } from "@/components/ui/skeleton"
 
@@ -18,12 +19,7 @@ export const MoviesWrapper = () => {
 
 			{/* СПИСОК */}
 			<div className='flex-1'>
-				<form className='flex items-center  pb-7 border-b-2 border-b-background-light-transparent-100'>
-					<input
-						placeholder='Search by title...'
-						className='flex-1 outline-none p-2 max-w-52  border border-background-light-transparent-100 rounded-lg'
-					/>
-				</form>
+				<MoviesSearch />
 				{error && (
 					<p className='text-red-500 text-center my-10'>{error}</p>
 				)}
