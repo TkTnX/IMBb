@@ -5,7 +5,6 @@ import { movieApi } from "@/configs/axios.config"
 export async function GET() {
 	try {
 		const genres = await movieApi.get("/genres/movies")
-
 		return NextResponse.json(genres.data)
 	} catch (error) {
 		console.log(error)

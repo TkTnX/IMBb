@@ -2,10 +2,12 @@ import { useRouter, useSearchParams } from "next/navigation"
 import { useCallback, useEffect, useState } from "react"
 
 export const useFilters = () => {
-	const [selectedGenres, setSelectedGenres] = useState<string[]>([])
+	const searchParams = useSearchParams()
+	const genresFromUrl = searchParams.get("genres")?.split(",") || []
+	const [selectedGenres, setSelectedGenres] =
+		useState<string[]>(genresFromUrl)
 	const [selectedLanguages, setSelectedLanguages] = useState<string[]>([])
 	const [selectedCountries, setSelectedCountries] = useState<string[]>([])
-	const searchParams = useSearchParams()
 	const router = useRouter()
 
 	const createQueryString = useCallback(
