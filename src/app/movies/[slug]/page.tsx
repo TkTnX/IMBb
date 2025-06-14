@@ -17,12 +17,16 @@ const MoviePage = async ({ params }: { params: Promise<{ slug: string }> }) => {
 		`/movies/${slug}/full?extended=full,images`
 	)
 	const { movie, cast, comments } = data
+	if (!movie) return <div>Error loading movie</div>
 	return (
 		<div className='max-w-full mt-7 flex items-start gap-8'>
 			<div className='flex flex-col gap-12 flex-1 max-w-full md:max-w-[calc(100%-120px)] lg:max-w-[calc(100%-182px)] '>
 				<Movie cast={cast} movie={movie} />
 				<MoviePhotos photos={getAvailableImages(movie)} />
-				<MovieCast movieInfo={{ title: movie.title, year: movie.year }} cast={cast} />
+				<MovieCast
+					movieInfo={{ title: movie.title, year: movie.year }}
+					cast={cast}
+				/>
 				<MovieReviews
 					movieInfo={{ title: movie.title, year: movie.year }}
 					slug={slug}

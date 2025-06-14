@@ -33,6 +33,7 @@ export const MoviePhotos = ({ photos }: { photos: string[] }) => {
 							<Image
 								className='object-contain'
 								src={`https://${photo}`}
+								onError={e => (e.currentTarget.src = "/images/no-poster.jpg")}
 								alt={photo}
 								fill
 							/>

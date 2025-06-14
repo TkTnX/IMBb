@@ -64,27 +64,27 @@ export const FOOTER_LINKS = [
 export const FOOTER_SOCIALS = [
 	{
 		href: "#",
-		icon: "/images/icons/tt.svg",
+		icon: "/images/icons/tiktok.svg",
 		name: "Tik Tok"
 	},
 	{
 		href: "#",
-		icon: "/images/icons/x.svg",
+		icon: "/images/icons/twitter.svg",
 		name: "X"
 	},
 	{
 		href: "#",
-		icon: "/images/icons/yt.svg",
+		icon: "/images/icons/youtube.svg",
 		name: "YouTube"
 	},
 	{
 		href: "#",
-		icon: "/images/icons/ig.svg",
+		icon: "/images/icons/instagram.svg",
 		name: "Instagram"
 	},
 	{
 		href: "#",
-        icon: "/images/icons/fb.svg",
+        icon: "/images/icons/facebook.svg",
         name: "Facebook"
 	}
 ]

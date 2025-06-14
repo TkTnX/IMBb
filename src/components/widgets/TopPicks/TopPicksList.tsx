@@ -5,15 +5,16 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import { MovieItem } from "@/components/ui/MovieItem"
 
 import { MOVIES_BREAKPOINTS } from "@/configs/swiper-breakpoints.config"
-import { IMovie } from "@/types/movie.interface"
 import { useSwiperStore } from "@/stores/swiperStore"
+import { IMovie } from "@/types/movie.interface"
 
 type Props = {
 	list: IMovie[]
 }
 
 export const TopPicksList = ({ list }: Props) => {
-	const {setSwiperRefs} = useSwiperStore()
+	const { setSwiperRefs } = useSwiperStore()
+	console.log(list)
 	return (
 		<Swiper
 			onSwiper={swiper => setSwiperRefs("top-picks", swiper)}

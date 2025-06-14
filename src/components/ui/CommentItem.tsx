@@ -1,12 +1,14 @@
 import { Dot, Star } from "lucide-react"
 
 import { IComment } from "@/types/comment.interface"
+import { cn } from "@/lib/utils"
 
 type Props = {
 	comment: IComment
+	isDemo?: boolean
 }
 
-export const CommentItem = ({ comment }: Props) => {
+export const CommentItem = ({ comment, isDemo = false }: Props) => {
 	return (
 		<div className='rounded-2xl w-full p-5 bg-background-light-transparent-50 flex-1'>
 			{comment.user_rating && (
@@ -36,7 +38,7 @@ export const CommentItem = ({ comment }: Props) => {
 					})}
 				</p>
 			</div>
-			<p className='mt-3.5'>{comment.comment}</p>
+			<p className={cn('mt-3.5  ', isDemo && 'max-h-[200px] overflow-y-auto')}>{comment.comment}</p>
 		</div>
 	)
 }

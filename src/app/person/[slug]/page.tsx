@@ -1,7 +1,8 @@
 import { Metadata } from "next"
 import Image from "next/image"
+import Link from "next/link"
 
-import { BiographyText } from "@/components/features"
+import { BiographyText, SociaLink } from "@/components/features"
 import { KnownFor } from "@/components/widgets"
 
 import { axiosInstance } from "@/configs/axios.config"
@@ -19,6 +20,8 @@ async function getPerson(slug: string): Promise<IActor> {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	const person = await getPerson((await params).slug)
 
+	if (!person) return { title: "Person not found" }
+
 	return { title: person.name }
 }
 
@@ -29,10 +32,36 @@ const PersonPage = async ({
 }) => {
 	const slug = (await params).slug
 	const person = await getPerson(slug)
+	if (!person || person.status === 404)
+		return (
+			<div className='flex-1 h-[calc(100vh-72px-375px)] text-center flex flex-col items-center justify-center '>
+				<p className='text-4xl font-bold text-main-yellow'>
+					Person not found!{" "}
+				</p>
+				<p className='text-white text-7xl font-bold'>404</p>
+			</div>
+		)
+
+	const socials = Object.fromEntries(
+		Object.entries(person.social_ids).filter(([key, value]) => value)
+	)
+
+	Object.entries(socials).map(([key, value]) => {
+		console.log(key)
+	})
+
 	return (
 		<>
 			<section className='mt-12'>
-				<h1 className='text-2xl text-white'>{person.name} <span className="text-lg text-text-secondary">({new Date().getFullYear() - new Date(person.birthday!).getFullYear()})</span></h1>
+				<h1 className='text-2xl text-white'>
+					{person.name}{" "}
+					<span className='text-lg text-text-secondary'>
+						(
+						{new Date().getFullYear() -
+							new Date(person.birthday!).getFullYear()}
+						)
+					</span>
+				</h1>
 				<p className='capitalize text-text-secondary mt-4'>
 					{person.known_for_department}
 				</p>
@@ -86,6 +115,17 @@ const PersonPage = async ({
 								</span>
 							</p>
 						)}
+						<div className='flex items-center gap-2 py-2'>
+							{Object.entries(socials).map(([key, value]) => {
+								return (
+									<SociaLink
+										key={key}
+										objectKey={key}
+										value={value}
+									/>
+								)
+							})}
+						</div>
 					</div>
 				</div>
 			</section>

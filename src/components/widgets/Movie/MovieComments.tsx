@@ -29,9 +29,9 @@ export const MovieReviews = ({ comments, slug, movieInfo }: Props) => {
 					Review <Plus />
 				</button>
 			</div>
-			<div className='flex flex-col sm:flex-row items-start gap-5 mt-7'>
+			<div className='flex flex-col sm:flex-row items-stretch gap-5 mt-7'>
 				{comments.map(comment => (
-					<CommentItem key={comment.id} comment={comment} />
+					<CommentItem isDemo={true} key={comment.id} comment={comment} />
 				))}
 			</div>
 		</section>

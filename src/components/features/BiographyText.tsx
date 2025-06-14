@@ -7,6 +7,10 @@ import { cn } from "@/lib/utils"
 
 export const BiographyText = ({ text }: { text: string }) => {
 	const [open, setOpen] = useState(false)
+
+	if (!text)
+		return <p className='mt-3 text-text-secondary'>No more information</p>
+
 	return (
 		<div
 			onClick={() => setOpen(!open)}

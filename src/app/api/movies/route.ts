@@ -6,7 +6,7 @@ export async function GET(req: NextRequest) {
 	try {
 		const searchParams = req.nextUrl.searchParams
 		const page = req.nextUrl.searchParams.get("page") || "1"
-		const limit = req.nextUrl.searchParams.get("limit") || "5"
+		const limit = req.nextUrl.searchParams.get("limit") || "10"
 		const type = req.nextUrl.searchParams.get("type")
 
 		const filters = Object.fromEntries(

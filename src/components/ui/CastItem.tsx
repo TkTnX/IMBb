@@ -19,6 +19,7 @@ export const CastItem = ({ person }: Props) => {
 						? `https://${person.images.headshot[0]}`
 						: "/images/no-avatar.jpg"
 				}
+				onError={e => (e.currentTarget.src = "/images/no-avatar.jpg")}
 				alt={person.person.name}
 				width={95}
 				height={95}

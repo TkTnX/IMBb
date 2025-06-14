@@ -12,7 +12,7 @@ export const ActorItem = ({ actor }: Props) => {
 		new Date().getFullYear() - new Date(actor.birthday!).getFullYear()
 
 	return (
-		<Link href={`/actors/${actor.ids.slug}`} className=''>
+		<Link href={`/person/${actor.ids.slug}`} className=''>
 			<div className='relative w-full h-[180px]'>
                 <Image
                     loading="lazy"
