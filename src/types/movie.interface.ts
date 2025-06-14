@@ -48,6 +48,8 @@ export interface IMoviePeopleDetails {
 	crew: ICrew
 }
 
+
+
 export interface IBoxOfficeItem {
 	revenue: number,
 	movie: IMovie

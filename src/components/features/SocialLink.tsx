@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image"
+import { toast } from "react-toastify"
 
 export const SociaLink = ({
 	objectKey,
@@ -8,15 +9,14 @@ export const SociaLink = ({
 }: {
 	objectKey: string
 	value: string
-  }) => {
-  // TODO: Добавить toaster при копировании
+}) => {
+	const onClick = (value: string) => {
+		navigator.clipboard.writeText(value)
+		toast.success(`Copied to clipboard - @${value}`)
+	}
+
 	return (
-		<button
-			onClick={() => {
-				navigator.clipboard.writeText(value)
-			}}
-			key={objectKey}
-		>
+		<button onClick={() => onClick(value)} key={objectKey}>
 			<Image
 				src={`/images/icons/${objectKey}.svg`}
 				alt={objectKey}

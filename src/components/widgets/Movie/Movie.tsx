@@ -2,16 +2,14 @@ import { MovieControls } from "@/components/features"
 
 import { MovieHero } from "./MovieHero"
 import { MovieInfo } from "./MovieInfo"
-import { getRuntime } from "@/helpers/getRuntime"
-import { IMovie, IMoviePeopleDetails } from "@/types/movie.interface"
+import { IMovie } from "@/types/movie.interface"
 import { MovieMeta } from "@/components/ui/MovieMeta"
 
 type Props = {
 	movie: IMovie
-	cast: IMoviePeopleDetails
 }
 
-export const Movie = ({ movie, cast }: Props) => {
+export const Movie = ({ movie }: Props) => {
 	return (
 		<section id='Overview' className='flex-1'>
 			<h1 className='text-4xl'>{movie.title}</h1>
@@ -20,7 +18,7 @@ export const Movie = ({ movie, cast }: Props) => {
 				<MovieControls rating={movie.rating} />
 			</div>
 			<MovieHero movie={movie} />
-			<MovieInfo cast={cast} movie={movie} />
+			<MovieInfo movie={movie} />
 		</section>
 	)
 }

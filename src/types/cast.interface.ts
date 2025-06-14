@@ -1,4 +1,5 @@
 import { IActor } from "./actor.interface"
+import { IMovie } from "./movie.interface"
 
 export interface ICrew {
 	art: ICastPerson[]
@@ -17,6 +18,7 @@ export interface ICastPerson {
 	job: string
 	person: IActor
 	character: string
+	movie?: IMovie
 	images: {
 		headshot: string
 	}

@@ -19,7 +19,7 @@ export const MovieItem = ({ movie }: Props) => {
 				<Link href={`/movies/${movie.ids.slug}`}>
 					<Image
 						loading='lazy'
-						className='rounded-sm'
+						className='rounded-sm object-cover'
 						src={`https://${movie.images.poster[0]}`}
 						alt={movie.title}
 						fill

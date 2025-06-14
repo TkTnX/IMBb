@@ -62,7 +62,6 @@ export const useComments = (slug: string) => {
 	}, [sortBy, rating, hideSpoilers])
 
 	const loadMore = () => {
-		console.log("message")
 		const nextPage = page + 1
 		setPage(nextPage)
 		fetchComments(nextPage)

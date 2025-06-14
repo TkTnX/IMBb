@@ -1,20 +1,31 @@
+"use client"
+
 import { Dot } from "lucide-react"
+import { useEffect } from "react"
 
 import { MovieInfoItem } from "@/components/ui/MovieInfoItem"
 
+import { axiosInstance } from "@/configs/axios.config"
 import { formatNumber } from "@/helpers/formatNumber"
-import { IMovie, IMoviePeopleDetails } from "@/types/movie.interface"
+import { useCastStore } from "@/stores/castStore"
+import { IMovie } from "@/types/movie.interface"
 
 type Props = {
 	movie: IMovie
-	cast: IMoviePeopleDetails
 }
 
-export const MovieInfo = ({ movie, cast }: Props) => {
-	const director = cast.crew.directing.find(
-		director => director.job === "Director"
-	)
+export const MovieInfo = ({ movie }: Props) => {
+	const { fetchCast, cast } = useCastStore()
+	const director =
+		cast &&
+		cast.crew.directing.find(director => director.job === "Director")
 
+	useEffect(() => {
+		fetchCast(movie.ids.slug)
+	}, [])
+
+
+	if (!cast) return null
 	return (
 		<div className='mt-5 flex-col-reverse gap-10 lg:gap-0 lg:flex-row flex items-start justify-between pb-14 border-b border-b-background-light-transparent-100'>
 			<div className='flex flex-col gap-4'>

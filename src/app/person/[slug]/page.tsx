@@ -46,9 +46,6 @@ const PersonPage = async ({
 		Object.entries(person.social_ids).filter(([key, value]) => value)
 	)
 
-	Object.entries(socials).map(([key, value]) => {
-		console.log(key)
-	})
 
 	return (
 		<>
@@ -67,12 +64,12 @@ const PersonPage = async ({
 				</p>
 				<div className='mt-2 flex items-start justify-center gap-4'>
 					<div className=' relative max-w-[340px] h-[490px]  rounded overflow-hidden flex-1 w-full'>
-						<Image
+						{person.images.headshot[0] ? <Image
 							src={`https://${person.images.headshot[0]}`}
 							alt={person.name}
 							fill
 							className='object-cover'
-						/>
+						/> : <Image src="/images/no-avatar.jpg" alt={person.name} fill className="object-cover" />}
 					</div>
 					<div>
 						{person.name && (
@@ -130,15 +127,15 @@ const PersonPage = async ({
 				</div>
 			</section>
 			<section className='mt-10'>
-				<h6 className='border-l-2 border-main-yellow pl-2 rounded text-2xl'>
+				<h3 className='border-l-2 border-main-yellow pl-2 rounded text-2xl'>
 					Biography
-				</h6>
+				</h3>
 				<BiographyText text={person.biography} />
 			</section>
 			<section className='mt-10'>
-				<h6 className='border-l-2 border-main-yellow pl-2 rounded text-2xl'>
+				<h3 className='border-l-2 border-main-yellow pl-2 rounded text-2xl'>
 					Known For
-				</h6>
+				</h3>
 				<KnownFor slug={slug} />
 			</section>
 		</>

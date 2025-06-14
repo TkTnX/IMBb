@@ -1,7 +1,6 @@
-import { ClerkProvider } from "@clerk/nextjs"
-import { dark } from "@clerk/themes"
 import type { Metadata } from "next"
 import { Roboto } from "next/font/google"
+import { ToastContainer } from "react-toastify"
 
 import { Footer, Header } from "@/components/widgets"
 
@@ -31,13 +30,14 @@ export default function RootLayout({
 		// 		baseTheme: dark
 		// 	}}
 		// >
-			<html lang='en' suppressHydrationWarning>
-				<body className={`${roboto.className} antialiased`}>
-					<Header />
-					<main className='container'>{children}</main>
-					<Footer />
-				</body>
-			</html>
+		<html lang='en' suppressHydrationWarning>
+			<body className={`${roboto.className} antialiased`}>
+				<ToastContainer />
+				<Header />
+				<main className='container'>{children}</main>
+				<Footer />
+			</body>
+		</html>
 		// </ClerkProvider>
 	)
 }

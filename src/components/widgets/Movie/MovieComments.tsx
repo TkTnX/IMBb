@@ -1,18 +1,26 @@
+"use client"
+
 import { ChevronRight, Plus } from "lucide-react"
+import { useEffect } from "react"
 
 import { ReviewsSheet } from "@/components/modals"
 import { CommentItem } from "@/components/ui/CommentItem"
 import { SectionTitle } from "@/components/ui/SectionTitle"
+import { Skeleton } from "@/components/ui/skeleton"
 
-import { IComment } from "@/types/comment.interface"
+import { useCommentsStore } from "@/stores/commentsStore"
 
 type Props = {
-	comments: IComment[]
 	slug: string
 	movieInfo: { title: string; year: number }
 }
 
-export const MovieReviews = ({ comments, slug, movieInfo }: Props) => {
+export const MovieReviews = ({ slug, movieInfo }: Props) => {
+	const { fetchDemoComments, demoComments, loading } = useCommentsStore()
+	useEffect(() => {
+		fetchDemoComments(slug)
+	}, [])
+
 	return (
 		<section id='Reviews'>
 			<div className='flex flex-col vsm:flex-row gap-2 vsm:items-center justify-between'>
@@ -30,9 +38,20 @@ export const MovieReviews = ({ comments, slug, movieInfo }: Props) => {
 				</button>
 			</div>
 			<div className='flex flex-col sm:flex-row items-stretch gap-5 mt-7'>
-				{comments.map(comment => (
-					<CommentItem isDemo={true} key={comment.id} comment={comment} />
-				))}
+				{loading
+					? [...new Array(2)].map((_, index) => (
+							<Skeleton
+								key={index}
+								className='w-full h-[200px] bg-background-light-transparent-100'
+							/>
+						))
+					: demoComments.map(comment => (
+							<CommentItem
+								isDemo={true}
+								key={comment.id}
+								comment={comment}
+							/>
+						))}
 			</div>
 		</section>
 	)

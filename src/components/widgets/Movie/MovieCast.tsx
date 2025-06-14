@@ -10,17 +10,18 @@ import { CastSheet } from "@/components/modals"
 import { SectionTitle } from "@/components/ui/SectionTitle"
 
 import { CAST_BREAKPOINTS } from "@/configs/swiper-breakpoints.config"
+import { useCastStore } from "@/stores/castStore"
 import { useSwiperStore } from "@/stores/swiperStore"
-import { IMoviePeopleDetails } from "@/types/movie.interface"
 
 type Props = {
-	cast: IMoviePeopleDetails
 	movieInfo: { title: string; year: number }
 }
 
-
-export const MovieCast = ({ cast, movieInfo }: Props) => {
+export const MovieCast = ({ movieInfo }: Props) => {
 	const { setSwiperRefs } = useSwiperStore()
+	const { cast } = useCastStore()
+
+	if (!cast) return null
 	return (
 		<section id='Cast' className='mt-2 sm:mt-4 lg:mt-7 xl:mt-14'>
 			<div className='flex flex-col vsm:flex-row gap-2 vsm:items-center justify-between'>

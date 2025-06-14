@@ -14,7 +14,6 @@ type Props = {
 
 export const TopPicksList = ({ list }: Props) => {
 	const { setSwiperRefs } = useSwiperStore()
-	console.log(list)
 	return (
 		<Swiper
 			onSwiper={swiper => setSwiperRefs("top-picks", swiper)}
