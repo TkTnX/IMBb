@@ -8,6 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react"
 
 import { CastSheet } from "@/components/modals"
 import { SectionTitle } from "@/components/ui/SectionTitle"
+import { Skeleton } from "@/components/ui/skeleton"
 
 import { CAST_BREAKPOINTS } from "@/configs/swiper-breakpoints.config"
 import { useCastStore } from "@/stores/castStore"
@@ -19,49 +20,59 @@ type Props = {
 
 export const MovieCast = ({ movieInfo }: Props) => {
 	const { setSwiperRefs } = useSwiperStore()
-	const { cast } = useCastStore()
-
-	if (!cast) return null
+	const { cast, error } = useCastStore()
+	if (error) return null
 	return (
 		<section id='Cast' className='mt-2 sm:mt-4 lg:mt-7 xl:mt-14'>
 			<div className='flex flex-col vsm:flex-row gap-2 vsm:items-center justify-between'>
 				<SectionTitle title='Cast'>
-					<CastSheet cast={cast} movieInfo={movieInfo}>
-						See all <ChevronRight size={12} />
-					</CastSheet>
+					{cast && (
+						<CastSheet cast={cast} movieInfo={movieInfo}>
+							See all <ChevronRight size={12} />
+						</CastSheet>
+					)}
 				</SectionTitle>
 			</div>
 			<Swiper
 				onSwiper={swiper =>
-					setSwiperRefs(`cast-${cast.cast[0].person.name}`, swiper)
+					setSwiperRefs(
+						`cast-${cast && cast.cast[0].person.name}`,
+						swiper
+					)
 				}
 				className='mt-8 '
 				slidesPerView={2}
 				spaceBetween={15}
 				breakpoints={CAST_BREAKPOINTS}
 			>
-				{cast.cast.map(person => (
-					<SwiperSlide key={person.person.ids.slug}>
-						<Link
-							className='block max-w-[180px]'
-							href={`/person/${person.person.ids.slug}`}
-						>
-							<div className='relative max-w-[180px] h-[180px]'>
-								<Image
-									loading='lazy'
-									src={`https://${person.images.headshot[0]}`}
-									className='  object-cover rounded-2xl'
-									alt={person.person.name}
-									fill
-								/>
-							</div>
-							<h6 className='text-white mt-3'>
-								{person.person.name}
-							</h6>
-							<p>{person.character}</p>
-						</Link>
-					</SwiperSlide>
-				))}
+				{cast
+					? cast.cast.map(person => (
+							<SwiperSlide key={person.person.ids.slug}>
+								<Link
+									className='block max-w-[180px]'
+									href={`/person/${person.person.ids.slug}`}
+								>
+									<div className='relative max-w-[180px] h-[180px]'>
+										<Image
+											loading='lazy'
+											src={`https://${person.images.headshot[0]}`}
+											className='  object-cover rounded-2xl'
+											alt={person.person.name}
+											fill
+										/>
+									</div>
+									<h6 className='text-white mt-3'>
+										{person.person.name}
+									</h6>
+									<p>{person.character}</p>
+								</Link>
+							</SwiperSlide>
+						))
+					: [...new Array(7)].map((_, index) => (
+							<SwiperSlide key={index}>
+								<Skeleton className='w-full h-[180px] bg-background-light-transparent-50' />
+							</SwiperSlide>
+						))}
 			</Swiper>
 		</section>
 	)

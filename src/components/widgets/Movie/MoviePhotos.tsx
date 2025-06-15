@@ -4,10 +4,11 @@ import Image from "next/image"
 import "swiper/css"
 import { Swiper, SwiperSlide } from "swiper/react"
 
+import { Img } from "@/components/ui/Img"
 import { Section } from "@/components/ui/Section"
 
-import { useSwiperStore } from "@/stores/swiperStore"
 import { PHOTOS_BREAKPOINTS } from "@/configs/swiper-breakpoints.config"
+import { useSwiperStore } from "@/stores/swiperStore"
 
 export const MoviePhotos = ({ photos }: { photos: string[] }) => {
 	const { setSwiperRefs } = useSwiperStore()
@@ -30,10 +31,9 @@ export const MoviePhotos = ({ photos }: { photos: string[] }) => {
 				{photos.map((photo, index) => (
 					<SwiperSlide key={index}>
 						<div className='relative w-full h-[300px] bg-background-light-transparent-50 rounded-2xl'>
-							<Image
+							<Img
 								className='object-contain'
-								src={`https://${photo}`}
-								onError={e => (e.currentTarget.src = "/images/no-poster.jpg")}
+								src={photo}
 								alt={photo}
 								fill
 							/>

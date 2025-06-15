@@ -18,7 +18,7 @@ export const MovieInfoItem = ({ title, items }: Props) => {
 			<div className='flex items-center sm:gap-1 flex-wrap'>
 				{items.map((item, index) => (
 					<div
-						key={typeof item !== "string" ? item.person.name : item}
+						key={index}
 						className='flex items-center sm:gap-1'
 					>
 						{typeof item !== "string" ? (

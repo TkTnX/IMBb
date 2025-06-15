@@ -21,16 +21,18 @@ export const BiographyText = ({ text }: { text: string }) => {
 					"text-white": open
 				})}
 			>
-				{open ? text : `${text.slice(0, 500)}...`}
+				{text.length > 500 && !open ? `${text.slice(0, 500)}...` : text}
 			</p>
-			<button>
-				<ChevronRight
-					color='var(--color-main-yellow)'
-					className={cn("absolute right-0 bottom-0", {
-						"rotate-90": open
-					})}
-				/>
-			</button>
+			{text.length > 500 && (
+				<button>
+					<ChevronRight
+						color='var(--color-main-yellow)'
+						className={cn("absolute right-0 bottom-0", {
+							"rotate-90": open
+						})}
+					/>
+				</button>
+			)}
 		</div>
 	)
 }

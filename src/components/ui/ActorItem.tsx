@@ -10,7 +10,6 @@ type Props = {
 export const ActorItem = ({ actor }: Props) => {
 	const age =
 		new Date().getFullYear() - new Date(actor.birthday!).getFullYear()
-	console.log(actor)
 	return (
 		<Link href={`/person/${actor.ids.slug}`} className=''>
 			<div className='relative w-full h-[180px]'>
