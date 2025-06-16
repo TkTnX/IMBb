@@ -1,6 +1,7 @@
+import { AxiosError } from "axios"
 import { NextRequest, NextResponse } from "next/server"
 
-import { movieApi } from "@/configs/axios.config"
+import { traktApi } from "@/configs/axios.config"
 
 export async function GET(
 	req: NextRequest,
@@ -8,22 +9,23 @@ export async function GET(
 ) {
 	try {
 		const slug = (await params).slug
-		const { data } = await movieApi.get(
+		const { data } = await traktApi.get(
 			`/movies/${slug}?extended=full,images`
 		)
-
-		if (!data)
+		if (!data || data.status === 404)
 			return NextResponse.json({
 				message: "Movie not found",
-				status: 404
+				code: 404
 			})
 
 		return NextResponse.json(data)
 	} catch (error) {
 		console.log(error)
-		return NextResponse.json({
-			message: "Something went wrong",
-			status: 500
-		})
+		return error instanceof AxiosError
+			? NextResponse.json({ message: error.message, code: error.status })
+			: NextResponse.json({
+					message: "Something went wrong",
+					code: 500
+				})
 	}
 }

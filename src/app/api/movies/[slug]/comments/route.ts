@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 
-import { movieApi } from "@/configs/axios.config"
+import { traktApi } from "@/configs/axios.config"
 
 export async function GET(
 	req: NextRequest,
@@ -11,7 +11,7 @@ export async function GET(
 		const sortBy = req.nextUrl.searchParams.get("sortBy")
 		const limit = req.nextUrl.searchParams.get("limit")
 		const page = req.nextUrl.searchParams.get("page")
-		const { data } = await movieApi.get(
+		const { data } = await traktApi.get(
 			`/movies/${slug}/comments/${sortBy}?extended=full,images&limit=${limit}&page=${page}`
 		)
 

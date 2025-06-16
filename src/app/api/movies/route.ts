@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 
-import { movieApi } from "@/configs/axios.config"
+import { traktApi } from "@/configs/axios.config"
 
 export async function GET(req: NextRequest) {
 	try {
@@ -22,7 +22,7 @@ export async function GET(req: NextRequest) {
 			...filters
 		})
 
-		const res = await movieApi.get(`/movies/${type}?${query.toString()}`)
+		const res = await traktApi.get(`/movies/${type}?${query.toString()}`)
 		return NextResponse.json(res.data)
 	} catch (error) {
 		console.log(error)

@@ -33,7 +33,7 @@ export const MovieDetails = ({ movie }: Props) => {
 					/>
 				)}
 				<MovieDetailsItem
-					items={[movie.language.toUpperCase()]}
+					items={[movie.language]}
 					title='Language'
 				/>
 				<MovieDetailsItem items={[String(movie.year)]} title='Year' />

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 
-import { movieApi } from "@/configs/axios.config"
+import { traktApi } from "@/configs/axios.config"
 import { AxiosError } from "axios"
 
 export async function GET(
@@ -10,7 +10,7 @@ export async function GET(
 	try {
 		const slug = (await params).slug
 
-		const { data: person } = await movieApi.get(
+		const { data: person } = await traktApi.get(
 			`/people/${slug}?extended=full,images`
 		)
 		if (!person)

@@ -14,7 +14,7 @@ export const Actors = cache(async () => {
 			section='actors'
 			title='Actors'
 			href='/actors'
-			bgTitle='Actors'
+			bgTitle='People'
 		>
 			<ActorsList list={actors} />
 		</Section>

@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server"
 
-import { movieApi } from "@/configs/axios.config"
+import { traktApi } from "@/configs/axios.config"
 
 export async function GET() {
 	try {
-		const languages = await movieApi.get("/languages/movies")
+		const languages = await traktApi.get("/languages/movies")
 
 		return NextResponse.json(languages.data)
 	} catch (error) {

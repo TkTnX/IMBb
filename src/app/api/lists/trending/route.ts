@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server"
 
-import { movieApi } from "@/configs/axios.config"
+import { traktApi } from "@/configs/axios.config"
 
 export async function GET() {
 	try {
-		const res = await movieApi.get(
+		const res = await traktApi.get(
 			"/lists/trending?extended=images&limit=6"
 		)
 

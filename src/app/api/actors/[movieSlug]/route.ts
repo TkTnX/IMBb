@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 
-import { movieApi } from "@/configs/axios.config"
+import { traktApi } from "@/configs/axios.config"
 
 export async function GET(
     req: NextRequest,
@@ -8,7 +8,7 @@ export async function GET(
 ) {
     try {
         const movieSlug = (await params).movieSlug
-        const { data } = await movieApi.get(
+        const { data } = await traktApi.get(
             `/movies/${movieSlug}/people?extended=full,images`
         )
 
