@@ -12,6 +12,7 @@ import { useSwiperStore } from "@/stores/swiperStore"
 
 export const MoviePhotos = ({ photos }: { photos: string[] }) => {
 	const { setSwiperRefs } = useSwiperStore()
+	if(!photos.length) return null
 	return (
 		<Section
 			id='Photos'

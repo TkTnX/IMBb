@@ -16,17 +16,14 @@ export const MovieInfoItem = ({ title, items }: Props) => {
 				{title}
 			</p>
 			<div className='flex items-center sm:gap-1 flex-wrap'>
-				{items.map((item, index) => (
-					<div
-						key={index}
-						className='flex items-center sm:gap-1'
-					>
+				{items?.map((item, index) => (
+					<div key={index} className='flex items-center sm:gap-1'>
 						{typeof item !== "string" ? (
 							<Link
-								href={`/person/${item.person.ids.slug}`}
+								href={`/person/${item?.person.ids.slug}`}
 								className='text-main-yellow-sec-dark hover:opacity-80 text-sm'
 							>
-								{item.person.name}
+								{item?.person.name}
 							</Link>
 						) : (
 							<p

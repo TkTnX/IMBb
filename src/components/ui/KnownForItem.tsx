@@ -16,10 +16,11 @@ export const KnownForItem = ({ item }: Props) => {
 		<div className=' flex-1 relative flex items-stretch gap-4 bg-background-light-transparent-50 rounded-lg  overflow-hidden group mt-4'>
 			<Link
 				href={`/movies/${item.movie?.ids.slug}`}
-				className='absolute inset-0'
+				className='absolute inset-0 z-10'
 			></Link>
 			<div className='relative w-[70px] h-full '>
 				<Img
+					className='object-cover'
 					alt={item.movie?.title!}
 					fill
 					src={item.movie?.images.poster[0]!}

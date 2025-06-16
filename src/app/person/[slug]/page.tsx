@@ -3,6 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 
 import { BiographyText, SociaLink } from "@/components/features"
+import { Img } from "@/components/ui/Img"
 import { KnownFor } from "@/components/widgets"
 
 import { axiosInstance } from "@/configs/axios.config"
@@ -46,7 +47,6 @@ const PersonPage = async ({
 		Object.entries(person.social_ids).filter(([key, value]) => value)
 	)
 
-
 	return (
 		<>
 			<section className='mt-12'>
@@ -64,12 +64,14 @@ const PersonPage = async ({
 				</p>
 				<div className='mt-2 flex items-start justify-center gap-4'>
 					<div className=' relative max-w-[340px] h-[490px]  rounded overflow-hidden flex-1 w-full'>
-						{person.images.headshot[0] ? <Image
-							src={`https://${person.images.headshot[0]}`}
-							alt={person.name}
-							fill
-							className='object-cover'
-						/> : <Image src="/images/no-avatar.jpg" alt={person.name} fill className="object-cover" />}
+						{
+							<Img
+								src={person.images.headshot[0]}
+								alt={person.name}
+								fill
+								className='object-cover'
+							/>
+						}
 					</div>
 					<div>
 						{person.name && (

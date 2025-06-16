@@ -21,7 +21,7 @@ type Props = {
 export const MovieCast = ({ movieInfo }: Props) => {
 	const { setSwiperRefs } = useSwiperStore()
 	const { cast, error } = useCastStore()
-	if (error) return null
+	if (error || !cast?.cast.length) return null
 	return (
 		<section id='Cast' className='mt-2 sm:mt-4 lg:mt-7 xl:mt-14'>
 			<div className='flex flex-col vsm:flex-row gap-2 vsm:items-center justify-between'>

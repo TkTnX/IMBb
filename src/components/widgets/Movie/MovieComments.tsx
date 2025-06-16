@@ -21,6 +21,7 @@ export const MovieReviews = ({ slug, movieInfo }: Props) => {
 		fetchDemoComments(slug)
 	}, [])
 
+	if (!demoComments.length) return null
 	return (
 		<section id='Reviews'>
 			<div className='flex flex-col vsm:flex-row gap-2 vsm:items-center justify-between'>
