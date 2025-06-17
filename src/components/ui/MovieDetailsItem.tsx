@@ -1,6 +1,6 @@
 type Props = {
 	title: string
-	items: string[]
+	items: string[] | Record<string, string>[]
 }
 
 export const MovieDetailsItem = ({ title, items }: Props) => {
@@ -11,12 +11,20 @@ export const MovieDetailsItem = ({ title, items }: Props) => {
 			</h6>
 			<div>
 				{items.map((item, index) =>
-					item.includes("http") ? (
-						<a key={index} className='text-main-yellow-sec-dark hover:text-main-yellow' href={item}>
+					typeof item === "string" && item.includes("http") ? (
+						<a
+							key={index}
+							className='text-main-yellow-sec-dark hover:text-main-yellow'
+							href={item}
+						>
 							Official Site
 						</a>
 					) : (
-						<p key={index} className='text-main-yellow-sec-dark'>{item}</p>
+						<p key={index} className='text-main-yellow-sec-dark'>
+							{typeof item === "string"
+								? item
+								: item.english_name}
+						</p>
 					)
 				)}
 			</div>

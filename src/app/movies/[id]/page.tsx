@@ -10,11 +10,15 @@ import {
 import { axiosInstance } from "@/configs/axios.config"
 import { getAvailableImages } from "@/helpers/getAvailableImages"
 
-const MoviePage = async ({ params }: { params: Promise<{ slug: string }> }) => {
-	const slug = (await params).slug
-
-	const { data: movie } = await axiosInstance.get(`/movies/${slug}`)
-	if (!movie || movie.code === 404) return <div className="text-center my-10 text-9xl font-bold">Movie is not found</div>
+const MoviePage = async ({ params }: { params: Promise<{ id: string }> }) => {
+	const id = (await params).id
+	const { data: movie } = await axiosInstance.get(`/movies/${id}`)
+	if (!movie || movie.code === 404)
+		return (
+			<div className='text-center my-10 text-9xl font-bold'>
+				Movie is not found
+			</div>
+		)
 	return (
 		<div className='max-w-full mt-7 flex items-start gap-8'>
 			<div className='flex flex-col gap-12 flex-1 max-w-full md:max-w-[calc(100%-120px)] lg:max-w-[calc(100%-182px)] '>
@@ -24,8 +28,8 @@ const MoviePage = async ({ params }: { params: Promise<{ slug: string }> }) => {
 					movieInfo={{ title: movie.title, year: movie.year }}
 				/>
 				<MovieReviews
+					id={movie.id}
 					movieInfo={{ title: movie.title, year: movie.year }}
-					slug={slug}
 				/>
 				<MovieDetails movie={movie} />
 			</div>

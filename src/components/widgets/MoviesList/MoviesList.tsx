@@ -37,7 +37,7 @@ export const MoviesWrapper = () => {
 					endMessage={<p className='text-center'>No more results</p>}
 				>
 					{movies.map(movie => (
-						<BigMovieItem key={movie.ids.slug} movie={movie} />
+						<BigMovieItem key={movie.id} movie={movie} />
 					))}
 				</InfiniteScroll>
 			</div>

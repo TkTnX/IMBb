@@ -4,24 +4,21 @@ import Link from "next/link"
 
 import { AddToWishlistButton } from "../features"
 
-import { MovieMeta } from "./MovieMeta"
-import { IMovie } from "@/types/movie.interface"
+import { Img } from "./Img"
+import { ITmdbMovie } from "@/types/movie.interface"
 
 type Props = {
-	movie: IMovie
+	movie: ITmdbMovie
 }
 
 export const BigMovieItem = ({ movie }: Props) => {
 	return (
 		<div className='rounded-xl p-5 bg-background-light-transparent-50 flex flex-col vsm:flex-row sm:flex-col md:flex-row items-start gap-5 relative w-full'>
 			<div className='min-w-[126px] min-h-[194px] relative '>
-				<Image
-					src={`https://${movie.images.poster[0]}`}
+				<Img
+					src={`${process.env.NEXT_PUBLIC_TMDB_MEDIA}${movie.poster_path}`}
 					alt={movie.title}
 					fill
-					onError={e =>
-						(e.currentTarget.src = "/images/no-poster.jpg")
-					}
 					className='rounded-md'
 				/>
 				<AddToWishlistButton className='left-3' />
@@ -29,21 +26,13 @@ export const BigMovieItem = ({ movie }: Props) => {
 
 			<div className='flex flex-col gap-3.5'>
 				<h3 className='font-bold text-lg'>{movie.title}</h3>
-				<MovieMeta movie={movie} />
-				<div className='flex items-center gap-2.5 flex-wrap'>
-					{movie.genres.map(genre => (
-						<div
-							key={genre}
-							className='rounded-[45px] py-2 px-5 bg-background-light-transparent-100 capitalize'
-						>
-							{genre}
-						</div>
-					))}
-				</div>
-				<p>{movie.tagline}</p>
+				<p className='text-text-secondary'>
+					{new Date(movie.release_date).getFullYear()}
+				</p>
+
 				<p>
 					<span className='font-bold'>Votes: </span>
-					{movie.votes}
+					{movie.vote_count}
 				</p>
 				<p className='border-l-[6px] text-sm sm:text-base border-main-yellow rounded-lg p-2.5 pl-5 bg-[#f5c5180d] '>
 					{movie.overview}
@@ -56,16 +45,13 @@ export const BigMovieItem = ({ movie }: Props) => {
 						color='var(--color-main-yellow)'
 						size={18}
 					/>
-					<p>{movie.rating.toFixed(1)}</p>
+					<p>{movie.vote_average.toFixed(1)}</p>
 				</div>
 				<button className='flex items-center gap-2 hover:opacity-80'>
 					<Star size={18} />
 					<p>Rate</p>
 				</button>
-				<Link
-					href={`/movies/${movie.ids.slug}`}
-					className='hover:opacity-80'
-				>
+				<Link href={`/movies/${movie.id}`} className='hover:opacity-80'>
 					<Info size={18} />
 				</Link>
 			</div>

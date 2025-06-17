@@ -5,24 +5,22 @@ import { axiosInstance } from "@/configs/axios.config"
 import { IMoviePeopleDetails } from "@/types/movie.interface"
 
 interface castStore {
-	cast: null | IMoviePeopleDetails
+	credits: null | IMoviePeopleDetails
 	loading: boolean
 	error: null | string
 
-	fetchCast: (slug: string) => Promise<void>
+	fetchCredits: (id: number) => Promise<void>
 }
 
 export const useCastStore = create<castStore>((set, get) => ({
-	cast: null,
+	credits: null,
 	loading: false,
 	error: null,
-	fetchCast: async slug => {
+	fetchCredits: async id => {
 		set({ loading: true, error: null })
 		try {
-			const { data } = await axiosInstance.get(`/movies/${slug}/cast`, {
-				timeout: 7000
-			})
-			set({ cast: data })
+			const { data } = await axiosInstance.get(`/movies/${id}/cast`)
+			set({ credits: data })
 		} catch (error) {
 			console.log(error)
 			if (error instanceof AxiosError) {

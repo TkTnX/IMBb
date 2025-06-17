@@ -2,11 +2,11 @@ import { Dot } from "lucide-react"
 import Link from "next/link"
 
 import { cn } from "@/lib/utils"
-import { ICastPerson } from "@/types/cast.interface"
+import { ICastPerson, ICrewPerson } from "@/types/cast.interface"
 
 type Props = {
 	title: string
-	items: ICastPerson[] | string[]
+	items: ICastPerson[] | ICrewPerson[] | string[] | Record<string, string>[]
 }
 
 export const MovieInfoItem = ({ title, items }: Props) => {
@@ -20,10 +20,10 @@ export const MovieInfoItem = ({ title, items }: Props) => {
 					<div key={index} className='flex items-center sm:gap-1'>
 						{typeof item !== "string" ? (
 							<Link
-								href={`/person/${item?.person.ids.slug}`}
+								href={`/person/${item?.id}`}
 								className='text-main-yellow-sec-dark hover:opacity-80 text-sm'
 							>
-								{item?.person.name}
+								{item?.name}
 							</Link>
 						) : (
 							<p

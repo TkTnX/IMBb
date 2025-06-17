@@ -1,17 +1,15 @@
 import { AxiosError } from "axios"
 import { NextRequest, NextResponse } from "next/server"
 
-import { traktApi } from "@/configs/axios.config"
+import { tmdbApi } from "@/configs/axios.config"
 
 export async function GET(
 	req: NextRequest,
-	{ params }: { params: Promise<{ slug: string }> }
+	{ params }: { params: Promise<{ id: string }> }
 ) {
 	try {
-		const slug = (await params).slug
-		const { data } = await traktApi.get(
-			`/movies/${slug}?extended=full,images`
-		)
+		const id = (await params).id
+		const { data } = await tmdbApi.get(`/movie/${id}`)
 		if (!data || data.status === 404)
 			return NextResponse.json({
 				message: "Movie not found",

@@ -1,10 +1,10 @@
 import { MovieDetailsItem } from "@/components/ui/MovieDetailsItem"
 import { SectionTitle } from "@/components/ui/SectionTitle"
 
-import { IMovie } from "@/types/movie.interface"
+import {  ITmdbMovieDetailed } from "@/types/movie.interface"
 
 type Props = {
-	movie: IMovie
+	movie: ITmdbMovieDetailed
 }
 
 export const MovieDetails = ({ movie }: Props) => {
@@ -14,7 +14,7 @@ export const MovieDetails = ({ movie }: Props) => {
 			<div>
 				<MovieDetailsItem
 					items={[
-						new Date(movie.released).toLocaleDateString("en", {
+						new Date(movie.release_date).toLocaleDateString("en", {
 							month: "long",
 							day: "numeric",
 							year: "numeric"
@@ -23,7 +23,7 @@ export const MovieDetails = ({ movie }: Props) => {
 					title='Release date'
 				/>
 				<MovieDetailsItem
-					items={movie.languages}
+					items={movie.spoken_languages}
 					title='Countries of origin'
 				/>
 				{movie.homepage && (
@@ -33,10 +33,13 @@ export const MovieDetails = ({ movie }: Props) => {
 					/>
 				)}
 				<MovieDetailsItem
-					items={[movie.language]}
+					items={[movie.original_language]}
 					title='Language'
 				/>
-				<MovieDetailsItem items={[String(movie.year)]} title='Year' />
+				<MovieDetailsItem
+					items={[String(new Date(movie.release_date).getFullYear())]}
+					title='Year'
+				/>
 			</div>
 		</section>
 	)

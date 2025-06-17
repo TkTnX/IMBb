@@ -11,14 +11,14 @@ import { Skeleton } from "@/components/ui/skeleton"
 import { useCommentsStore } from "@/stores/commentsStore"
 
 type Props = {
-	slug: string
+	id: number
 	movieInfo: { title: string; year: number }
 }
 
-export const MovieReviews = ({ slug, movieInfo }: Props) => {
+export const MovieReviews = ({ id, movieInfo }: Props) => {
 	const { fetchDemoComments, demoComments, loading } = useCommentsStore()
 	useEffect(() => {
-		fetchDemoComments(slug)
+		fetchDemoComments(id)
 	}, [])
 
 	if (!demoComments.length) return null

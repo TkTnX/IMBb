@@ -3,10 +3,10 @@ import { useSearchParams } from "next/navigation"
 import { useEffect, useMemo, useState } from "react"
 
 import { axiosInstance } from "@/configs/axios.config"
-import { IMovie, IMovieList } from "@/types/movie.interface"
+import { ITmdbMovie } from "@/types/movie.interface"
 
 export const useMoviesList = () => {
-	const [movies, setMovies] = useState<IMovie[]>([])
+	const [movies, setMovies] = useState<ITmdbMovie[]>([])
 	const [error, setError] = useState<string | null>(null)
 	const [_, setPage] = useState(1)
 	const [hasMore, setHasMore] = useState(true)
@@ -20,9 +20,13 @@ export const useMoviesList = () => {
 		const query = searchParams.get("query")
 
 		return Object.fromEntries(
-			Object.entries({ genres, years, languages, countries, query }).filter(
-				([_, value]) => value !== null && value !== ""
-			)
+			Object.entries({
+				genres,
+				years,
+				languages,
+				countries,
+				query
+			}).filter(([_, value]) => value !== null && value !== "")
 		) as Record<string, string>
 	}, [searchParams])
 	const fetchMovies = async (page = 1) => {
@@ -36,14 +40,13 @@ export const useMoviesList = () => {
 			const { data } = await axiosInstance.get(
 				`/movies?${query.toString()}`
 			)
-
-			const movies = data.flatMap((item: IMovieList) => item.movie)
-
-			if (movies.length === 0) {
+			if (page >= data.total_pages) {
 				setHasMore(false)
 			}
 
-			setMovies(prev => (page === 1 ? movies : [...prev, ...movies]))
+			setMovies(prev =>
+				page === 1 ? data.results : [...prev, ...data.results]
+			)
 
 			return data
 		} catch (error) {

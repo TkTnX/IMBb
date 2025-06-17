@@ -18,7 +18,7 @@ interface ICommentsStore {
 	hideSpoilers: boolean
 	loading: boolean
 	demoComments: IComment[]
-	fetchDemoComments: (slug: string) => void
+	fetchDemoComments: (id: number) => void
 	setSortBy: (sortBy: string) => void
 	setRating: (rating: string) => void
 	setHideSpoilers: (hideSpoilers: boolean) => void
@@ -31,11 +31,11 @@ export const useCommentsStore = create<ICommentsStore>(set => ({
 	hideSpoilers: false,
 	loading: false,
 	demoComments: [],
-	async fetchDemoComments(slug: string) {
+	async fetchDemoComments(id:number) {
 		try {
 			set({loading: true})
 			const { data } = await axiosInstance.get(
-				`/movies/${slug}/comments?limit=2`
+				`/movies/${id}/comments?limit=2`
 			)
 			set({ demoComments: data })
 		} catch (error) {
