@@ -7,10 +7,10 @@ import { Skeleton } from "@/components/ui/skeleton"
 
 import { useScrollBottom } from "@/hooks/useScrollBottom"
 
-import { IComment } from "@/types/comment.interface"
+import {  ITmdbComment } from "@/types/comment.interface"
 
 type Props = {
-	comments: IComment[]
+	comments: ITmdbComment[]
 	loadMore: () => void
 	loading: boolean
 	hasMore: boolean
@@ -28,6 +28,7 @@ export const ReviewsList = ({
 		loadMore
 	})
 
+	console.log(hasMore)
 	const [infiniteRef] = useInfiniteScroll({
 		loading,
 		hasNextPage: hasMore,

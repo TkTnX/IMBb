@@ -1,23 +1,17 @@
-import { create } from "zustand";
+import { create } from "zustand"
 
-
-
-import { axiosInstance } from "@/configs/axios.config";
-import { IComment } from "@/types/comment.interface";
-
-
-
-
+import { axiosInstance } from "@/configs/axios.config"
+import { ITmdbComment } from "@/types/comment.interface"
 
 interface ICommentsStore {
-	comments: IComment[]
-	setComments: (comments: IComment[]) => void
+	comments: ITmdbComment[]
+	setComments: (comments: ITmdbComment[]) => void
 
 	sortBy: string
 	rating: string | null
 	hideSpoilers: boolean
 	loading: boolean
-	demoComments: IComment[]
+	demoComments: ITmdbComment[]
 	fetchDemoComments: (id: number) => void
 	setSortBy: (sortBy: string) => void
 	setRating: (rating: string) => void
@@ -31,13 +25,13 @@ export const useCommentsStore = create<ICommentsStore>(set => ({
 	hideSpoilers: false,
 	loading: false,
 	demoComments: [],
-	async fetchDemoComments(id:number) {
+	async fetchDemoComments(id: number) {
 		try {
-			set({loading: true})
+			set({ loading: true })
 			const { data } = await axiosInstance.get(
 				`/movies/${id}/comments?limit=2`
 			)
-			set({ demoComments: data })
+			set({ demoComments: data.results })
 		} catch (error) {
 			console.log(error)
 		} finally {

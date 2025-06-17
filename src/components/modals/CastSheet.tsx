@@ -17,12 +17,11 @@ import { IMoviePeopleDetails } from "@/types/movie.interface"
 type Props = {
 	children: React.ReactNode
 	movieInfo: { title: string; year: number }
-	cast: IMoviePeopleDetails 
+	credits: IMoviePeopleDetails
 }
 
-export const CastSheet = ({ children, movieInfo, cast }: Props) => {
+export const CastSheet = ({ children, movieInfo, credits }: Props) => {
 	const [open, setOpen] = useState(false)
-
 	return (
 		<Sheet open={open} onOpenChange={setOpen}>
 			<SheetTrigger className='rounded-lg py-2 px-4 bg-background-light-transparent-100 shadow-lg flex items-center gap-2.5 hover:opacity-80'>
@@ -48,7 +47,7 @@ export const CastSheet = ({ children, movieInfo, cast }: Props) => {
 								Full Cast & Crew
 							</h6>
 						</SheetHeader>
-						<Cast cast={cast} />
+						<Cast credits={credits} />
 					</div>
 				</div>
 			</SheetContent>

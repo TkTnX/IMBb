@@ -2,14 +2,14 @@ import { useEffect, useRef } from "react";
 
 
 
-import { IComment } from "@/types/comment.interface";
+import {  ITmdbComment } from "@/types/comment.interface";
 
 
 
 
 
 type Props = {
-    comments: IComment[]
+    comments: ITmdbComment[]
     loading: boolean
     loadMore: () => void
 }

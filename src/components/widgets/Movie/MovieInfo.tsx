@@ -73,7 +73,9 @@ export const MovieInfo = ({ movie }: Props) => {
 						{movie.spoken_languages.length > 0 && (
 							<MovieInfoItem
 								title='Translations'
-								items={movie.spoken_languages}
+								items={movie.spoken_languages.flatMap(
+									item => item.english_name
+								)}
 							/>
 						)}
 					</>

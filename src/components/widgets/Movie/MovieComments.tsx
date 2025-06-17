@@ -21,14 +21,14 @@ export const MovieReviews = ({ id, movieInfo }: Props) => {
 		fetchDemoComments(id)
 	}, [])
 
-	if (!demoComments.length) return null
+
 	return (
 		<section id='Reviews'>
 			<div className='flex flex-col vsm:flex-row gap-2 vsm:items-center justify-between'>
 				<SectionTitle title='User Reviews'>
 					<ReviewsSheet
 						movieInfo={movieInfo}
-						slug={slug}
+						id={id}
 						className='rounded-lg py-2 px-4 bg-background-light-transparent-100 shadow-lg flex items-center gap-2.5 hover:opacity-80'
 					>
 						See all <ChevronRight size={12} />
@@ -46,13 +46,15 @@ export const MovieReviews = ({ id, movieInfo }: Props) => {
 								className='w-full h-[200px] bg-background-light-transparent-100'
 							/>
 						))
-					: demoComments.map(comment => (
-							<CommentItem
-								isDemo={true}
-								key={comment.id}
-								comment={comment}
-							/>
-						))}
+					: demoComments
+							.slice(0, 2)
+							.map(comment => (
+								<CommentItem
+									isDemo={true}
+									key={comment.id}
+									comment={comment}
+								/>
+							))}
 			</div>
 		</section>
 	)

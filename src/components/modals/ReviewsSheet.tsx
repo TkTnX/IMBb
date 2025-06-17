@@ -16,24 +16,22 @@ import { ReviewsList } from "../widgets"
 
 type Props = {
 	children: React.ReactNode
-	slug: string
+	id: number
 	movieInfo: { title: string; year: number }
 	className?: string
 }
 
-export const ReviewsSheet = ({
-	children,
-	slug,
-	movieInfo,
-	className
-}: Props) => {
-	const { comments, open, setOpen, loadMore, loading, hasMore } =
-		useComments(slug)
+export const ReviewsSheet = ({ children, id, movieInfo, className }: Props) => {
+	const { comments, open, setOpen, loadMore, loading, hasMore, totalItems } =
+		useComments(id)
 
 	return (
 		<Sheet open={open} onOpenChange={setOpen}>
 			<SheetTrigger className={className}>{children}</SheetTrigger>
-			<SheetContent side='bottom' className='h-full border-t-0 pt-6 overflow-y-auto'>
+			<SheetContent
+				side='bottom'
+				className='h-full border-t-0 pt-6 overflow-y-auto'
+			>
 				<div className='container flex flex-col vsm:flex-row items-start gap-6'>
 					<button onClick={() => setOpen(false)}>
 						<X size={18} />
@@ -59,7 +57,7 @@ export const ReviewsSheet = ({
 							<div className='flex flex-col md:flex-row md:items-center gap-2 justify-between mt-8 '>
 								<ReviewsControls />
 								<p className='text-text-secondary'>
-									1-{comments.length} reviews
+									1-{comments.length} reviews of {totalItems}
 								</p>
 							</div>
 						</SheetHeader>

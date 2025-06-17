@@ -14,9 +14,9 @@ export const Movie = ({ movie }: Props) => {
 			<h1 className='text-4xl'>{movie.title}</h1>
 			<div className='flex flex-col gap-3 sm:gap-0 sm:flex-row sm:items-center justify-between mt-4'>
 				<p className='text-text-secondary'>
-					{new Date(movie.release_date).getFullYear()}
+					{new Date(movie.release_date).getFullYear() || ""}
 				</p>
-				<MovieControls rating={movie.vote_average} />
+				<MovieControls rating={movie.vote_average || 0} />
 			</div>
 			<MovieHero movie={movie} />
 			<MovieInfo movie={movie} />

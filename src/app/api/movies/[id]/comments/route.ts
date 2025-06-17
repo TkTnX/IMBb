@@ -1,19 +1,17 @@
 import { NextRequest, NextResponse } from "next/server"
 
-import { traktApi } from "@/configs/axios.config"
+import { tmdbApi } from "@/configs/axios.config"
 
 export async function GET(
 	req: NextRequest,
-	{ params }: { params: Promise<{ slug: string; sortBy: string }> }
+	{ params }: { params: Promise<{ id: string }> }
 ) {
 	try {
-		const slug = (await params).slug
-		const sortBy = req.nextUrl.searchParams.get("sortBy")
-		const limit = req.nextUrl.searchParams.get("limit")
+		const id = (await params).id
 		const page = req.nextUrl.searchParams.get("page")
-		const { data } = await traktApi.get(
-			`/movies/${slug}/comments/${sortBy}?extended=full,images&limit=${limit}&page=${page}`
-		)
+		const { data } = await tmdbApi.get(`/movie/${id}/reviews`, {
+			params: { page }
+		})
 
 		if (!data)
 			return NextResponse.json({

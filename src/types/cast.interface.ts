@@ -1,5 +1,3 @@
-import { IActor } from "./actor.interface"
-import { IMovie } from "./movie.interface"
 
 export interface ICrew {
 	art: ICastPerson[]
@@ -34,6 +32,7 @@ export interface ICrewPerson {
 	credit_id: string
 	department: string
 	gender: number
+	character?: string
 	id: number
 	job: string
 	known_for_department: string

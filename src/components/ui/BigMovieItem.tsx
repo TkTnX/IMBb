@@ -1,5 +1,4 @@
 import { Info, Star } from "lucide-react"
-import Image from "next/image"
 import Link from "next/link"
 
 import { AddToWishlistButton } from "../features"
@@ -16,7 +15,7 @@ export const BigMovieItem = ({ movie }: Props) => {
 		<div className='rounded-xl p-5 bg-background-light-transparent-50 flex flex-col vsm:flex-row sm:flex-col md:flex-row items-start gap-5 relative w-full'>
 			<div className='min-w-[126px] min-h-[194px] relative '>
 				<Img
-					src={`${process.env.NEXT_PUBLIC_TMDB_MEDIA}${movie.poster_path}`}
+					src={`${process.env.NEXT_PUBLIC_TMDB_MEDIA}/w154${movie.poster_path}`}
 					alt={movie.title}
 					fill
 					className='rounded-md'

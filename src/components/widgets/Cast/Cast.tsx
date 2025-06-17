@@ -10,16 +10,20 @@ import { ICrew } from "@/types/cast.interface"
 import { IMoviePeopleDetails } from "@/types/movie.interface"
 
 type Props = {
-	cast: IMoviePeopleDetails
+	credits: IMoviePeopleDetails
 }
 
-export const Cast = ({ cast }: Props) => {
+export const Cast = ({ credits }: Props) => {
 	const [activeTab, setActiveTab] = useState("cast")
-	const tabs = ["cast", ...Object.keys(cast.crew)]
+	const tabs = [
+		"cast",
+		...new Set(credits.crew.flatMap(person => person.job))
+	]
 
+	console.log(credits.cast.find(p => p.name.includes("Dave")))
 	return (
 		<div className='flex flex-col sm:flex-row  items-start gap-4 md:gap-12 mt-8  overflow-y-auto sm:overflow-hidden sm:h-[calc(100vh-250px)] '>
-			<div className='w-full sm:w-auto md:w-[350px] md:pr-0 md:border-r-2 border-r-background-light-transparent-100  flex gap-2.5 flex-row sm:flex-col  overflow-x-auto md:overflow-x-visible pb-2 justify-between'>
+			<div className='overflow-y-auto max-h-full w-full sm:w-auto md:w-[350px] md:pr-0 md:border-r-2 border-r-background-light-transparent-100  flex gap-2.5 flex-row sm:flex-col  overflow-x-auto md:overflow-x-visible pb-2 justify-between'>
 				{tabs.map(tab => (
 					<button
 						key={tab}
@@ -43,18 +47,14 @@ export const Cast = ({ cast }: Props) => {
 				</h6>
 				<div className='flex flex-col gap-5 w-full'>
 					{activeTab === "cast"
-						? cast.cast.map(person => (
-								<CastItem
-									key={person.person.ids.slug}
-									person={person}
-								/>
+						? credits.cast.map(person => (
+								<CastItem key={person.id} person={person} />
 							))
-						: cast.crew[activeTab as keyof ICrew].map(person => (
-								<CastItem
-									key={person.person.ids.slug}
-									person={person}
-								/>
-							))}
+						: credits.crew
+								.filter(person => person.job === activeTab)
+								.map(person => (
+									<CastItem key={person.id} person={person} />
+								))}
 				</div>
 			</div>
 		</div>

@@ -23,13 +23,19 @@ const MoviePage = async ({ params }: { params: Promise<{ id: string }> }) => {
 		<div className='max-w-full mt-7 flex items-start gap-8'>
 			<div className='flex flex-col gap-12 flex-1 max-w-full md:max-w-[calc(100%-120px)] lg:max-w-[calc(100%-182px)] '>
 				<Movie movie={movie} />
-				<MoviePhotos photos={getAvailableImages(movie)} />
+				<MoviePhotos id={movie.id} />
 				<MovieCast
-					movieInfo={{ title: movie.title, year: movie.year }}
+					movieInfo={{
+						title: movie.title,
+						year: new Date(movie.release_date).getFullYear()
+					}}
 				/>
 				<MovieReviews
 					id={movie.id}
-					movieInfo={{ title: movie.title, year: movie.year }}
+					movieInfo={{
+						title: movie.title,
+						year: new Date(movie.release_date).getFullYear()
+					}}
 				/>
 				<MovieDetails movie={movie} />
 			</div>

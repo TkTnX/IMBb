@@ -1,46 +1,29 @@
 import { useEffect, useState } from "react"
 
 import { axiosInstance } from "@/configs/axios.config"
-import { useCommentsStore } from "@/stores/commentsStore"
-import { IComment } from "@/types/comment.interface"
+import { ITmdbComment } from "@/types/comment.interface"
 
-export const useComments = (slug: string) => {
+export const useComments = (id: number) => {
 	const [open, setOpen] = useState(false)
 	const [loading, setLoading] = useState(false)
-	const { sortBy, rating, hideSpoilers, setComments } = useCommentsStore()
-	const [comments, setLocalComments] = useState<IComment[]>([])
+	const [comments, setComments] = useState<ITmdbComment[]>([])
 	const [hasMore, setHasMore] = useState(true)
+	const [totalItems, setTotalItems] = useState(0)
 	const [page, setPage] = useState(1)
 
-	const fetchComments = async (pageToLoad: number) => {
+	const fetchComments = async () => {
 		setLoading(true)
 		try {
 			const { data } = await axiosInstance.get(
-				`/movies/${slug}/comments?sortBy=${sortBy}&page=${pageToLoad}`
+				`/movies/${id}/comments?page=${page}`
 			)
 
-			if (data.length === 0) {
+			if (page >= data.total_pages) {
 				setHasMore(false)
 			}
-
-			const filteredComments = data
-				.filter(
-					(comment: IComment) => !hideSpoilers || !comment.spoiler
-				)
-				.sort((a: IComment, b: IComment) => {
-					if (rating === "Asc") return a.user_rating - b.user_rating
-					if (rating === "Desc") return b.user_rating - a.user_rating
-					return 0
-				})
-
-			filteredComments.length === 0 ? setHasMore(false) : setHasMore(true)
-
 			const newComments =
-				page === 1
-					? filteredComments
-					: [...comments, ...filteredComments]
-
-			setLocalComments(newComments)
+				page === 1 ? data.results : [...comments, ...data.results]
+			setTotalItems(data.total_results)
 			setComments(newComments)
 		} catch (error) {
 			console.log(error)
@@ -52,20 +35,17 @@ export const useComments = (slug: string) => {
 	useEffect(() => {
 		if (!open) return
 		setPage(1)
-		fetchComments(1)
+		fetchComments()
 	}, [open])
 
 	useEffect(() => {
-		if (!open) return
-		setPage(1)
-		fetchComments(1)
-	}, [sortBy, rating, hideSpoilers])
+		fetchComments()
+	}, [page])
 
 	const loadMore = () => {
-		const nextPage = page + 1
-		setPage(nextPage)
-		fetchComments(nextPage)
+		if (!hasMore || loading) return
+		setPage(prev => prev + 1)
 	}
 
-	return { comments, open, setOpen, loadMore, loading, hasMore }
+	return { comments, open, setOpen, loadMore, loading, hasMore, totalItems }
 }

@@ -7,6 +7,7 @@ import "swiper/css"
 import { Swiper, SwiperSlide } from "swiper/react"
 
 import { CastSheet } from "@/components/modals"
+import { Img } from "@/components/ui/Img"
 import { SectionTitle } from "@/components/ui/SectionTitle"
 import { Skeleton } from "@/components/ui/skeleton"
 
@@ -20,49 +21,41 @@ type Props = {
 
 export const MovieCast = ({ movieInfo }: Props) => {
 	const { setSwiperRefs } = useSwiperStore()
-	const { cast, error } = useCastStore()
-	if (error || !cast?.cast.length) return null
+	const { credits } = useCastStore()
 	return (
 		<section id='Cast' className='mt-2 sm:mt-4 lg:mt-7 xl:mt-14'>
 			<div className='flex flex-col vsm:flex-row gap-2 vsm:items-center justify-between'>
 				<SectionTitle title='Cast'>
-					{cast && (
-						<CastSheet cast={cast} movieInfo={movieInfo}>
-							See all <ChevronRight size={12} />
-						</CastSheet>
-					)}
+					<CastSheet credits={credits!} movieInfo={movieInfo}>
+						See all <ChevronRight size={12} />
+					</CastSheet>
 				</SectionTitle>
 			</div>
 			<Swiper
-				onSwiper={swiper =>
-					setSwiperRefs(
-						`cast-${cast && cast.cast[0].person.name}`,
-						swiper
-					)
-				}
+				onSwiper={swiper => setSwiperRefs(`cast-list`, swiper)}
 				className='mt-8 '
 				slidesPerView={2}
 				spaceBetween={15}
 				breakpoints={CAST_BREAKPOINTS}
 			>
-				{cast
-					? cast.cast.map(person => (
-							<SwiperSlide key={person.person.ids.slug}>
+				{credits
+					? credits.cast.map(person => (
+							<SwiperSlide key={person.id}>
 								<Link
 									className='block max-w-[180px]'
-									href={`/person/${person.person.ids.slug}`}
+									href={`/person/${person.id}`}
 								>
 									<div className='relative max-w-[180px] h-[180px]'>
-										<Image
+										<Img
 											loading='lazy'
-											src={`https://${person.images.headshot[0]}`}
+											src={`${process.env.NEXT_PUBLIC_TMDB_MEDIA}/w185${person.profile_path}`}
 											className='  object-cover rounded-2xl'
-											alt={person.person.name}
+											alt={person.name}
 											fill
 										/>
 									</div>
 									<h6 className='text-white mt-3'>
-										{person.person.name}
+										{person.name}
 									</h6>
 									<p>{person.character}</p>
 								</Link>
