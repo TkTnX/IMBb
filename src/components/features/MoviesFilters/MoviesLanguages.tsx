@@ -18,7 +18,7 @@ export const MoviesLanguages = () => {
 	const { setSelectedLanguages } = useFilters()
 	useEffect(() => {
 		const fetchLanguages = async () => {
-			const { data } = await axiosInstance.get("/languages")
+			const { data } = await axiosInstance.get("/trakt/languages")
 			setLanguages(data)
 			return data
 		}

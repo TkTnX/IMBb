@@ -20,7 +20,6 @@ export const Cast = ({ credits }: Props) => {
 		...new Set(credits.crew.flatMap(person => person.job))
 	]
 
-	console.log(credits.cast.find(p => p.name.includes("Dave")))
 	return (
 		<div className='flex flex-col sm:flex-row  items-start gap-4 md:gap-12 mt-8  overflow-y-auto sm:overflow-hidden sm:h-[calc(100vh-250px)] '>
 			<div className='overflow-y-auto max-h-full w-full sm:w-auto md:w-[350px] md:pr-0 md:border-r-2 border-r-background-light-transparent-100  flex gap-2.5 flex-row sm:flex-col  overflow-x-auto md:overflow-x-visible pb-2 justify-between'>

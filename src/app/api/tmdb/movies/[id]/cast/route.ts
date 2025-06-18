@@ -11,7 +11,6 @@ export async function GET(
 
 	try {
 		const credits = await tmdbApi.get(`/movie/${id}/credits`)
-		console.log(credits)
 		return NextResponse.json(credits.data)
 	} catch (error) {
 		console.log(error)

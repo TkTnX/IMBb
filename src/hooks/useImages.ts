@@ -13,7 +13,7 @@ export const useImages = (id: number) => {
 			setLoading(true)
 			setError(null)
 			try {
-				const { data } = await axiosInstance.get(`/movies/${id}/images`)
+				const { data } = await axiosInstance.get(`/tmdb/movies/${id}/images`)
 
 				setImages(data)
 			} catch (error) {

@@ -1,21 +1,13 @@
-import { cache } from "react";
+import { cache } from "react"
 
+import { Section } from "@/components/ui/Section"
 
-
-import { Section } from "@/components/ui/Section";
-
-
-
-import { TopImdbList } from "./TopImdbList";
-import { axiosInstance } from "@/configs/axios.config";
-import { IMovie } from "@/types/movie.interface";
-
-
-
-
+import { TopImdbList } from "./TopImdbList"
+import { axiosInstance } from "@/configs/axios.config"
+import { IMovie } from "@/types/movie.interface"
 
 export const TopImdb = cache(async () => {
-	const { data } = await axiosInstance.get("/movies?type=trending")
+	const { data } = await axiosInstance.get("/trakt/movies?type=trending")
 	return (
 		<Section section='top-imdb' title='Top on IMDb this week'>
 			<TopImdbList

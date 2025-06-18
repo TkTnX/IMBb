@@ -25,7 +25,7 @@ export const useTrailers = () => {
 		try {
 			setLoading(true)
 			const { data } = await axiosInstance.get(
-				`/movies?type=${currentTab}&page=${page}&limit=12`
+				`/trakt/movies?type=${currentTab}&page=${page}&limit=12`
 			)
 
 			const newMovies = data[0].movie

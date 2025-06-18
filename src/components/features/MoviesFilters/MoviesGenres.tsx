@@ -18,7 +18,7 @@ export const MoviesGenres = () => {
 	const { setSelectedGenres } = useFilters()
 	useEffect(() => {
 		const fetchGenres = async () => {
-			const { data } = await axiosInstance.get("/genres")
+			const { data } = await axiosInstance.get("/trakt/genres")
 			setGenres(data)
 			return data
 		}

@@ -29,7 +29,7 @@ export const useCommentsStore = create<ICommentsStore>(set => ({
 		try {
 			set({ loading: true })
 			const { data } = await axiosInstance.get(
-				`/movies/${id}/comments?limit=2`
+				`/tmdb/movies/${id}/comments?limit=2`
 			)
 			set({ demoComments: data.results })
 		} catch (error) {

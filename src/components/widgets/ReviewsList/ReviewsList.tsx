@@ -28,7 +28,6 @@ export const ReviewsList = ({
 		loadMore
 	})
 
-	console.log(hasMore)
 	const [infiniteRef] = useInfiniteScroll({
 		loading,
 		hasNextPage: hasMore,

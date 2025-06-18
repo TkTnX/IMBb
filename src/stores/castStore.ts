@@ -19,7 +19,7 @@ export const useCastStore = create<castStore>((set, get) => ({
 	fetchCredits: async id => {
 		set({ loading: true, error: null })
 		try {
-			const { data } = await axiosInstance.get(`/movies/${id}/cast`)
+			const { data } = await axiosInstance.get(`/tmdb/movies/${id}/cast`)
 			set({ credits: data })
 		} catch (error) {
 			console.log(error)

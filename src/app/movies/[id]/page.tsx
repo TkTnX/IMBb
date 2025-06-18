@@ -8,11 +8,10 @@ import {
 } from "@/components/widgets"
 
 import { axiosInstance } from "@/configs/axios.config"
-import { getAvailableImages } from "@/helpers/getAvailableImages"
 
 const MoviePage = async ({ params }: { params: Promise<{ id: string }> }) => {
 	const id = (await params).id
-	const { data: movie } = await axiosInstance.get(`/movies/${id}`)
+	const { data: movie } = await axiosInstance.get(`/tmdb/movies/${id}`)
 	if (!movie || movie.code === 404)
 		return (
 			<div className='text-center my-10 text-9xl font-bold'>

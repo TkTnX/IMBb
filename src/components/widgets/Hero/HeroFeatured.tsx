@@ -1,12 +1,12 @@
 import { HeroFeaturedItem } from "./HeroFeaturedItem"
-import { IMovieList } from "@/types/movie.interface"
+import { ITmdbMovie } from "@/types/movie.interface"
 
-export const HeroFeatured = ({ items }: { items: IMovieList[] }) => {
+export const HeroFeatured = ({ items }: { items: ITmdbMovie[] }) => {
 	return (
 		<div className='mt-6 flex flex-1 lg:flex-col pb-4 gap-6 overflow-y-hidden '>
-			{items.map(({ movie }, index) => (
+			{items.map((movie, index) => (
 				<HeroFeaturedItem
-					key={movie.ids.imdb}
+					key={movie.id}
 					index={index.toString()}
 					movie={movie}
 				/>

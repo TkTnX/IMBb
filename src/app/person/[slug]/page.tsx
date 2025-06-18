@@ -14,7 +14,7 @@ type Props = {
 }
 
 async function getPerson(slug: string): Promise<IActor> {
-	const { data } = await axiosInstance.get(`/actors/person/${slug}`)
+	const { data } = await axiosInstance.get(`/trakt/actors/person/${slug}`)
 	return data
 }
 

@@ -1,12 +1,6 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server"
 
-
-
-import { tmdbApi, traktApi } from "@/configs/axios.config";
-
-
-
-
+import { tmdbApi, traktApi } from "@/configs/axios.config"
 
 export async function GET(req: NextRequest) {
 	try {
@@ -31,10 +25,12 @@ export async function GET(req: NextRequest) {
 		const res = await tmdbApi.get(`/movie/popular?${query.toString()}`, {
 			params: { page }
 		})
-		console.log(res)
 		return NextResponse.json(res.data)
 	} catch (error) {
 		console.log(error)
-		return NextResponse.json({ error: "Something went wrong", status: 500 })
+		return NextResponse.json({
+			message: "Something went wrong",
+			status: 500
+		})
 	}
 }

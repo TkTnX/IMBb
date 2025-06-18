@@ -7,7 +7,7 @@ import { axiosInstance } from "@/configs/axios.config"
 import { IMovieList } from "@/types/movie.interface"
 
 export const Anticipated = cache(async () => {
-	const { data } = await axiosInstance.get("/movies?type=anticipated")
+	const { data } = await axiosInstance.get("/trakt/movies?type=anticipated")
 	return (
 		<Section section='anticipated' title='Most anticipated'>
 			<AnticipatedList

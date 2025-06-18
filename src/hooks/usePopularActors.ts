@@ -14,7 +14,7 @@ export const usePopularActors = () => {
 		async function fetchData() {
 			setError(null)
 			try {
-				const res = await axiosInstance.get("/person/popular", {
+				const res = await axiosInstance.get("/trakt/person/popular", {
 					params: { page }
 				})
 				setActors(prev => [...prev, ...res.data.results])

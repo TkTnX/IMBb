@@ -18,7 +18,7 @@ export const MoviesCountries = () => {
 	const { setSelectedCountries } = useFilters()
 	useEffect(() => {
 		const fetchCountries = async () => {
-			const { data } = await axiosInstance.get("/countries")
+			const { data } = await axiosInstance.get("/trakt/countries")
 			setCountries(data)
 			return data
 		}

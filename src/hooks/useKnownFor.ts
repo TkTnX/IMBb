@@ -15,7 +15,7 @@ export const useKnownFor = (slug: string) => {
 			setLoading(true)
 			try {
 				const { data } = await axiosInstance.get(
-					`/actors/person/${slug}/movies`
+					`/trakt/actors/person/${slug}/movies`
 				)
 
 				setData(data)

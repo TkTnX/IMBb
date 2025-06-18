@@ -1,11 +1,12 @@
+import { cache } from "react"
+
 import { Section } from "@/components/ui/Section"
 
 import { TopPicksList } from "./TopPicksList"
 import { axiosInstance } from "@/configs/axios.config"
-import { cache } from "react"
 
 export const TopPicks = cache(async () => {
-	const { data } = await axiosInstance.get("/movies?type=popular")
+	const { data } = await axiosInstance.get("/trakt/movies?type=popular")
 
 	return (
 		<Section
@@ -18,5 +19,4 @@ export const TopPicks = cache(async () => {
 			<TopPicksList list={data} />
 		</Section>
 	)
-}
-)
+})

@@ -38,8 +38,11 @@ export const useMoviesList = () => {
 				...params
 			})
 			const { data } = await axiosInstance.get(
-				`/movies?${query.toString()}`
+				`/tmdb/movies?${query.toString()}`
 			)
+			if (data.message) {
+				return setError(data.message)
+			}
 			if (page >= data.total_pages) {
 				setHasMore(false)
 			}
