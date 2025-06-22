@@ -89,4 +89,8 @@ export const HEADER_NAV = [
 	}
 ]
 
-export const HEADER_SEARCH_BY = ["All", "Movies", "TV Shows", "Celebs"]
+export const HEADER_SEARCH_BY = [
+	{ name: "All", type: "multi" },
+	{ name: "Movies", type: "movie" },
+	{ name: "Celebs", type: "person" }
+]

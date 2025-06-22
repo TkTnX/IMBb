@@ -1,15 +1,17 @@
 import { Search } from "lucide-react"
+import { useRouter } from "next/navigation"
 import { FormEvent } from "react"
 
 import { useFilters } from "@/hooks/useFilters"
 
 export const MoviesSearch = () => {
 	const { createQueryString } = useFilters()
+	const router = useRouter()
 	const onSubmit = (e: FormEvent) => {
 		e.preventDefault()
 
 		const formData = new FormData(e.target as HTMLFormElement)
-		createQueryString("query", formData.get("query") as string)
+		router.push(`/search?q=${formData.get("query")}&type=movie`)
 	}
 	return (
 		<div className='pb-7 border-b-2 border-b-background-light-transparent-100'>

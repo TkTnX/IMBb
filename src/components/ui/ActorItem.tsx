@@ -17,7 +17,7 @@ export const ActorItem = ({ actor }: Props) => {
 					src={`${process.env.NEXT_PUBLIC_TMDB_MEDIA}/w185${actor.profile_path}`}
 					fill
 					className='rounded-2xl  object-cover '
-					alt={actor.name}
+					alt={actor.name || ""}
 				/>
 			</div>
 			<h6 className='mt-3 text-text-primary'>{actor.name}</h6>
