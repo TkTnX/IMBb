@@ -1,10 +1,16 @@
-import { NextResponse } from "next/server"
+import { NextResponse } from "next/server";
 
-import { traktApi } from "@/configs/axios.config"
+
+
+import { tmdbApi } from "@/configs/axios.config";
+
+
+
+
 
 export async function GET() {
 	try {
-		const genres = await traktApi.get("/genres/movies")
+		const genres = await tmdbApi.get("/genre/movie/list?language=en")
 		return NextResponse.json(genres.data)
 	} catch (error) {
 		console.log(error)

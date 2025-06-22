@@ -3,9 +3,10 @@ import { useCallback, useEffect, useState } from "react"
 
 export const useFilters = () => {
 	const searchParams = useSearchParams()
-	const genresFromUrl = searchParams.get("genres")?.split(",") || []
+	const genresFromUrl =
+		searchParams.get("genres")?.split(",").map(Number) || []
 	const [selectedGenres, setSelectedGenres] =
-		useState<string[]>(genresFromUrl)
+		useState<number[]>(genresFromUrl)
 	const [selectedLanguages, setSelectedLanguages] = useState<string[]>([])
 	const [selectedCountries, setSelectedCountries] = useState<string[]>([])
 	const router = useRouter()

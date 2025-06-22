@@ -9,8 +9,8 @@ import { useKnownFor } from "@/hooks/useKnownFor"
 
 import { KnownForList } from "./KnownForList"
 
-export const KnownFor = ({ slug }: { slug: string }) => {
-	const { data, error, loading } = useKnownFor(slug)
+export const KnownFor = ({ id }: { id: string }) => {
+	const { data, error, loading } = useKnownFor(id)
 	const [choosedTabs, setChoosedTabs] = useState<string[]>([])
 	if (error) return <p className='text-center text-red-500'>{error}</p>
 	return (

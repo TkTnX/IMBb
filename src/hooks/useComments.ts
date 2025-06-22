@@ -15,7 +15,7 @@ export const useComments = (id: number) => {
 		setLoading(true)
 		try {
 			const { data } = await axiosInstance.get(
-				`/trakt/movies/${id}/comments?page=${page}`
+				`/tmdb/movies/${id}/comments?page=${page}`
 			)
 
 			if (page >= data.total_pages) {

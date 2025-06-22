@@ -1,9 +1,16 @@
-import { ITmdbMovie } from "@/types/movie.interface"
+import { IMovie } from "@/types/movie.interface"
 
-export const getAvailableImages = (movie: ITmdbMovie) => {
+export const getAvailableImages = (movie: IMovie) => {
 	if (!movie) return []
 
-	const images = [movie.poster_path, movie.backdrop_path]
+	const images = [
+		movie.images.banner,
+		movie.images.clearart,
+		movie.images.fanart,
+		movie.images.logo,
+		movie.images.poster,
+		movie.images.thumb
+	]
 
 	return images
 		.flat()

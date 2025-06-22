@@ -14,8 +14,8 @@ export const GenresList = ({ genres }: Props) => {
 			{genres.map(genre => (
 				<Link
 					className='rounded-xl p-4 bg-background-light-transparent-50 hover:bg-background-light-transparent-100 text-center shadow-md hover:shadow-lg border border-background-light-transparent-100 text-sm sm:text-lg font-semibold capitalize'
-					key={genre.slug}
-					href={`/movies?genres=${genre.slug}`}
+					key={genre.id}
+					href={`/movies?genres=${genre.id}`}
 				>
 					{genre.name}
 				</Link>

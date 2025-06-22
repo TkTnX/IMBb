@@ -12,10 +12,10 @@ import { useGetHeroColor } from "@/hooks/useGetHeroColor"
 
 import { HeroSwiperItem } from "./HeroSwiperItem"
 import { useHeroStore } from "@/stores/heroStore"
-import {  ITmdbMovie } from "@/types/movie.interface"
+import { IMovieList } from "@/types/movie.interface"
 
 type Props = {
-	items: ITmdbMovie[]
+	items: IMovieList[]
 }
 
 export const HeroSwiper = ({ items }: Props) => {
@@ -40,7 +40,6 @@ export const HeroSwiper = ({ items }: Props) => {
 			}
 		}
 	}, [])
-
 	return (
 		<div className='flex-1 overflow-x-hidden  w-full'>
 			<div
@@ -71,8 +70,8 @@ export const HeroSwiper = ({ items }: Props) => {
 						onSlideChange(e.activeIndex)
 					}}
 				>
-					{items.map((movie) => (
-						<SwiperSlide key={movie.id}>
+					{items.map(({ movie }) => (
+						<SwiperSlide key={movie.ids.slug}>
 							<HeroSwiperItem movie={movie} />
 						</SwiperSlide>
 					))}

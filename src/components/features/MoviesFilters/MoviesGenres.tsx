@@ -18,20 +18,20 @@ export const MoviesGenres = () => {
 	const { setSelectedGenres } = useFilters()
 	useEffect(() => {
 		const fetchGenres = async () => {
-			const { data } = await axiosInstance.get("/trakt/genres")
-			setGenres(data)
-			return data
+			const { data } = await axiosInstance.get("/tmdb/genres")
+			setGenres(data.genres)
+			return data.genres
 		}
 
 		fetchGenres()
 	}, [])
 
-	const onCheck = (slug: string) => {
+	const onCheck = (id: number) => {
 		setSelectedGenres(prev => {
-			if (prev.includes(slug)) {
-				return prev.filter((genre: string) => genre !== slug)
+			if (prev.includes(id)) {
+				return prev.filter((genre: number) => genre !== id)
 			} else {
-				return [...prev, slug]
+				return [...prev, id]
 			}
 		})
 	}
@@ -46,12 +46,12 @@ export const MoviesGenres = () => {
 						))
 					: genres.map(genre => (
 							<label
-								key={genre.slug}
+								key={genre.id}
 								className='flex items-center gap-1 cursor-pointer'
 							>
 								<Checkbox
-									onCheckedChange={() => onCheck(genre.slug)}
-									value={genre.slug}
+									onCheckedChange={() => onCheck(genre.id)}
+									value={genre.id}
 								/>
 								{genre.name}
 							</label>

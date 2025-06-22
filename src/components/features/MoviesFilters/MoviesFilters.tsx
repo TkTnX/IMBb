@@ -4,7 +4,6 @@ import { ListFilter } from "lucide-react"
 
 import { Accordion } from "@/components/ui/accordion"
 
-import { MoviesCountries } from "./MoviesCountries"
 import { MoviesGenres } from "./MoviesGenres"
 import { MoviesLanguages } from "./MoviesLanguages"
 import { MoviesYear } from "./MoviesYear"
@@ -20,7 +19,6 @@ export const MoviesFilters = () => {
 				<MoviesGenres />
 				<MoviesYear />
 				<MoviesLanguages />
-				<MoviesCountries />
 			</Accordion>
 		</div>
 	)

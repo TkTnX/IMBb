@@ -21,25 +21,28 @@ export const useMoviesList = () => {
 
 		return Object.fromEntries(
 			Object.entries({
-				genres,
-				years,
-				languages,
+				with_genres: genres,
+				primary_release_year: years,
+				with_original_language: languages,
 				countries,
 				query
 			}).filter(([_, value]) => value !== null && value !== "")
 		) as Record<string, string>
 	}, [searchParams])
+
 	const fetchMovies = async (page = 1) => {
 		setError(null)
 		try {
 			const query = new URLSearchParams({
 				page: page.toString(),
-				type: "trending",
+				type: "discover",
 				...params
 			})
+			console.log(query.toString())
 			const { data } = await axiosInstance.get(
 				`/tmdb/movies?${query.toString()}`
 			)
+			console.log(data)
 			if (data.message) {
 				return setError(data.message)
 			}

@@ -1,38 +1,27 @@
 import Image from "next/image"
 import Link from "next/link"
 
-import { IActor } from "@/types/actor.interface"
+import { Img } from "./Img"
+import { ITmdbActor } from "@/types/actor.interface"
 
 type Props = {
-	actor: IActor
+	actor: ITmdbActor
 }
 
 export const ActorItem = ({ actor }: Props) => {
-	const age =
-		new Date().getFullYear() - new Date(actor.birthday!).getFullYear()
 	return (
-		<Link href={`/person/${actor.ids.slug}`} className=''>
+		<Link href={`/person/${actor.id}`} className=''>
 			<div className='relative w-full h-[180px]'>
-				<Image
+				<Img
 					loading='lazy'
-					src={
-						actor.images.headshot[0]
-							? `https://${actor.images.headshot[0]}`
-							: "/images/no-avatar.jpg"
-					}
+					src={`${process.env.NEXT_PUBLIC_TMDB_MEDIA}/w185${actor.profile_path}`}
 					fill
 					className='rounded-2xl  object-cover '
 					alt={actor.name}
 				/>
 			</div>
 			<h6 className='mt-3 text-text-primary'>{actor.name}</h6>
-			{actor.birthday && !actor.death ? (
-				<p>{age} years old</p>
-			) : (
-				actor.death && (
-					<p>Dead in: {new Date(actor.death).getFullYear()}</p>
-				)
-			)}
+			<p>{actor.known_for_department}</p>
 		</Link>
 	)
 }

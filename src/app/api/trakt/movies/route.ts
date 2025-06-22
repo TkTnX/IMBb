@@ -1,39 +1,30 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server"
 
-
-
-import { tmdbApi, traktApi } from "@/configs/axios.config";
-
-
-
-
+import {  traktApi } from "@/configs/axios.config"
 
 export async function GET(req: NextRequest) {
 	try {
 		const searchParams = req.nextUrl.searchParams
 		const page = req.nextUrl.searchParams.get("page") || "1"
+		const limit = req.nextUrl.searchParams.get("limit") || "10"
+		const type = req.nextUrl.searchParams.get("type")
 
 		const filters = Object.fromEntries(
-			[
-				"with_genres",
-				"primary_release_year",
-				"with_original_language",
-				"countries",
-				"query"
-			]
+			["genres", "years", "languages", "countries", "query"]
 				.map(key => [key, searchParams.get(key)])
 				.filter(([, value]) => value !== null && value !== "")
 		)
 
 		const query = new URLSearchParams({
+			extended: "full,images",
+			limit,
 			page,
 			...filters
 		})
 
-		const res = await tmdbApi.get(`/discover/movie`, {
-			params: query
+		const res = await traktApi.get(`/movies/${type}?${query.toString()}`, {
+			params: { page }
 		})
-
 		return NextResponse.json(res.data)
 	} catch (error) {
 		console.log(error)

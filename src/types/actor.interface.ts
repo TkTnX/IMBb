@@ -15,9 +15,13 @@ export interface IActor {
 	status?: number
 }
 
-
 export interface ITmdbActor {
 	adult: boolean
+	birthday?: string
+	place_of_birth?: string
+	deathday?: string
+	imdb_id?: string
+	biography: string
 	gender: number
 	id: number
 	known_for: {

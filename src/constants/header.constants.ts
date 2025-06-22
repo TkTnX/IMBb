@@ -20,24 +20,20 @@ export const HEADER_NAV = [
 	{
 		name: "Genres",
 		href: "/genres",
-    items: [
-      {
-        name: "Search by genres",
-        href: "/genres"
-      }
-    ]
-	},
-	{
-		name: "Celebs",
-		href: "/celebs",
 		items: [
 			{
-				name: "Trending",
-				href: "/celebs/trending"
-			},
+				name: "Search by genres",
+				href: "/genres"
+			}
+		]
+	},
+	{
+		name: "Actors",
+		href: "/actors",
+		items: [
 			{
-				name: "Popular",
-				href: "/celebs/popular"
+				name: "Top of the actors",
+				href: "/actors"
 			}
 		]
 	},

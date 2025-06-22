@@ -7,16 +7,17 @@ import {
 	TopImdb,
 	TopPicks
 } from "@/components/widgets"
+
 export default function Home() {
 	return (
 		<>
 			<Hero />
-			{/* <Featured /> */}
-			{/* <TopPicks /> */}
-			{/* <TopImdb /> */}
-			{/* <Anticipated /> */}
-			{/* <BoxOffice /> */}
-			{/* <Actors /> */}
+			<Featured />
+			<TopPicks />
+			<TopImdb />
+			<Anticipated />
+			<BoxOffice />
+			<Actors />
 		</>
 	)
 }

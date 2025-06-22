@@ -10,11 +10,11 @@ export const metadata: Metadata = {
 }
 
 const GenresPage = async () => {
-	const { data } = await axiosInstance.get("/trakt/genres")
+	const { data } = await axiosInstance.get("/tmdb/genres")
 	return (
 		<section className='mt-12'>
 			<h1 className='text-2xl'>Find movies by your favorite genre</h1>
-			<GenresList genres={data} />
+			<GenresList genres={data.genres} />
 		</section>
 	)
 }

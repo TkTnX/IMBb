@@ -5,7 +5,7 @@ import { axiosInstance } from "@/configs/axios.config"
 import { ICastPerson } from "@/types/cast.interface"
 import { IMoviePeopleDetails } from "@/types/movie.interface"
 
-export const useKnownFor = (slug: string) => {
+export const useKnownFor = (id: string) => {
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState<null | string>(null)
 	const [data, setData] = useState<null | IMoviePeopleDetails>(null)
@@ -15,7 +15,7 @@ export const useKnownFor = (slug: string) => {
 			setLoading(true)
 			try {
 				const { data } = await axiosInstance.get(
-					`/trakt/actors/person/${slug}/movies`
+					`/trakt/actors/person/${id}/movies`
 				)
 
 				setData(data)

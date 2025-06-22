@@ -8,7 +8,7 @@ import { HeroSwiper } from "./HeroSwiper"
 import { axiosInstance } from "@/configs/axios.config"
 
 export const Hero = async () => {
-	const res = await axiosInstance.get("/tmdb/movies")
+	const res = await axiosInstance.get("/trakt/movies?type=anticipated&limit=3")
 	if (res.data.message)
 		return (
 			<p className='my-10 text-center text-red-500'>{res.data.message}</p>
@@ -16,7 +16,7 @@ export const Hero = async () => {
 	return (
 		<section className='flex flex-col lg:flex-row items-start gap-8 mt-12 relative'>
 			{/* LEFT */}
-			<HeroSwiper items={res.data.results} />
+			<HeroSwiper items={res.data} />
 
 			{/* RIGHT */}
 			<div className='lg:w-[370px] lg:max-h-[650px] w-full overflow-hidden'>
@@ -34,7 +34,7 @@ export const Hero = async () => {
 					</Link>
 				</div>
 
-				<HeroFeatured items={res.data.results} />
+				<HeroFeatured items={res.data} />
 			</div>
 		</section>
 	)

@@ -5,11 +5,11 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import { ActorItem } from "@/components/ui/ActorItem"
 
 import { useSwiperStore } from "@/stores/swiperStore"
-import { IActor } from "@/types/actor.interface"
+import {  ITmdbActor } from "@/types/actor.interface"
 import { ACTORS_BREAKPOINTS } from "@/configs/swiper-breakpoints.config"
 
 type Props = {
-	list: IActor[]
+	list: ITmdbActor[]
 }
 
 export const ActorsList = ({ list }: Props) => {
@@ -23,7 +23,7 @@ export const ActorsList = ({ list }: Props) => {
 			breakpoints={ACTORS_BREAKPOINTS}
 		>
 			{list.map(actor => (
-				<SwiperSlide key={actor.ids.slug}>
+				<SwiperSlide key={actor.id}>
 					<ActorItem actor={actor} />
 				</SwiperSlide>
 			))}

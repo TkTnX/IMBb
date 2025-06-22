@@ -7,8 +7,7 @@ import { axiosInstance } from "@/configs/axios.config"
 import { IActor } from "@/types/actor.interface"
 
 export const Actors = cache(async () => {
-	const { data } = await axiosInstance.get("/trakt/actors")
-	const actors = data.flatMap((item: { person: IActor }) => item.person)
+	const { data } = await axiosInstance.get("/tmdb/person")
 	return (
 		<Section
 			section='actors'
@@ -16,7 +15,7 @@ export const Actors = cache(async () => {
 			href='/actors'
 			bgTitle='People'
 		>
-			<ActorsList list={actors} />
+			<ActorsList list={data.results} />
 		</Section>
 	)
 })
