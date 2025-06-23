@@ -1,8 +1,7 @@
 import { Info, Star } from "lucide-react"
-import Image from "next/image"
 import Link from "next/link"
 
-import { AddToWishlistButton } from "../features"
+import { AddToWatchlistButton } from "../features"
 
 import { Img } from "./Img"
 import { ICastPerson } from "@/types/cast.interface"
@@ -12,10 +11,11 @@ type Props = {
 }
 
 export const KnownForItem = ({ item }: Props) => {
+	console.log(item)
 	return (
 		<div className=' flex-1 relative flex items-stretch gap-4 bg-background-light-transparent-50 rounded-lg  overflow-hidden group mt-4'>
 			<Link
-				href={`/movies/${item.movie?.ids.slug}`}
+				href={`/movies/${item.movie?.ids.tmdb}`}
 				className='absolute inset-0 z-10'
 			></Link>
 			<div className='relative w-[70px] h-full '>
@@ -25,7 +25,7 @@ export const KnownForItem = ({ item }: Props) => {
 					fill
 					src={item.movie?.images.poster[0]!}
 				/>
-				<AddToWishlistButton className='left-0' />
+				<AddToWatchlistButton className='left-0' />
 			</div>
 			<div className='flex-1 p-2'>
 				<h3 className='font-bold group-hover:opacity-80'>
@@ -41,7 +41,7 @@ export const KnownForItem = ({ item }: Props) => {
 				</p>
 				<p className='text-sm'>{item.character}</p>
 				<div className='flex items-center justify-between w-full mt-1 '>
-					<p className='text-sm'>2024</p>
+					<p className='text-sm'>{item.movie.year}</p>
 					<button className='group-hover:opacity-80'>
 						<Info color='var(--color-main-blue)' />
 					</button>

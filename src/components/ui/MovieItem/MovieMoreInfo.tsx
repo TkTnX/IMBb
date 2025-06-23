@@ -9,7 +9,7 @@ export const MovieMoreInfo = ({ movie }: { movie: IMovie }) => {
 	return (
 		<Tooltip>
 			<TooltipTrigger asChild>
-				<Link href={`/movies/${movie.ids.slug}`}>
+				<Link href={`/movies/${movie.ids.tmdb}`}>
 					<Info />
 				</Link>
 			</TooltipTrigger>

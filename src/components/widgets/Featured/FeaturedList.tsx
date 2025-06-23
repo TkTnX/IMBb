@@ -35,7 +35,7 @@ export const FeaturedList = ({ list }: Props) => {
 			}}
 		>
 			{list.map(movie => (
-				<SwiperSlide key={movie.ids.slug}>
+				<SwiperSlide key={movie.ids.tmdb}>
 					<ListItem movie={movie} />
 				</SwiperSlide>
 			))}

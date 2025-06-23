@@ -44,7 +44,7 @@ export const KnownForList = ({ data, choosedTabs, loading }: Props) => {
 									.slice(0, showedItems)
 									.map((item: ICastPerson) => (
 										<KnownForItem
-											key={item.movie?.ids.slug}
+											key={item.movie?.ids.tmdb}
 											item={item}
 										/>
 									))}

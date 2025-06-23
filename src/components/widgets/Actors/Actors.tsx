@@ -4,10 +4,10 @@ import { Section } from "@/components/ui/Section"
 
 import { ActorsList } from "./ActorsList"
 import { axiosInstance } from "@/configs/axios.config"
-import { IActor } from "@/types/actor.interface"
 
 export const Actors = cache(async () => {
 	const { data } = await axiosInstance.get("/tmdb/person")
+
 	return (
 		<Section
 			section='actors'
@@ -15,7 +15,11 @@ export const Actors = cache(async () => {
 			href='/actors'
 			bgTitle='People'
 		>
-			<ActorsList list={data.results} />
+			{data.message ? (
+				<p className='text-center my-10 text-red-500'>{data.message}</p>
+			) : (
+				<ActorsList list={data.results} />
+			)}
 		</Section>
 	)
 })

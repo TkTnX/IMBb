@@ -2,7 +2,7 @@ import { Info, Star } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 
-import { AddToWishlistButton } from "../features"
+import { AddToWatchlistButton } from "../features"
 
 import { IBoxOfficeItem } from "@/types/movie.interface"
 import { formatPrice } from "@/helpers/formatPrice"
@@ -27,7 +27,7 @@ export const BoxOfficeItem = ({ item, number }: Props) => {
 						fill
 						className='rounded-sm object-cover w-full h-full'
 					/>
-					<AddToWishlistButton className='left-3' />
+					<AddToWatchlistButton className='left-3' />
 				</div>
 				<div>
 					<h5 className='text-base lg:text-lg font-bold'>{item.movie.title}</h5>
@@ -49,7 +49,7 @@ export const BoxOfficeItem = ({ item, number }: Props) => {
 						</button>
 						<Link
 							className='hover:opacity-80'
-							href={`/movies/${item.movie.ids.slug}`}
+							href={`/movies/${item.movie.ids.tmdb}`}
 						>
 							<Info size={20} />
 						</Link>

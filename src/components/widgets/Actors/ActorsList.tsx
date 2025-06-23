@@ -14,6 +14,9 @@ type Props = {
 
 export const ActorsList = ({ list }: Props) => {
 	const { setSwiperRefs } = useSwiperStore()
+
+
+	
 	return (
 		<Swiper
 			onSwiper={swiper => setSwiperRefs("actors", swiper)}

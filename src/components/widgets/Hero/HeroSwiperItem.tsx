@@ -1,3 +1,6 @@
+import { Info, Play } from "lucide-react"
+import Link from "next/link"
+
 import { Img } from "@/components/ui/Img"
 
 import { getAvailableImages } from "@/helpers/getAvailableImages"
@@ -34,15 +37,25 @@ export const HeroSwiperItem = ({ movie }: Props) => {
 						className='rounded-xl'
 					/>
 				</div>
-
-				<div>
-					<h2 className='text-2xl xl:text-4xl text-white'>
-						{movie.title}
-					</h2>
-					<p className='mt-3 text-xl xl:text-2xl text-background-transparent-600'>
-						Read more about “{movie.title}”
-					</p>
-				</div>
+				<Link
+					className='flex flex-col vsm:flex-row items-start vsm:items-center gap-2 xl:gap-6 xl:max-w-[585px] relative z-90'
+					href={`/movies/${movie.ids.tmdb}`}
+				>
+					<button className='rounded-full bg-background-light-transparent-100 min-w-10 vsm:min-w-[80px] xl:min-w-[143px] min-h-10 vsm:min-h-[80px] xl:min-h-[143px] flex items-center justify-center hover:scale-90'>
+						<Info
+							size={90}
+							className=' w-5 vsm:w-10 xl:w-[90px] h-5 vsm:h-10 xl:h-[90px]'
+						/>
+					</button>
+					<div>
+						<h2 className='text-2xl xl:text-4xl text-white'>
+							{movie.title}
+						</h2>
+						<p className='mt-3 text-xl xl:text-2xl text-background-transparent-600'>
+							Read more about “{movie.title}”
+						</p>
+					</div>
+				</Link>
 			</div>
 		</>
 	)

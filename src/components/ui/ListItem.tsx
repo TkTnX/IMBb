@@ -21,7 +21,7 @@ export const ListItem = ({ movie }: Props) => {
 				/>
 				<Link
 					className='text-text-primary flex items-center justify-center gap-2 rounded-[45px] w-10 h-10 bg-background-transparent-600 hover:bg-background-light-transparent-100 absolute left-3.5 bottom-5 '
-					href={`/search?q=${movie.title}`}
+					href={`/movies/${movie.ids.tmdb}`}
 				>
 					<Info />
 				</Link>

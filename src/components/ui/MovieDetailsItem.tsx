@@ -10,7 +10,7 @@ export const MovieDetailsItem = ({ title, items }: Props) => {
 				{title}
 			</h6>
 			<div>
-				{items.map((item, index) =>
+				{items?.map((item, index) =>
 					typeof item === "string" && item.includes("http") ? (
 						<a
 							key={index}
@@ -23,7 +23,7 @@ export const MovieDetailsItem = ({ title, items }: Props) => {
 						<p key={index} className='text-main-yellow-sec-dark'>
 							{typeof item === "string"
 								? item
-								: item.english_name}
+								: item?.english_name}
 						</p>
 					)
 				)}

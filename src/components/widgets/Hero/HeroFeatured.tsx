@@ -6,7 +6,7 @@ export const HeroFeatured = ({ items }: { items: IMovieList[] }) => {
 		<div className='mt-6 flex flex-1 lg:flex-col pb-4 gap-6 overflow-y-hidden '>
 			{items.map(({ movie }, index) => (
 				<HeroFeaturedItem
-					key={movie.ids.slug}
+					key={movie.ids.tmdb}
 					index={index.toString()}
 					movie={movie}
 				/>

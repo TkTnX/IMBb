@@ -1,8 +1,7 @@
 import { Star } from "lucide-react"
-import Image from "next/image"
 import Link from "next/link"
 
-import { AddToWishlistButton } from "@/components/features"
+import { AddToWatchlistButton } from "@/components/features"
 
 import { Img } from "../Img"
 
@@ -18,7 +17,7 @@ export const MovieItem = ({ movie }: Props) => {
 	return (
 		<div className='p-3 rounded-lg bg-background-light-transparent-50'>
 			<div className='relative w-full h-[250px] md:h-[300px]'>
-				<Link href={`/search?q=${movie.title}`}>
+				<Link href={`/movies/${movie.ids.tmdb}`}>
 					<Img
 						className='rounded-sm object-cover'
 						src={`${movie.images.poster[0]}`}
@@ -27,7 +26,7 @@ export const MovieItem = ({ movie }: Props) => {
 					/>
 				</Link>
 
-				<AddToWishlistButton className='left-5' />
+				<AddToWatchlistButton className='left-5' />
 			</div>
 
 			<h5 className='mt-4 text-text-primary text-xl one-line'>

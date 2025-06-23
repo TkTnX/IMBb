@@ -25,6 +25,7 @@ export interface IMovie {
 	ids: {
 		slug: string
 		imdb: string
+		tmdb: number
 	}
 	genres: string[]
 	images: {

@@ -1,3 +1,4 @@
+import { IMovie } from "./movie.interface"
 
 export interface ICrew {
 	art: ICastPerson[]
@@ -25,6 +26,7 @@ export interface ICastPerson {
 	original_name: string
 	popularity: number
 	profile_path: string
+	movie: IMovie
 }
 
 export interface ICrewPerson {

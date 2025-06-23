@@ -18,6 +18,7 @@ const MoviePage = async ({ params }: { params: Promise<{ id: string }> }) => {
 				Movie is not found
 			</div>
 		)
+
 	return (
 		<div className='max-w-full mt-7 flex items-start gap-8'>
 			<div className='flex flex-col gap-12 flex-1 max-w-full md:max-w-[calc(100%-120px)] lg:max-w-[calc(100%-182px)] '>

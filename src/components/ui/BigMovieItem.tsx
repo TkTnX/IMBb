@@ -1,16 +1,25 @@
-import { Info, Star } from "lucide-react"
-import Link from "next/link"
+import { Info, Star } from "lucide-react";
+import Link from "next/link";
 
-import { AddToWishlistButton } from "../features"
 
-import { Img } from "./Img"
-import { ITmdbMovie } from "@/types/movie.interface"
+
+import { AddToWatchlistButton } from "../features"
+
+
+
+import { Img } from "./Img";
+import { ITmdbMovie } from "@/types/movie.interface";
+
+
+
+
 
 type Props = {
 	movie: ITmdbMovie
+	isAdded?: boolean
 }
 
-export const BigMovieItem = ({ movie }: Props) => {
+export const BigMovieItem = ({ movie, isAdded = false }: Props) => {
 	return (
 		<div className='rounded-xl p-5 bg-background-light-transparent-50 flex flex-col vsm:flex-row sm:flex-col md:flex-row items-start gap-5 relative w-full'>
 			<div className='min-w-[126px] min-h-[194px] relative '>
@@ -20,7 +29,7 @@ export const BigMovieItem = ({ movie }: Props) => {
 					fill
 					className='rounded-md'
 				/>
-				<AddToWishlistButton className='left-3' />
+				<AddToWatchlistButton isAdded className='left-3' />
 			</div>
 
 			<div className='flex flex-col gap-3.5'>

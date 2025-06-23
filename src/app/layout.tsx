@@ -5,7 +5,8 @@ import { ToastContainer } from "react-toastify"
 import { Footer, Header } from "@/components/widgets"
 
 import "./globals.css"
-
+import { ClerkProvider } from "@clerk/nextjs"
+import { dark } from "@clerk/themes"
 export const metadata: Metadata = {
 	title: {
 		absolute: "IMBb: Ratings, Reviews, and Where to Watch the Best Movie",
@@ -25,19 +26,19 @@ export default function RootLayout({
 	children: React.ReactNode
 }>) {
 	return (
-		// <ClerkProvider
-		// 	appearance={{
-		// 		baseTheme: dark
-		// 	}}
-		// >
-		<html lang='en' suppressHydrationWarning>
-			<body className={`${roboto.className} antialiased`}>
-				<ToastContainer />
-				<Header />
-				<main className='container'>{children}</main>
-				<Footer />
-			</body>
-		</html>
-		// </ClerkProvider>
+		<ClerkProvider
+			appearance={{
+				baseTheme: dark
+			}}
+		>
+			<html lang='en' suppressHydrationWarning>
+				<body className={`${roboto.className} antialiased`}>
+					<ToastContainer />
+					<Header />
+					<main className='container'>{children}</main>
+					<Footer />
+				</body>
+			</html>
+		</ClerkProvider>
 	)
 }

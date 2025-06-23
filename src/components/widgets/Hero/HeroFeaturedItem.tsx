@@ -1,5 +1,8 @@
 "use client"
 
+import { Info } from "lucide-react"
+import Link from "next/link"
+
 import { Img } from "@/components/ui/Img"
 
 import { getAvailableImages } from "@/helpers/getAvailableImages"
@@ -36,6 +39,19 @@ export const HeroFeaturedItem = ({ movie, index }: Props) => {
 					<h5 className='text-2xl lg:text-lg text-text-primary'>
 						{movie.title}
 					</h5>
+					<p className='mt-1.5 text-text-primary text-xl lg:text-sm'>
+						<Link href={`/movies/${movie.ids.tmdb}`}>
+							Read more about {movie.title}
+						</Link>
+					</p>
+				</div>
+				<div className='flex items-center gap-3 flex-1'>
+					<Link
+						className='bg-background-light-transparent-100 rounded-full w-[50px] h-[50px] flex items-center justify-center hover:scale-110'
+						href={`/movies/${movie.ids.tmdb}`}
+					>
+						<Info size={31} />
+					</Link>
 				</div>
 			</div>
 		</div>

@@ -71,7 +71,7 @@ export const HeroSwiper = ({ items }: Props) => {
 					}}
 				>
 					{items.map(({ movie }) => (
-						<SwiperSlide key={movie.ids.slug}>
+						<SwiperSlide key={movie.ids.tmdb}>
 							<HeroSwiperItem movie={movie} />
 						</SwiperSlide>
 					))}
