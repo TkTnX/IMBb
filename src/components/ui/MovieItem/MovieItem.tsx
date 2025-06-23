@@ -26,7 +26,7 @@ export const MovieItem = ({ movie }: Props) => {
 					/>
 				</Link>
 
-				<AddToWatchlistButton className='left-5' />
+				<AddToWatchlistButton movieId={movie.ids.tmdb} className='left-5' />
 			</div>
 
 			<h5 className='mt-4 text-text-primary text-xl one-line'>

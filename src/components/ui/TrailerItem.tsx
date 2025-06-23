@@ -23,7 +23,7 @@ export const TrailerItem = ({ movie }: Props) => {
 						fill
 						className='rounded-sm object-cover sm:object-fill lg:object-cover'
 					/>
-					<AddToWatchlistButton className='left-5' />
+					<AddToWatchlistButton movieId={movie.ids.tmdb} className='left-5' />
 					<button className='flex items-center justify-center text-text-primary gap-2 absolute bottom-5 left-4 rounded-[45px] w-8 md:w-auto md:py-2 md:h-auto h-8 md:px-4 bg-background-secondary'>
 						<Play
 							className='w-5 h-5 '

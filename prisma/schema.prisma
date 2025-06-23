@@ -17,10 +17,10 @@ datasource db {
 
 model User {
   id       Int     @id @default(autoincrement())
+  clerkId  String  @unique
   email    String
   image    String?
   bio      String?
-  name     String
   username String
 
   watchList   WatchList?
@@ -32,14 +32,15 @@ model User {
 model WatchList {
   id Int @id @default(autoincrement())
 
-  user    User @relation(fields: [user_id], references: [id])
-  user_id Int  @unique
+  user        User   @relation(fields: [user_id], references: [id])
+  user_id     Int    @unique
+  userClerkId String @unique
 
-  movies    WishlistMovie[] 
+  movies WatchlistMovie[]
 }
 
-model WishlistMovie {
-  id Int @id @default(autoincrement())
+model WatchlistMovie {
+  id     Int @id @default(autoincrement())
   tmdbId Int
 
   backdrop_path     String
@@ -55,5 +56,6 @@ model WishlistMovie {
   vote_average      Float
   vote_count        Int
 
-  watchLists         WatchList[]
+  watchList   WatchList @relation(fields: [watchListId], references: [id])
+  watchListId Int     @unique
 }

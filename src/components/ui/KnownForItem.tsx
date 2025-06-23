@@ -25,7 +25,7 @@ export const KnownForItem = ({ item }: Props) => {
 					fill
 					src={item.movie?.images.poster[0]!}
 				/>
-				<AddToWatchlistButton className='left-0' />
+				<AddToWatchlistButton movieId={item.movie.ids.tmdb} className='left-0' />
 			</div>
 			<div className='flex-1 p-2'>
 				<h3 className='font-bold group-hover:opacity-80'>

@@ -27,7 +27,7 @@ export const BoxOfficeItem = ({ item, number }: Props) => {
 						fill
 						className='rounded-sm object-cover w-full h-full'
 					/>
-					<AddToWatchlistButton className='left-3' />
+					<AddToWatchlistButton movieId={item.movie.ids.tmdb} className='left-3' />
 				</div>
 				<div>
 					<h5 className='text-base lg:text-lg font-bold'>{item.movie.title}</h5>

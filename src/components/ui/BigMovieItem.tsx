@@ -29,7 +29,7 @@ export const BigMovieItem = ({ movie, isAdded = false }: Props) => {
 					fill
 					className='rounded-md'
 				/>
-				<AddToWatchlistButton isAdded className='left-3' />
+				<AddToWatchlistButton  movieId={movie.id}isAdded className='left-3' />
 			</div>
 
 			<div className='flex flex-col gap-3.5'>

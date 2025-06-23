@@ -30,6 +30,7 @@
     "react-infinite-scroll-hook": "^6.0.0",
     "react-toastify": "^11.0.5",
     "sharp": "^0.34.2",
+    "svix": "^1.67.0",
     "swiper": "^11.2.8",
     "tailwind-merge": "^3.3.0",
     "zustand": "^5.0.5"
