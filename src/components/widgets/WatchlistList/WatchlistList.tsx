@@ -17,13 +17,11 @@ async function getWatchList(userId: string) {
 				movies: true
 			}
 		})
-		console.log(res)
 		return res
 	} catch (error) {
 		console.log(error)
 	}
 }
-
 
 export const WatchlistList = async () => {
 	const { userId } = await auth()
@@ -37,9 +35,9 @@ export const WatchlistList = async () => {
 
 	if (watchList.movies.length === 0) return <p>Your Watchlist is empty</p>
 	return (
-		<div className=''>
+		<div className='flex-1'>
 			<p>{watchList.movies.length} title</p>
-			<div className='mt-4 flex flex-col gap-4'>
+			<div className='flex flex-col gap-4 mt-10'>
 				{watchList.movies.map(movie => (
 					<BigMovieItem
 						isAdded

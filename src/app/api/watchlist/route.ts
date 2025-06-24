@@ -1,10 +1,10 @@
 import { AxiosError } from "axios"
+import { revalidatePath } from "next/cache"
 import { NextRequest, NextResponse } from "next/server"
 
 import { tmdbApi } from "@/configs/axios.config"
 import { prisma } from "@/lib/prisma-client"
 import { ITmdbMovie } from "@/types/movie.interface"
-import { revalidatePath } from "next/cache"
 
 export async function POST(req: NextRequest) {
 	try {
@@ -38,11 +38,14 @@ export async function POST(req: NextRequest) {
 			const deletedMovie = await prisma.watchlistMovie.delete({
 				where: {
 					tmdbId: movieId,
-					watchListId: watchList.id
+					watchListId: watchList.id,
+					id: watchList.movies.find(
+						movie => movie.tmdbId === movieId
+					)!.id
 				}
 			})
 
-			return NextResponse.json(deletedMovie)
+			return NextResponse.json({ deletedMovie, isAdded: false })
 		}
 
 		const { data: movie } = await tmdbApi.get<ITmdbMovie>(
@@ -73,8 +76,8 @@ export async function POST(req: NextRequest) {
 			}
 		})
 
-		revalidatePath("/watchlist")
-		return NextResponse.json(addedMovie)
+		revalidatePath("/user/watchlist")
+		return NextResponse.json({ addedMovie, isAdded: true })
 	} catch (error) {
 		console.log(error)
 		return error instanceof AxiosError

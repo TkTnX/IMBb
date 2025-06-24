@@ -11,7 +11,6 @@ type Props = {
 }
 
 export const KnownForItem = ({ item }: Props) => {
-	console.log(item)
 	return (
 		<div className=' flex-1 relative flex items-stretch gap-4 bg-background-light-transparent-50 rounded-lg  overflow-hidden group mt-4'>
 			<Link

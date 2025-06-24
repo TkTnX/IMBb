@@ -57,5 +57,5 @@ model WatchlistMovie {
   vote_count        Int
 
   watchList   WatchList @relation(fields: [watchListId], references: [id])
-  watchListId Int     @unique
+  watchListId Int  
 }

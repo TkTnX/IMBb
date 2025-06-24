@@ -38,11 +38,9 @@ export const useMoviesList = () => {
 				type: "discover",
 				...params
 			})
-			console.log(query.toString())
 			const { data } = await axiosInstance.get(
 				`/tmdb/movies?${query.toString()}`
 			)
-			console.log(data)
 			if (data.message) {
 				return setError(data.message)
 			}

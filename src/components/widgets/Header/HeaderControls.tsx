@@ -6,7 +6,7 @@ export const HeaderControls = () => {
 	return (
 		<div className='flex items-center gap-7'>
 			<Link
-				href='/watchlist'
+				href='/user/watchlist'
 				className='flex items-center gap-1 hover:opacity-80 transition first:hidden md:first:flex'
 			>
 				<Image

@@ -26,7 +26,6 @@ export const useSearch = () => {
 						page
 					}
 				})
-				console.log(res.data)
 				if (res.data.code === 404) return setError("Nothing is found!")
 
 				setResults(res.data.results)

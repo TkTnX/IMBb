@@ -11,7 +11,6 @@ import { useMoviesList } from "@/hooks/useMoviesList"
 
 export const MoviesWrapper = () => {
 	const { movies, error, loadMore, hasMore } = useMoviesList()
-	console.log(movies[0])
 	return (
 		<div className='flex flex-col sm:flex-row items-start gap-8 h-full mt-16'>
 			{/* ФИЛЬТРАЦИЯ */}

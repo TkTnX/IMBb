@@ -1,61 +1,56 @@
 "use client"
 
-import { useUser } from "@clerk/nextjs"
-import { AxiosError } from "axios"
+import { Loader2 } from "lucide-react"
 import Image from "next/image"
-import { useRouter } from "next/navigation"
-import { toast } from "react-toastify"
 
-import { axiosInstance } from "@/configs/axios.config"
+import { useAddToWatchlist } from "@/hooks/useAddToWatchlist"
+
 import { cn } from "@/lib/utils"
+import { useUserStore } from "@/stores/userStore"
 
 type Props = {
 	className?: string
-	isAdded?: boolean
 	movieId: number
+	isAdded?: boolean
 }
+
+// * TODO: Сделать хук добавления в watchlist
+// * TODO: Моментально обновлять картинку
+// * TODO: При загрузки главной сразу отображать добавленные фильмы
 
 export const AddToWatchlistButton = ({
 	className,
-	isAdded,
-	movieId
+	movieId,
+	isAdded
 }: Props) => {
-	const { user } = useUser()
-	const router = useRouter()
+	const { user } = useUserStore()
+	const { onClick, loading, added } = useAddToWatchlist(
+		user?.watchList.movies.some(movie => movie.tmdbId === movieId) ||
+			isAdded
+	)
 
-	const onClick = async () => {
-		try {
-			if (!user) return router.push("/sign-in")
-
-			const res = await axiosInstance.post("/watchlist", {
-				movieId,
-				userClerkId: user.id
-			})
-
-			if (res.data.code === 500) return toast.error(res.data.message)
-			router.refresh()
-			return toast.success("Successful!")
-		} catch (error) {
-			console.log(error)
-			return toast.error(
-				error instanceof AxiosError
-					? error.message
-					: "Something went wrong!"
-			)
-		}
-	}
 
 	return (
 		<button
-			onClick={onClick}
+			onClick={() => onClick(movieId)}
 			className={cn("absolute top-0  hover:opacity-80 z-20", className)}
 		>
-			{isAdded ? (
+			{loading ? (
+				<div className='relative'>
+					<Image
+						width={39}
+						height={50}
+						src={"/images/icons/bookmark.svg"}
+						alt='adding to wishlist'
+					/>
+					<Loader2 className='animate-spin absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2' />
+				</div>
+			) : added ? (
 				<Image
 					width={39}
 					height={50}
 					src={"/images/icons/bookmark-checked.svg"}
-					alt='add to wishlist'
+					alt='added to wishlist'
 				/>
 			) : (
 				<Image
