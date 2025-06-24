@@ -13,7 +13,6 @@ const Watchlist = () => {
 				title='Watchlist'
 				desc='Your Watchlist is the place to track the titles you want to watch. You can sort your Watchlist by the IMDb rating or popularity score and arrange your titles in the order you want to see them.'
 			/>
-
 			<div className='mt-10 flex flex-col lg:flex-row items-start gap-6'>
 				{/* LIST */}
 				<WatchlistList />
