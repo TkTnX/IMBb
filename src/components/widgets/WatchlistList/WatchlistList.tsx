@@ -28,14 +28,14 @@ export const WatchlistList = async () => {
 	const watchList = await getWatchList(userId!)
 	if (!watchList?.id)
 		return (
-			<p className='my-10 text-center text-red-500 font-bold'>
+			<p className='my-10 text-center text-red-500 font-bold flex-1 w-full'>
 				Something went wrong!
 			</p>
 		)
 
 	if (watchList.movies.length === 0) return <p>Your Watchlist is empty</p>
 	return (
-		<div className='flex-1'>
+		<div className='flex-1 '>
 			<p>{watchList.movies.length} title</p>
 			<div className='flex flex-col gap-4 mt-10'>
 				{watchList.movies.map(movie => (

@@ -1,11 +1,15 @@
 import Image from "next/image"
 import Link from "next/link"
 
+import { Img } from "@/components/ui/Img"
+
+import { WatchlistMovie } from "@/generated/prisma"
+
 type Props = {
 	title: string
 	desc: string
 	link: string
-	items: any[]
+	items: {poster_path: string}[]
 }
 
 export const MoreToExploreItem = ({ title, desc, link, items }: Props) => {
@@ -20,11 +24,17 @@ export const MoreToExploreItem = ({ title, desc, link, items }: Props) => {
 			</div>
 			<div className='p-1 group-hover:opacity-80'>
 				{items.length ? (
-					<Image src={""} width={72} height={92} alt='poster' />
+					<Img
+						src={`${process.env.NEXT_PUBLIC_TMDB_MEDIA}/w154${items[items.length - 1].poster_path}`}
+						width={72}
+						height={92}
+						alt='poster'
+						className='object-cover w-[72px] h-[92px] rounded-xl'
+					/>
 				) : (
 					<div className='w-full h-full flex items-center justify-center bg-[#eaeaea] rounded-xl'>
 						<Image
-							className='min-w-[72px]'
+							className='min-w-[72px] h-[92px]'
 							src={"/images/icons/no-movie.svg"}
 							width={72}
 							height={92}

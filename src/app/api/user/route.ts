@@ -17,7 +17,8 @@ export async function GET(req: NextRequest) {
 					include: {
 						movies: true
 					}
-				}
+				},
+				reviews: true
 			}
 		})
 

@@ -14,9 +14,7 @@ type Props = {
 	isAdded?: boolean
 }
 
-// * TODO: Сделать хук добавления в watchlist
-// * TODO: Моментально обновлять картинку
-// * TODO: При загрузки главной сразу отображать добавленные фильмы
+// TODO: Доделывать More to Explore
 
 export const AddToWatchlistButton = ({
 	className,
@@ -25,7 +23,7 @@ export const AddToWatchlistButton = ({
 }: Props) => {
 	const { user } = useUserStore()
 	const { onClick, loading, added } = useAddToWatchlist(
-		user?.watchList.movies.some(movie => movie.tmdbId === movieId) ||
+		user?.watchList?.movies?.some(movie => movie.tmdbId === movieId) ||
 			isAdded
 	)
 

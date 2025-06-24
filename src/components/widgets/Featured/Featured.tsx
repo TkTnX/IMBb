@@ -9,7 +9,7 @@ export const Featured = async () => {
 	return (
 		<Section section='featured' title='Featured Today'>
 			<FeaturedList
-				list={data.flatMap((item: IMovieList) => item.movie)}
+				list={data?.flatMap((item: IMovieList) => item.movie)}
 			/>
 		</Section>
 	)

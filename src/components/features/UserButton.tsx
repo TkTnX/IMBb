@@ -41,7 +41,7 @@ export const UserButton = () => {
 					</SignedOut>
 					<SignedIn>
 						<Link
-							href='/profile'
+							href='/user'
 							className='flex items-center gap-1 hover:opacity-80 transition first:hidden md:first:flex'
 						>
 							<Image

@@ -26,6 +26,8 @@ model User {
   watchList   WatchList?
   watchListId Int?       @unique
 
+  reviews Review[]
+
   createdAt DateTime @default(now())
 }
 
@@ -57,5 +59,24 @@ model WatchlistMovie {
   vote_count        Int
 
   watchList   WatchList @relation(fields: [watchListId], references: [id])
-  watchListId Int  
+  watchListId Int
+}
+
+model Review {
+  id Int @id @default(autoincrement())
+
+  content String
+  rating Int 
+
+  movieTmdbId Int
+  poster_path String
+  movieTitle String
+
+
+  
+  user   User @relation(fields: [userId], references: [id])
+  userId Int
+  userClerkId String
+
+
 }
