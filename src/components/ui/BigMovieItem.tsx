@@ -1,7 +1,7 @@
 import { Info, Star } from "lucide-react"
 import Link from "next/link"
 
-import { AddToWatchlistButton } from "../features"
+import { AddToWatchlistButton, RateButton } from "../features"
 
 import { Img } from "./Img"
 import { ITmdbMovie } from "@/types/movie.interface"
@@ -40,10 +40,7 @@ export const BigMovieItem = ({ movie, isAdded }: Props) => {
 							/>
 							<p>{movie.vote_average.toFixed(1)}</p>
 						</div>
-						<button className='flex items-center gap-2 hover:opacity-80'>
-							<Star size={18} />
-							<p>Rate</p>
-						</button>
+						<RateButton movie={movie} />
 						<Link
 							href={`/movies/${movie.id}`}
 							className='hover:opacity-80'

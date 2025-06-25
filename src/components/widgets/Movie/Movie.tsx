@@ -16,7 +16,7 @@ export const Movie = ({ movie }: Props) => {
 				<p className='text-text-secondary'>
 					{new Date(movie.release_date).getFullYear() || ""}
 				</p>
-				<MovieControls rating={movie.vote_average || 0} />
+				<MovieControls movie={movie} rating={movie.vote_average || 0} />
 			</div>
 			<MovieHero movie={movie} />
 			<MovieInfo movie={movie} />

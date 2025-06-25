@@ -18,7 +18,7 @@ export const UserReviewsListItem = ({ review }: Props) => {
 					width={100}
 					height={120}
 				/>
-				<div>
+				<div className='flex-1'>
 					<div className='flex items-start justify-between flex-1'>
 						<h6 className='font-semibold'>{review.movieTitle}</h6>
 						<div className='flex items-center gap-2.5  '>

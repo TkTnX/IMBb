@@ -43,10 +43,6 @@ export const BoxOfficeItem = ({ item, number }: Props) => {
 							/>
 							<p>{item.movie.rating.toFixed(1)}</p>
 						</div>
-						<button className='hover:opacity-80 flex items-center gap-1'>
-							<Star size={20} />
-							Rate
-						</button>
 						<Link
 							className='hover:opacity-80'
 							href={`/movies/${item.movie.ids.tmdb}`}
