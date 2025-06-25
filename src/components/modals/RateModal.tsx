@@ -1,10 +1,12 @@
 "use client"
 
 import { AxiosError } from "axios"
-import { Star } from "lucide-react"
+import { Loader2, Star } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { FormEvent, useEffect, useState } from "react"
 import { toast } from "react-toastify"
+
+import { useReviews } from "@/hooks/useReviews"
 
 import {
 	AlertDialog,
@@ -26,58 +28,21 @@ type Props = {
 }
 
 export const RateModal = ({ children, movie }: Props) => {
-	const router = useRouter()
-	const { user } = useUserStore()
-	const [isRated, setIsRated] = useState<null | Review>(null)
-    const [rating, setRating] = useState<null | number>()
-    
-    // TODO: move to the hook
-    // TODO: add loader
-    // TODO: Remove rating button
-    // TODO: Close modal after adding
+	const {
+		onSubmit,
+		loading,
+		isRated,
+		rating,
+		setRating,
+		openModal,
+		setOpenModal,
+		onRemoveReview
+	} = useReviews(movie)
 
-	useEffect(() => {
-		if (user && user.reviews) {
-			const findReview = user.reviews.find(
-				r => r.movieTmdbId === movie.id
-			)
-			if (findReview) {
-				setIsRated(findReview)
-				setRating(findReview.rating)
-			}
-		}
-	}, [user, movie])
 
-	const onSubmit = async (e: FormEvent) => {
-		try {
-			if (!user) return router.push("/sign-in")
-			e.preventDefault()
-
-			if (!rating) return toast.error("Rating is required!")
-			const formData = new FormData(e.target as HTMLFormElement)
-
-			const content = formData.get("content")
-
-			const body = {
-				content,
-				rating,
-				movieTmdbId: movie.id,
-				poster_path: movie.poster_path,
-				movieTitle: movie.title,
-                userClerkId: user.clerkId,
-                userId: user.id
-			}
-			const res = await axiosInstance.post(`/reviews`, body)
-		} catch (error) {
-			console.log(error)
-			return error instanceof AxiosError
-				? toast.error(error.message)
-				: toast.error("Something went wrong!")
-		}
-	}
 
 	return (
-		<AlertDialog>
+		<AlertDialog onOpenChange={setOpenModal} open={openModal}>
 			<AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
 			<AlertDialogContent className='pt-14'>
 				<div
@@ -133,18 +98,28 @@ export const RateModal = ({ children, movie }: Props) => {
 
 					<button
 						type='submit'
-						disabled={!rating}
-						className='rounded-3xl bg-main-yellow text-black px-4 py-2 hover:opacity-80 disabled:bg-background-secondary disabled:text-text-primary disabled:hover:opacity-100 disabled:pointer-events-none'
+						disabled={!rating || loading}
+						className='rounded-3xl bg-main-yellow text-black flex items-center justify-center px-4 py-2 hover:opacity-80 disabled:bg-background-secondary disabled:text-text-primary disabled:hover:opacity-100 disabled:pointer-events-none'
 					>
-						Rate
+						{loading ? (
+							<Loader2 className='animate-spin' />
+						) : (
+							"Rate"
+						)}
 					</button>
 				</form>
 				{isRated && (
 					<button
+						onClick={() => onRemoveReview(isRated.id)}
+						disabled={loading}
 						type='button'
-						className='rounded-3xl  text-main-blue px-4 py-2 hover:bg-main-blue/30'
+						className='rounded-3xl flex items-center justify-center text-main-blue px-4 py-2 hover:bg-main-blue/30 disabled:opacity-80 disabled:hover:bg-transparent disabled:pointer-events-none'
 					>
-						Remove rating
+						{loading ? (
+							<Loader2 className='animate-spin' />
+						) : (
+							"Remove rating"
+						)}
 					</button>
 				)}
 			</AlertDialogContent>

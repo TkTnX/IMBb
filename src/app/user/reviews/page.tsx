@@ -4,7 +4,6 @@ import {
 	UserReviewsList
 } from "@/components/widgets"
 
-// TODO: Написание отзывов через модалку
 
 const ReviewsPage = () => {
 	return (
