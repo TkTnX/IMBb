@@ -6,6 +6,7 @@ export interface IMovieList {
 }
 
 export interface IMovie {
+	movie: any
 	available_translations: string[]
 	certification: string | null
 	country: string

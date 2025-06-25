@@ -1,22 +1,30 @@
-import { ChevronRight } from "lucide-react"
-import Link from "next/link"
+import { ChevronRight } from "lucide-react";
+import Link from "next/link";
 
-import { Title } from "@/components/ui/Title"
 
-import { HeroFeatured } from "./HeroFeatured"
-import { HeroSwiper } from "./HeroSwiper"
-import { axiosInstance } from "@/configs/axios.config"
 
-export const Hero = async () => {
-	const res = await axiosInstance.get("/trakt/movies?type=anticipated&limit=3")
-	if (res.data.message)
+import { Title } from "@/components/ui/Title";
+
+
+
+import { HeroFeatured } from "./HeroFeatured";
+import { HeroSwiper } from "./HeroSwiper";
+import { axiosInstance } from "@/configs/axios.config";
+import { IMovieList } from "@/types/movie.interface";
+
+
+
+
+
+export const Hero = async ({ data }: { data: IMovieList[] }) => {
+	if ("message" in data)
 		return (
-			<p className='my-10 text-center text-red-500'>{res.data.message}</p>
+			<p className='my-10 text-center text-red-500'>{data.message as string}</p>
 		)
 	return (
 		<section className='flex flex-col lg:flex-row items-start gap-8 mt-12 relative'>
 			{/* LEFT */}
-			<HeroSwiper items={res.data} />
+			<HeroSwiper items={data} />
 
 			{/* RIGHT */}
 			<div className='lg:w-[370px] lg:max-h-[650px] w-full overflow-hidden'>
@@ -34,7 +42,7 @@ export const Hero = async () => {
 					</Link>
 				</div>
 
-				<HeroFeatured items={res.data} />
+				<HeroFeatured items={data} />
 			</div>
 		</section>
 	)
