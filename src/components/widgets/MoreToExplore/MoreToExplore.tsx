@@ -5,7 +5,6 @@ import { useUserStore } from "@/stores/userStore"
 
 export const MoreToExplore = () => {
 	const { user } = useUserStore()
-	console.log(user)
 	return (
 		<div className='w-full lg:max-w-[300px] flex-1'>
 			<h4 className='pl-3 border-l-4 border-l-main-yellow text-3xl font-medium'>

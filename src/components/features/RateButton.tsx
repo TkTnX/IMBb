@@ -16,7 +16,6 @@ type Props = {
 
 export const RateButton = ({ movie, className }: Props) => {
 	const { isRated } = useReviews(movie)
-	console.log(isRated)
 	return (
 		<RateModal movie={movie}>
 			<button

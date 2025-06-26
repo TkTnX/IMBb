@@ -1,24 +1,67 @@
+"use client"
+
+import Image from "next/image"
+import { usePathname } from "next/navigation"
+
+import { Skeleton } from "@/components/ui/skeleton"
+
+import { useUserStore } from "@/stores/userStore"
 
 type Props = {
-    title: string,
-    desc: string
+	title?: string
+	desc?: string
 }
 
 export const UserPageTop = ({ title, desc }: Props) => {
-  return (
-    <div className='min-h-[150px] md:h-[200px] flex flex-col justify-center text-black'>
-                    <h2 className='text-4xl md:text-8xl  font-bold'>
-                        Your {title}
-                    </h2>
-                    <p className='text-xs sm:text-base font-semibold'>
-                        {desc}
-                    </p>
-                    <div className='h-[150px] md:h-[200px] w-full bg-main-yellow absolute left-0 right-0 top-[72px] -z-10' />
-                </div>
-  )
-}
+	const { user, loading } = useUserStore()
+	const pathname = usePathname()
+	const isUserPage = pathname === "/user"
+	return (
+		<div className='min-h-[150px] md:h-[200px] flex flex-col justify-center text-black'>
+			<div className='flex items-center gap-2'>
+				{loading ? (
+					<Skeleton className='md:w-[140px] md:h-[140px] w-[90px] h-[90px] rounded-full' />
+				) : (
+					<Image
+						alt={user?.username || "User"}
+						className='rounded-full md:w-[140px] md:h-[140px] w-[90px] h-[90px]'
+						src={user?.image || "/images/no-avatar.jpg"}
+						width={140}
+						height={140}
+					/>
+				)}
 
-// Your Watchlist is the place to track the titles you want to
-//                         watch. You can sort your Watchlist by the IMDb rating or
-//                         popularity score and arrange your titles in the order you
-//                         want to see them.
+				<div>
+					<h2 className='text-4xl md:text-8xl  font-bold'>
+						{isUserPage ? (
+							loading ? (
+								<Skeleton className='w-[300px] h-24' />
+							) : (
+								user?.username
+							)
+						) : (
+							`Your ${title}`
+						)}{" "}
+					</h2>
+					<div className='text-xs sm:text-base font-semibold'>
+						{isUserPage ? (
+							loading ? (
+								<Skeleton className='w-[100px] h-7 mt-2' />
+							) : (
+								`Joined: ${new Date(user?.createdAt!).toDateString()}`
+							)
+						) : (
+							desc
+						)}
+					</div>
+					{isUserPage && (
+						<button className='bg-background-secondary/90 text-main-blue px-4 py-2 rounded-md w-fit hover:opacity-90 mt-3 '>
+							Edit profile
+						</button>
+					)}
+				</div>
+			</div>
+			<div className='h-[150px] md:h-[200px] w-full bg-main-yellow absolute left-0 right-0 top-[72px] -z-10' />
+		</div>
+	)
+}
