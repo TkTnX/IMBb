@@ -14,6 +14,9 @@ type Props = {
 	items: Review[] | WatchlistMovie[]
 }
 
+// TODO: Редактирование профиля
+// TODO: Выход из аккаунта
+
 export const UserPageSection = ({ title, link, desc, items }: Props) => {
 	const { loading } = useUserStore()
 	return (

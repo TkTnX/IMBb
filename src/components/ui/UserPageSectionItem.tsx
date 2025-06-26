@@ -24,7 +24,7 @@ export const UserPageSectionItem = ({ movie }: Props) => {
 
 	return (
 		<div className='flex-1'>
-			<div className='w-full h-[220px] relative'>
+			<div className='w-full h-[250px] relative'>
 				<Img
 					className='rounded-2xl'
 					src={`${process.env.NEXT_PUBLIC_TMDB_MEDIA}/w154${movie.poster_path}`}

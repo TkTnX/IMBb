@@ -9,7 +9,7 @@ const ReviewsPage = () => {
 	return (
 		<section>
 			<UserPageTop
-				title='Reviews'
+				title='Your Reviews'
 				desc='This page compiles a list of titles you have rated, providing a convenient overview of all your ratings.'
 			/>
 			<div className='mt-10 flex flex-col lg:flex-row items-start gap-6'>

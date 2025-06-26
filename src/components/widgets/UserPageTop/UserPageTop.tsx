@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image"
+import Link from "next/link"
 import { usePathname } from "next/navigation"
 
 import { Skeleton } from "@/components/ui/skeleton"
@@ -19,16 +20,20 @@ export const UserPageTop = ({ title, desc }: Props) => {
 	return (
 		<div className='min-h-[150px] md:h-[200px] flex flex-col justify-center text-black'>
 			<div className='flex items-center gap-2'>
-				{loading ? (
-					<Skeleton className='md:w-[140px] md:h-[140px] w-[90px] h-[90px] rounded-full' />
+				{isUserPage ? (
+					loading ? (
+						<Skeleton className='md:w-[140px] md:h-[140px] w-[90px] h-[90px] rounded-full' />
+					) : (
+						<Image
+							alt={user?.username || "User"}
+							className='rounded-full md:w-[140px] md:h-[140px] w-[90px] h-[90px]'
+							src={user?.image || "/images/no-avatar.jpg"}
+							width={140}
+							height={140}
+						/>
+					)
 				) : (
-					<Image
-						alt={user?.username || "User"}
-						className='rounded-full md:w-[140px] md:h-[140px] w-[90px] h-[90px]'
-						src={user?.image || "/images/no-avatar.jpg"}
-						width={140}
-						height={140}
-					/>
+					""
 				)}
 
 				<div>
@@ -40,7 +45,7 @@ export const UserPageTop = ({ title, desc }: Props) => {
 								user?.username
 							)
 						) : (
-							`Your ${title}`
+							title
 						)}{" "}
 					</h2>
 					<div className='text-xs sm:text-base font-semibold'>
@@ -55,9 +60,12 @@ export const UserPageTop = ({ title, desc }: Props) => {
 						)}
 					</div>
 					{isUserPage && (
-						<button className='bg-background-secondary/90 text-main-blue px-4 py-2 rounded-md w-fit hover:opacity-90 mt-3 '>
+						<Link
+							href={"/user/edit"}
+							className='bg-background-secondary/90 text-main-blue px-4 py-2 rounded-md w-fit hover:opacity-90 mt-3 block'
+						>
 							Edit profile
-						</button>
+						</Link>
 					)}
 				</div>
 			</div>
