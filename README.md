@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎬 IMBb — IMDb Clone
 
-## Getting Started
+> IMBb — это современный клон IMDb, разработанный на Next.js с богатым пользовательским интерфейсом и мощным функционалом. Здесь вы можете искать фильмы, просматривать подробную информацию, трейлеры, актёров, а также вести свою коллекцию оценок и watchlist.
 
-First, run the development server:
+---
+
+🛡️ **Важно:** API TMDB и Trakt не работают из России — для корректной работы **нужен VPN**.
+
+---
+
+## 📌 Функциональность
+
+- ✅ **Авторизация / регистрация**
+- ✅ **Просмотр фильмов**: описание, рейтинг IMDb, трейлеры, актёры
+- ✅ **Оценивание фильмов**: собственный рейтинг пользователя + IMDb рейтинг
+- ✅ **Отзывы**: написание и удаление
+- ✅ **Watchlist**: добавление/удаление фильмов в список просмотра
+- ✅ **Профиль пользователя**: редактирование аватара и имени
+- ✅ **Поиск по фильмам и актёрам**
+- ✅ **Топ-листы IMDb**
+- ✅ **Box Office (кассовые сборы недели)**
+
+---
+
+## 🧭 Страницы
+
+- `/` — Главная
+- `/movies` — Страница фильмов
+- `/movies/:id` — Страница фильма
+- `/actors` — Страница актёров
+- `/genres` — Страница жанров
+- `/person/:id` — Страница актёра
+- `/search` — Поиск
+- `/user` — Профиль пользователя
+- `/user/watchlist` — Watchlist
+- `/sign-in` — Авторизация
+- `/trailers` — Страница трейлеров
+
+---
+
+## 🛠️ Стек технологий
+
+- **Next.js 15** (App Router)
+- **TypeScript**
+- **Tailwind CSS**
+- **Supabase** (БД и аутентификация)
+- **TMDB API** (информация о фильмах и актёрах)
+- **Trakt API** (рейтинги, популярные фильмы)
+- **Zustand** (глобальное состояние)
+- **Axios**
+
+
+---
+
+## 🧪 Как запустить локально
 
 ```bash
+# Клонируй репозиторий
+git clone https://github.com/TkTnX/IMBb.git
+
+# Установи зависимости
+cd imbb
+npm install
+
+# Добавь .env файл со следующими переменными:
+# (получи свои ключи на TMDB и Trakt)
+
+NEXT_PUBLIC_TMDB_KEY=your_tmdb_key
+NEXT_PUBLIC_TRAKT_KEY=your_trakt_key
+NEXT_PUBLIC_TMDB_MEDIA=https://image.tmdb.org/t/p
+
+# Запусти проект
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🌐 VPN предупреждение
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+> API от TMDB и Trakt **не работают из России**. Используйте VPN 
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🖼️ Дизайн
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Проект разработан по макету в **Figma**, вдохновлён оригинальным **IMDb** и улучшен современными UI/UX паттернами.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
