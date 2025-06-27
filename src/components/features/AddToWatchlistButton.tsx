@@ -14,7 +14,6 @@ type Props = {
 	isAdded?: boolean
 }
 
-// TODO: Доделывать More to Explore
 
 export const AddToWatchlistButton = ({
 	className,

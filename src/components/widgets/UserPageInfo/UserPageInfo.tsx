@@ -20,13 +20,13 @@ export const UserPageInfo = () => {
 			<UserPageSection
 				title='Reviews'
 				desc='Your reviews are public.'
-				items={user?.reviews.slice(0, 4) || []}
+				items={user?.reviews.slice(0, 5) || []}
 				link='/user/reviews'
 			/>
 			<UserPageSection
 				title='Watchlist'
 				desc='Your Watchlist is public.'
-				items={user?.watchList.movies.slice(0, 4) || []}
+				items={user?.watchList.movies.slice(0, 5) || []}
 				link='/user/watchlist'
 			/>
 		</div>

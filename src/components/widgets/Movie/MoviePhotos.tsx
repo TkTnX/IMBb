@@ -4,8 +4,8 @@ import { ChevronRight } from "lucide-react"
 import "swiper/css"
 import { Swiper, SwiperSlide } from "swiper/react"
 
+import { ImagesSheet } from "@/components/modals"
 import { Img } from "@/components/ui/Img"
-import { Section } from "@/components/ui/Section"
 import { SectionTitle } from "@/components/ui/SectionTitle"
 import { Skeleton } from "@/components/ui/skeleton"
 
@@ -18,13 +18,14 @@ export const MoviePhotos = ({ id }: { id: number }) => {
 	const { setSwiperRefs } = useSwiperStore()
 	const { images, loading, error } = useImages(id)
 
-	// TODO: В будущем сделать sheet со всеми изображениями
 	return (
 		<section id='Photos' className='mt-2 sm:mt-4 lg:mt-7 xl:mt-14 '>
 			<SectionTitle title='Photos'>
-				<button className='rounded-lg py-2 px-4 bg-background-light-transparent-100 shadow-lg flex items-center gap-2.5 hover:opacity-80 w-fit'>
-					See all <ChevronRight size={12} />
-				</button>
+				<ImagesSheet images={images}>
+					<button className='rounded-lg py-2 px-4 bg-background-light-transparent-100 shadow-lg flex items-center gap-2.5 hover:opacity-80 w-fit'>
+						See all <ChevronRight size={12} />
+					</button>
+				</ImagesSheet>
 			</SectionTitle>
 			{error ? (
 				<p className='text-red-500 text-center'>{error}</p>

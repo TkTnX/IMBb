@@ -10,6 +10,7 @@ export const Img = (props: IProps) => {
 	return (
 		<Image
 			{...props}
+			alt={props.alt || ""}
 			src={imgSrc}
 			onError={() => setImgSrc("/images/no-poster.jpg")}
 		/>

@@ -74,7 +74,6 @@ export const useEditUser = () => {
 				[openEdit as string]: updatedValue
 			})
 
-			console.log(res)
 			if (res.data.status === 200) {
 				toast.success("Profile updated successfully")
 				fetchUser(user?.clerkId)

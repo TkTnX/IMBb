@@ -1,5 +1,6 @@
 "use client"
 
+import { useClerk } from "@clerk/nextjs"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -14,12 +15,13 @@ type Props = {
 }
 
 export const UserPageTop = ({ title, desc }: Props) => {
+	const { signOut } = useClerk()
 	const { user, loading } = useUserStore()
 	const pathname = usePathname()
 	const isUserPage = pathname === "/user"
 	return (
 		<div className='min-h-[150px] md:h-[200px] flex flex-col justify-center text-black'>
-			<div className='flex items-center gap-2'>
+			<div className='flex items-center gap-2 relative'>
 				{isUserPage ? (
 					loading ? (
 						<Skeleton className='md:w-[140px] md:h-[140px] w-[90px] h-[90px] rounded-full' />
@@ -68,6 +70,12 @@ export const UserPageTop = ({ title, desc }: Props) => {
 						</Link>
 					)}
 				</div>
+				<button
+					onClick={() => signOut({ redirectUrl: "/sign-in" })}
+					className='bg-background-secondary/90 text-main-blue px-4 py-2 rounded-md w-fit hover:opacity-90 mt-3 absolute top-3 right-3'
+				>
+					Log out
+				</button>
 			</div>
 			<div className='h-[150px] md:h-[200px] w-full bg-main-yellow absolute left-0 right-0 top-[72px] -z-10' />
 		</div>

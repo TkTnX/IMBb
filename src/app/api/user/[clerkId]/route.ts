@@ -9,7 +9,6 @@ export async function PATCH(
 ) {
 	try {
 		const clerkId = (await params).clerkId
-console.log(clerkId)
 		const user = await prisma.user.findFirst({
 			where: {
 				clerkId

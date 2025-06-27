@@ -21,6 +21,7 @@ export const Hero = async ({ data }: { data: IMovieList[] }) => {
 		return (
 			<p className='my-10 text-center text-red-500'>{data.message as string}</p>
 		)
+	
 	return (
 		<section className='flex flex-col lg:flex-row items-start gap-8 mt-12 relative'>
 			{/* LEFT */}

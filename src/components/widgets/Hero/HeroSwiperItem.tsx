@@ -16,7 +16,7 @@ export const HeroSwiperItem = ({ movie }: Props) => {
 			<div className='relative w-full h-[400px] sm:h-[500px] xl:h-[630px] '>
 				<Img
 					className='rounded-xl object-cover'
-					src={movie.images.poster[0]}
+					src={movie.images.thumb[0] || movie.images.poster[0]}
 					fill
 					alt={movie.title}
 					style={{

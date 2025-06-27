@@ -14,8 +14,7 @@ type Props = {
 	items: Review[] | WatchlistMovie[]
 }
 
-// TODO: Редактирование профиля
-// TODO: Выход из аккаунта
+// TODO: Сделать красивый readme
 
 export const UserPageSection = ({ title, link, desc, items }: Props) => {
 	const { loading } = useUserStore()
@@ -36,7 +35,7 @@ export const UserPageSection = ({ title, link, desc, items }: Props) => {
 			</Link>
 			<p className='mt-3 text-text-secondary'>{desc}</p>
 
-			<div className='mt-5 grid grid-cols-2 vsm:grid-cols-3 sm:grid-cols-4 items-stretch gap-4'>
+			<div className='mt-5 grid grid-cols-2 vsm:grid-cols-3 sm:grid-cols-5 items-stretch gap-4'>
 				{loading
 					? [...new Array(4)].map((_, index) => (
 							<Skeleton

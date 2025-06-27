@@ -7,7 +7,7 @@ export const Anticipated = async ({ data }: { data: IMovieList[] }) => {
 	return (
 		<Section section='anticipated' title='Most anticipated'>
 			<AnticipatedList
-				list={data.flatMap((item: IMovieList) => item.movie)}
+				list={data?.flatMap((item: IMovieList) => item.movie)}
 			/>
 		</Section>
 	)
